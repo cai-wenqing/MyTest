@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            android:minHeight="80dp"
+            app:expandedTitleGravity="bottom|center"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="50dp"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:id="@+id/one_iv_title"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/default_avatar" />
+
+                <LinearLayout
+                    android:id="@+id/main_ll_jiuba"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@color/background_tab_pressed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/main_tv_barname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="测试"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/main_tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="150dp"
+                    android:text="请设置昵称"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/main_tv_sign"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="170dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:text="编辑您的个性签名"
+                    android:textColor="#d0d0d0"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/colorPrimary"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="扫一扫"
+                        android:textColor="@drawable/main_tab_text_selector" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="糖果屋" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_tab_pressed"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/main_btn_song"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:text="歌单"
+                android:textColor="@drawable/main_tab_text_selector"
+                android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/main_btn_nearby"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:text="周边"
+                android:textColor="@drawable/main_tab_text_selector"
+                android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/main_btn_trip"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:text="行程"
+                android:textColor="@drawable/main_tab_text_selector"
+                android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/main_btn_message"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:text="消息"
+                android:textColor="@drawable/main_tab_text_selector"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_text"
+                android:textSize="20sp" />
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

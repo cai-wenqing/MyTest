@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.aiyakeji.mytest.widgets.GestureLockView
+        android:id="@+id/six_glv"
+        android:layout_width="match_parent"
+        android:layout_height="360dp" />
+
+
+    <TextView
+        android:id="@+id/six_tv_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/six_btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="重置" />
+
+</LinearLayout>

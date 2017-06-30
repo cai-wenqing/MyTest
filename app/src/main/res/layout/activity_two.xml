@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/two_ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/two_rl_header"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#363636">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="扫一扫"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="微粉屋"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/two_iv_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:src="@mipmap/default_avatar" />
+
+                <LinearLayout
+                    android:id="@+id/two_ll_jiuba"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="60dp"
+                    android:background="#f3f3f3"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/main_tv_barname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="hwhwhw"
+                        android:textColor="#ff0000"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/two_tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="180dp"
+                    android:text="请设置昵称"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/two_tv_rank"
+                    android:layout_width="140dp"
+                    android:layout_height="55dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="210dp"
+                    android:text="航额呵呵呵呵呵呵呵呵呵呵呵呵额荷航当当当当当"
+                    android:textColor="#ff0000" />
+
+                <TextView
+                    android:id="@+id/two_tv_sign"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="210dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:text="编辑您的个性签名"
+                    android:textColor="#d0d0d0"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <Button
+                        android:id="@+id/main_btn_song"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:text="歌单"
+                        android:textColor="@drawable/main_tab_text_selector"
+                        android:textSize="17dp" />
+
+                    <Button
+                        android:id="@+id/main_btn_nearby"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:text="周边"
+                        android:textColor="@drawable/main_tab_text_selector"
+                        android:textSize="17dp" />
+
+                    <Button
+                        android:id="@+id/main_btn_trip"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:text="行程"
+                        android:textColor="@drawable/main_tab_text_selector"
+                        android:textSize="17dp" />
+
+                    <Button
+                        android:id="@+id/main_btn_message"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:text="消息"
+                        android:textColor="@drawable/main_tab_text_selector"
+                        android:textSize="17dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/two_iv_toggle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/ic_launcher" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/two_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

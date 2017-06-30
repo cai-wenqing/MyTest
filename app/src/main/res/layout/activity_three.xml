@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.aiyakeji.mytest.widgets.CircleProgressView
+        android:id="@+id/three_cpv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        app:circle_process_progress_color="@android:color/black"
+        app:circle_process_stroke_color="@android:color/holo_blue_light"
+        app:circle_process_stroke_width="5dp"
+        app:circle_process_text_color="@android:color/holo_green_light"
+        app:circle_process_text_size="40sp" />
+
+    <Button
+        android:id="@+id/three_btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="start" />
+</LinearLayout>

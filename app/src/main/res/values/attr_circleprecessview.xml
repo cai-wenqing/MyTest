@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleProgressView">
+        <attr name="circle_process_stroke_width" format="dimension" />
+        <attr name="circle_process_stroke_color" format="color" />
+        <attr name="circle_process_progress_color" format="color" />
+        <attr name="circle_process_text_color" format="color" />
+        <attr name="circle_process_text_size" format="dimension" />
+        <attr name="circle_process_duration" format="dimension"/>
+    </declare-styleable>
+</resources>
