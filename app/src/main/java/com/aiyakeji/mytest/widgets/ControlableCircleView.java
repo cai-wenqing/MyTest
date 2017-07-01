@@ -97,9 +97,10 @@ public class ControlableCircleView extends View {
             mPreAngle = 360f / mClockNum;
             mHasInit = true;
         }
-
+        //画背景图片
         drawBg(canvas);
         canvas.rotate(touchRotate, mWidth / 2, mHeight / 2);
+        //画长短指针
         for (int i = 0; i < mClockNum; i++) {
             if (i % 2 == 0)
                 canvas.drawLine(mWidth / 2, mHeight / 2 - mClockRadio, mWidth / 2, mHeight / 2 - mClockRadio - mLongClockLine, mClockPaint);
