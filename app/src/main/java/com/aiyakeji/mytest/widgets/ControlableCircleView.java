@@ -33,7 +33,7 @@ public class ControlableCircleView extends View {
     private float mBackRadio;//背景图片圆半径
     private Bitmap bg_bitmap;
 
-    private float mPadding = 40;//表盘指针预留
+    private float mLongClockLine = 40;//长表盘指针长度
     private int mClockNum = 120;//最大指针数量
     private float mPreAngle;//每个指针间偏移角度
 
@@ -79,7 +79,9 @@ public class ControlableCircleView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getMeasuredWidth();
         mHeight = getMeasuredHeight();
-        mClockRadio = Math.min(mWidth, mHeight) / 2 - mPadding;
+        //长短指针所在的圆半径
+        mClockRadio = Math.min(mWidth, mHeight) / 2 - mLongClockLine;
+        //背景图片圆半径
         mBackRadio = mClockRadio - 20;
     }
 
@@ -100,9 +102,9 @@ public class ControlableCircleView extends View {
         canvas.rotate(touchRotate, mWidth / 2, mHeight / 2);
         for (int i = 0; i < mClockNum; i++) {
             if (i % 2 == 0)
-                canvas.drawLine(mWidth / 2, mHeight / 2 - mClockRadio, mWidth / 2, mHeight / 2 - mClockRadio - mPadding, mClockPaint);
+                canvas.drawLine(mWidth / 2, mHeight / 2 - mClockRadio, mWidth / 2, mHeight / 2 - mClockRadio - mLongClockLine, mClockPaint);
             else
-                canvas.drawLine(mWidth / 2, mHeight / 2 - mClockRadio, mWidth / 2, mHeight / 2 - mClockRadio - mPadding / 2, mClockPaint);
+                canvas.drawLine(mWidth / 2, mHeight / 2 - mClockRadio, mWidth / 2, mHeight / 2 - mClockRadio - mLongClockLine / 2, mClockPaint);
             canvas.rotate(mPreAngle, mWidth / 2, mHeight / 2);
         }
     }
