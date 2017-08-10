@@ -29,9 +29,11 @@
         <activity
             android:name=".ui.FourActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.FiveActivity"/>
-        <activity android:name=".ui.SixActivity"/>
-        <activity android:name=".ui.SevenActivity"/>
+        <activity android:name=".ui.FiveActivity" />
+        <activity android:name=".ui.SixActivity" />
+        <activity android:name=".ui.SevenActivity" />
+        <activity android:name=".ui.EightActivity" />
+        <activity android:name=".ui.NineActivity" />
     </application>
 
 </manifest>

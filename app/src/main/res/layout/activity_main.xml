@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.aiyakeji.mytest.ui.MainActivity">
 
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/main_drawerlayout"
         android:layout_width="match_parent"
@@ -67,21 +68,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="滚动选择器"/>
+                android:text="滚动选择器" />
 
             <Button
                 android:id="@+id/main_btn_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="手势解锁"/>
+                android:text="手势解锁" />
 
             <Button
                 android:id="@+id/main_btn_seven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="圆盘"/>
-        </LinearLayout>
+                android:text="圆盘" />
 
+            <Button
+                android:id="@+id/main_btn_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="万能适配器，左右滑动，上下交换" />
+
+            <Button
+                android:id="@+id/main_btn_nine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仿探探滑动卡片" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="300dp"

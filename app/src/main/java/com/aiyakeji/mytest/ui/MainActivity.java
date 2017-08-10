@@ -18,6 +18,7 @@ import com.aiyakeji.mytest.R;
 import com.nineoldandroids.view.ViewHelper;
 
 import static com.aiyakeji.mytest.R.id.main_btn_one;
+import static com.aiyakeji.mytest.R.id.start;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button button;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_five;
     private Button btn_six;
     private Button btn_seven;
+    private Button btn_eight;
+    private Button btn_nine;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -58,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_five = (Button) findViewById(R.id.main_btn_five);
         btn_six = (Button) findViewById(R.id.main_btn_six);
         btn_seven = (Button) findViewById(R.id.main_btn_seven);
+        btn_eight = (Button) findViewById(R.id.main_btn_eight);
+        btn_nine = (Button) findViewById(R.id.main_btn_nine);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -69,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_five.setOnClickListener(this);
         btn_six.setOnClickListener(this);
         btn_seven.setOnClickListener(this);
+        btn_eight.setOnClickListener(this);
+        btn_nine.setOnClickListener(this);
     }
 
 
@@ -114,7 +121,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, SixActivity.class));
                 break;
             case R.id.main_btn_seven://页面七
-                startActivity(new Intent(this,SevenActivity.class));
+                startActivity(new Intent(this, SevenActivity.class));
+                break;
+            case R.id.main_btn_eight://页面八
+                startActivity(new Intent(this, EightActivity.class));
+                break;
+            case R.id.main_btn_nine://页面九
+                startActivity(new Intent(this, NineActivity.class));
                 break;
         }
     }
