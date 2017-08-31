@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/mvplogin_et_account"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:hint="请输入账号" />
+
+
+    <EditText
+        android:id="@+id/mvplogin_et_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="请输入密码" />
+
+
+    <Button
+        android:id="@+id/mvplogin_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="登录" />
+
+    <Button
+        android:id="@+id/mvplogin_btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="取消" />
+</LinearLayout>

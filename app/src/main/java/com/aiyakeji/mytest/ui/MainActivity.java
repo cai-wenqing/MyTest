@@ -18,7 +18,6 @@ import com.aiyakeji.mytest.R;
 import com.nineoldandroids.view.ViewHelper;
 
 import static com.aiyakeji.mytest.R.id.main_btn_one;
-import static com.aiyakeji.mytest.R.id.start;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button button;
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, EightActivity.class));
                 break;
             case R.id.main_btn_nine://页面九
-                startActivity(new Intent(this, NineActivity.class));
+                startActivity(new Intent(this, MVPLoginActivity.class));
                 break;
         }
     }
