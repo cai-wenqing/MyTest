@@ -87,19 +87,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="万能适配器，左右滑动，上下交换" />
-
-            <Button
-                android:id="@+id/main_btn_nine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MVP登录" />
-
-            <Button
-                android:id="@+id/main_btn_rajava_retrofit2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="初试rajava+retrofit2"/>
-
         </LinearLayout>
 
         <LinearLayout

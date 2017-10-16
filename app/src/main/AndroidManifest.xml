@@ -33,7 +33,6 @@
         <activity android:name=".ui.SixActivity" />
         <activity android:name=".ui.SevenActivity" />
         <activity android:name=".ui.EightActivity" />
-        <activity android:name=".ui.MVPLoginActivity" />
     </application>
 
 </manifest>

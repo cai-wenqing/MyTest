@@ -128,12 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_btn_eight://页面八
                 startActivity(new Intent(this, EightActivity.class));
                 break;
-            case R.id.main_btn_nine://页面九
-                startActivity(new Intent(this, MVPLoginActivity.class));
-                break;
-            case R.id.main_btn_rajava_retrofit2:
-
-                break;
         }
     }
 
