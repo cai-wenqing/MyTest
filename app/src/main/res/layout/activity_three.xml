@@ -7,15 +7,28 @@
     android:orientation="vertical">
 
     <com.aiyakeji.mytest.widgets.CircleProgressView
-        android:id="@+id/three_cpv"
+        android:id="@+id/three_cpv1"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="20dp"
+        app:circle_precess_if_show_text="true"
         app:circle_process_progress_color="@android:color/black"
         app:circle_process_stroke_color="@android:color/holo_blue_light"
-        app:circle_process_stroke_width="5dp"
+        app:circle_process_stroke_width="10dp"
         app:circle_process_text_color="@android:color/holo_green_light"
         app:circle_process_text_size="40sp" />
+
+    <com.aiyakeji.mytest.widgets.CircleProgressView
+        android:id="@+id/three_cpv2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="20dp"
+        app:circle_precess_if_show_text="false"
+        app:circle_process_progress_color="#13FF7A"
+        app:circle_process_stroke_color="#2B364F"
+        app:circle_process_stroke_width="5dp"
+        app:circle_process_text_color="@android:color/holo_green_light"
+        app:circle_process_text_size="10sp" />
 
     <Button
         android:id="@+id/three_btn_start"

@@ -1,5 +1,6 @@
 package com.aiyakeji.mytest.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,8 @@ import com.aiyakeji.mytest.widgets.CircleProgressView;
  */
 
 public class ThreeActivity extends AppCompatActivity implements View.OnClickListener {
-    private CircleProgressView cpv;
+    private CircleProgressView cpv1;
+    private CircleProgressView cpv2;
     private Button btn_start;
 
     @Override
@@ -25,9 +27,11 @@ public class ThreeActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
-        cpv = (CircleProgressView) findViewById(R.id.three_cpv);
+        cpv1 = (CircleProgressView) findViewById(R.id.three_cpv1);
+        cpv2 = (CircleProgressView) findViewById(R.id.three_cpv2);
         btn_start = (Button) findViewById(R.id.three_btn_start);
 
+        cpv1.setGradientColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN);
         btn_start.setOnClickListener(this);
     }
 
@@ -36,7 +40,8 @@ public class ThreeActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.three_btn_start:
-                cpv.start(200f, 165f);
+                cpv1.start(200f, 165f);
+                cpv2.start(200f, 165f);
                 break;
         }
     }
