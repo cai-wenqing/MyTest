@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_six;
     private Button btn_seven;
     private Button btn_eight;
-    private Button btn_nine;
-    private Button btn_rajava_retrofit2;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -62,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_six = (Button) findViewById(R.id.main_btn_six);
         btn_seven = (Button) findViewById(R.id.main_btn_seven);
         btn_eight = (Button) findViewById(R.id.main_btn_eight);
-        btn_nine = (Button) findViewById(R.id.main_btn_nine);
-        btn_rajava_retrofit2 = (Button) findViewById(R.id.main_btn_rajava_retrofit2);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -76,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_six.setOnClickListener(this);
         btn_seven.setOnClickListener(this);
         btn_eight.setOnClickListener(this);
-        btn_nine.setOnClickListener(this);
-        btn_rajava_retrofit2.setOnClickListener(this);
     }
 
 
