@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/slidingcard_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c0c0c0"
+        android:overScrollMode="never"
+        android:paddingTop="@dimen/dp_40"
+        android:scrollbars="none" />
 
     <TextView
         android:id="@+id/slidingcard_tv_title"
@@ -11,14 +20,4 @@
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:text="测试" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/slidingcard_recycleview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_40"
-        android:background="#c0c0c0"
-        android:overScrollMode="never"
-        android:scrollbars="none" />
-</merge>
+</RelativeLayout>

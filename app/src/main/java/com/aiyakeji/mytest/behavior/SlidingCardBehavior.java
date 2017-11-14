@@ -13,9 +13,7 @@ import com.aiyakeji.mytest.widgets.SlidingCardLayout;
  */
 
 public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardLayout> {
-
     private int mInitOffset;
-
 
     @Override
     public boolean onMeasureChild(CoordinatorLayout parent, SlidingCardLayout child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
@@ -25,6 +23,7 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         return true;
     }
 
+    //获取此页面上除自身外所有同等级view的头部高度之和
     private int getChildMeasureOffset(CoordinatorLayout parent, SlidingCardLayout child) {
         int offset = 0;
         for (int i = 0; i < parent.getChildCount(); i++) {
@@ -39,25 +38,22 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
     @Override
     public boolean onLayoutChild(CoordinatorLayout parent, SlidingCardLayout child, int layoutDirection) {
         parent.onLayoutChild(child, layoutDirection);
-        SlidingCardLayout preChild = getPreviousChild(parent, child);
-        if (null != preChild) {
-            int offset = preChild.getTop() + preChild.getHeadHeight();
-            child.offsetTopAndBottom(offset);
-            Log.i("SlidingBehavior测试", "allOffset:" + offset + ",getTop:" + preChild.getTop() + ",getHead:" + preChild.getHeadHeight() + ",position:" + parent.indexOfChild(child));
-        }
+        int offset = getBeforeChildOffset(parent, child);
+        child.offsetTopAndBottom(offset);
         mInitOffset = child.getTop();
         return true;
     }
 
-    //获取上一个同等级同类型子控件
-    private SlidingCardLayout getPreviousChild(CoordinatorLayout parent, SlidingCardLayout child) {
+    //获取此view之前同等级view的头部高度之和
+    private int getBeforeChildOffset(CoordinatorLayout parent, SlidingCardLayout child) {
+        int offset = 0;
         int index = parent.indexOfChild(child);
         for (int i = index - 1; i >= 0; i--) {
             View v = parent.getChildAt(i);
             if (v instanceof SlidingCardLayout)
-                return (SlidingCardLayout) v;
+                offset += ((SlidingCardLayout) v).getHeadHeight();
         }
-        return null;
+        return offset;
     }
 
 
@@ -74,8 +70,10 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int iniatialOffset = child.getTop();
         int offset = clamp(iniatialOffset - dy, minOffset, maxOffset) - iniatialOffset;
         child.offsetTopAndBottom(offset);
-
+        //修正view消耗的dy偏移量
         consumed[1] = -offset;
+        //多个卡片联动
+        preScrollShiftSliding(consumed[1], coordinatorLayout, child);
     }
 
     //限制最大值和最小值
@@ -88,8 +86,89 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
             return i;
     }
 
+
+    private void preScrollShiftSliding(int i, CoordinatorLayout parent, SlidingCardLayout child) {
+        if (i == 0)
+            return;
+        else if (i > 0) {//上推
+            SlidingCardLayout current = child;
+            SlidingCardLayout previous = getPreChild(parent, current);
+            while (null != previous) {
+                int offset = previous.getTop() + previous.getHeadHeight() - current.getTop();
+                if (offset > 0)
+                    previous.offsetTopAndBottom(-offset);
+                current = previous;
+                previous = getPreChild(parent, current);
+            }
+        } else {//下拉
+            SlidingCardLayout current = child;
+            SlidingCardLayout next = getNextChild(parent, current);
+            while (null != next) {
+                int offset = current.getTop() + current.getHeadHeight() - next.getTop();
+                if (offset > 0)
+                    next.offsetTopAndBottom(offset);
+                current = next;
+                next = getNextChild(parent, current);
+            }
+        }
+    }
+
+
+    //获取上一个子view
+    private SlidingCardLayout getPreChild(CoordinatorLayout parent, SlidingCardLayout child) {
+        int index = parent.indexOfChild(child);
+        for (int i = index - 1; i >= 0; i--) {
+            View v = parent.getChildAt(i);
+            if (v instanceof SlidingCardLayout)
+                return (SlidingCardLayout) v;
+        }
+        return null;
+    }
+
+    //获取下一个子view
+    private SlidingCardLayout getNextChild(CoordinatorLayout parent, SlidingCardLayout child) {
+        int index = parent.indexOfChild(child);
+        for (int i = index + 1; i < parent.getChildCount(); i++) {
+            View v = parent.getChildAt(i);
+            if (v instanceof SlidingCardLayout)
+                return (SlidingCardLayout) v;
+        }
+        return null;
+    }
+
+
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, SlidingCardLayout child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
+    }
+
+
+    @Override
+    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, SlidingCardLayout child, View target, float velocityX, float velocityY, boolean consumed) {
+        Log.i("SlidingBehavior测试", "velocityY:" + velocityY + ",consumed:" + consumed);
+//        FlingShiftSliding(velocityY, coordinatorLayout, child);
+        return false;
+    }
+
+    private void FlingShiftSliding(float velocityY, CoordinatorLayout parent, SlidingCardLayout child) {
+        if (velocityY == 0)
+            return;
+        else if (velocityY > 0) {//上滑
+            SlidingCardLayout current = child;
+            SlidingCardLayout previous = getPreChild(parent, current);
+            while (null != previous) {
+                previous.offsetTopAndBottom(-(int) velocityY);
+                current = previous;
+                previous = getPreChild(parent, current);
+            }
+        } else if (velocityY < 0) {//下滑
+            SlidingCardLayout current = child;
+            SlidingCardLayout next = getNextChild(parent, current);
+            while (null != next) {
+                next.offsetTopAndBottom((int) velocityY);
+                current = next;
+                next = getNextChild(parent, current);
+            }
+        }
     }
 }

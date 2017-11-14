@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
@@ -55,6 +56,7 @@ public class SlidingCardLayout extends FrameLayout {
         headText.setTextColor(headTextColor);
         headText.setText(text);
 
+
         RecyclerView mRecycleView = (RecyclerView) findViewById(R.id.slidingcard_recycleview);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleView.setAdapter(new SlidingCardAdapter(getContext(), Arrays.asList(strings)));
@@ -71,7 +73,6 @@ public class SlidingCardLayout extends FrameLayout {
 
 
     public int getHeadHeight() {
-//        Log.i("SlidingCardLayout测试", "getHeadHeight:" + headHeight + ",tag:" + toString());
         return headHeight;
     }
 }

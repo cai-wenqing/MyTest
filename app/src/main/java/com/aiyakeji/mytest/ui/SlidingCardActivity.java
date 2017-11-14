@@ -1,8 +1,8 @@
 package com.aiyakeji.mytest.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.SlidingCardLayout;
@@ -13,7 +13,7 @@ import com.aiyakeji.mytest.widgets.SlidingCardLayout;
  * 滑动卡片
  */
 
-public class SlidingCardActivity extends Activity {
+public class SlidingCardActivity extends AppCompatActivity {
     private SlidingCardLayout card_one;
     private SlidingCardLayout card_two;
     private SlidingCardLayout card_three;
