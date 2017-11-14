@@ -14,7 +14,7 @@ import com.aiyakeji.mytest.widgets.GestureLockView;
  * 自定义手势解锁view展示
  */
 
-public class SixActivity extends AppCompatActivity implements View.OnClickListener {
+public class GestureUnlockActivity extends AppCompatActivity implements View.OnClickListener {
     private GestureLockView gestureLockView;
     private TextView tv_pwd;
     private Button btn_reset;

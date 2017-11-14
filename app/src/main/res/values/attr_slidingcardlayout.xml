@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlidingCardLayout">
+        <attr name="sliding_card_head_background" format="color" />
+        <attr name="sliding_card_head_text_color" format="color" />
+        <attr name="sliding_card_head_text" format="string" />
+    </declare-styleable>
+</resources>

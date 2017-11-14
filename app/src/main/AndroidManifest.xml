@@ -23,16 +23,17 @@
         </activity>
 
 
-        <activity android:name=".ui.OneActivity" />
-        <activity android:name=".ui.TwoActivity" />
-        <activity android:name=".ui.ThreeActivity" />
+        <activity android:name=".ui.CoordinatorActivity" />
+        <activity android:name=".ui.AnimatorActivity" />
+        <activity android:name=".ui.CircleProgressActivity" />
         <activity
-            android:name=".ui.FourActivity"
+            android:name=".ui.HuaWeiClockActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.FiveActivity" />
-        <activity android:name=".ui.SixActivity" />
-        <activity android:name=".ui.SevenActivity" />
-        <activity android:name=".ui.EightActivity" />
+        <activity android:name=".ui.HorizontalScrollSelectorActivity" />
+        <activity android:name=".ui.GestureUnlockActivity" />
+        <activity android:name=".ui.RotatePlateActivity" />
+        <activity android:name=".ui.UniversalAdapterActivity" />
+        <activity android:name=".ui.SlidingCardActivity" />
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import com.aiyakeji.mytest.widgets.ClockView;
  * Created by Administrator on 2017/6/20 0020.
  */
 
-public class FourActivity extends AppCompatActivity implements View.OnClickListener {
+public class HuaWeiClockActivity extends AppCompatActivity implements View.OnClickListener {
     private ClockView mClockView;
     private Button btn_start;
     private Button btn_stop;

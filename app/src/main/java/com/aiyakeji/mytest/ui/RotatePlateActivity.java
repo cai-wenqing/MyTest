@@ -16,7 +16,7 @@ import static com.aiyakeji.mytest.R.id.seven_btn_right;
  * 自定义圆盘
  */
 
-public class SevenActivity extends AppCompatActivity implements View.OnClickListener {
+public class RotatePlateActivity extends AppCompatActivity implements View.OnClickListener {
     private ControlableCircleView ccv;
     private Button btn_left;
     private TextView tv;

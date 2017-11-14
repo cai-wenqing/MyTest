@@ -27,7 +27,7 @@ import java.util.List;
  * 页面二
  */
 
-public class TwoActivity extends AppCompatActivity implements View.OnClickListener {
+public class AnimatorActivity extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout rl_head;
     private ImageView iv_avatar;
     private LinearLayout ll_jiuba;

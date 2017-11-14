@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_six;
     private Button btn_seven;
     private Button btn_eight;
+    private Button btn_slidingcard;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_six = (Button) findViewById(R.id.main_btn_six);
         btn_seven = (Button) findViewById(R.id.main_btn_seven);
         btn_eight = (Button) findViewById(R.id.main_btn_eight);
+        btn_slidingcard = (Button) findViewById(R.id.main_btn_slidingcard);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_six.setOnClickListener(this);
         btn_seven.setOnClickListener(this);
         btn_eight.setOnClickListener(this);
+        btn_slidingcard.setOnClickListener(this);
     }
 
 
@@ -98,29 +101,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.main_btn_one://打开新页面
-                startActivity(new Intent(MainActivity.this, OneActivity.class));
+                startActivity(new Intent(MainActivity.this, CoordinatorActivity.class));
                 overridePendingTransition(R.anim.payactivity_open, 0);
                 break;
-            case R.id.main_btn_two://打开页面二
-                startActivity(new Intent(MainActivity.this, TwoActivity.class));
+            case R.id.main_btn_two://属性动画
+                startActivity(new Intent(MainActivity.this, AnimatorActivity.class));
                 break;
-            case R.id.main_btn_three://页面三
-                startActivity(new Intent(MainActivity.this, ThreeActivity.class));
+            case R.id.main_btn_three://仿QQ计步器
+                startActivity(new Intent(MainActivity.this, CircleProgressActivity.class));
                 break;
-            case R.id.main_btn_four://页面四
-                startActivity(new Intent(this, FourActivity.class));
+            case R.id.main_btn_four://华为时钟
+                startActivity(new Intent(this, HuaWeiClockActivity.class));
                 break;
-            case R.id.main_btn_five://页面五
-                startActivity(new Intent(this, FiveActivity.class));
+            case R.id.main_btn_five://横向滑动选择器
+                startActivity(new Intent(this, HorizontalScrollSelectorActivity.class));
                 break;
-            case R.id.main_btn_six://页面6
-                startActivity(new Intent(this, SixActivity.class));
+            case R.id.main_btn_six://手势解锁
+                startActivity(new Intent(this, GestureUnlockActivity.class));
                 break;
-            case R.id.main_btn_seven://页面七
-                startActivity(new Intent(this, SevenActivity.class));
+            case R.id.main_btn_seven://手势转盘
+                startActivity(new Intent(this, RotatePlateActivity.class));
                 break;
-            case R.id.main_btn_eight://页面八
-                startActivity(new Intent(this, EightActivity.class));
+            case R.id.main_btn_eight://万能适配器
+                startActivity(new Intent(this, UniversalAdapterActivity.class));
+                break;
+            case R.id.main_btn_slidingcard://滑动卡片
+                startActivity(new Intent(this, SlidingCardActivity.class));
                 break;
         }
     }

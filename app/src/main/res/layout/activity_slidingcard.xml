@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SlidingCardActivity">
+
+    <com.aiyakeji.mytest.widgets.SlidingCardLayout
+        android:id="@+id/slidingcard_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sliding_card_head_background="@android:color/holo_green_light"
+        app:sliding_card_head_text="卡片一"
+        app:sliding_card_head_text_color="@color/white" />
+
+    <com.aiyakeji.mytest.widgets.SlidingCardLayout
+        android:id="@+id/slidingcard_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sliding_card_head_background="@android:color/holo_red_light"
+        app:sliding_card_head_text="卡片二"
+        app:sliding_card_head_text_color="@color/white" />
+
+    <com.aiyakeji.mytest.widgets.SlidingCardLayout
+        android:id="@+id/slidingcard_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sliding_card_head_background="@android:color/holo_orange_light"
+        app:sliding_card_head_text="卡片三"
+        app:sliding_card_head_text_color="@color/white" />
+
+    <com.aiyakeji.mytest.widgets.SlidingCardLayout
+        android:id="@+id/slidingcard_four"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sliding_card_head_background="#d3f"
+        app:sliding_card_head_text="卡片四"
+        app:sliding_card_head_text_color="@color/white" />
+
+    <com.aiyakeji.mytest.widgets.SlidingCardLayout
+        android:id="@+id/slidingcard_five"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sliding_card_head_text="卡片五"
+        app:sliding_card_head_text_color="@color/white" />
+</android.support.design.widget.CoordinatorLayout>

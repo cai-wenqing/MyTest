@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * 页面五
  */
 
-public class FiveActivity extends AppCompatActivity implements OnClickListener {
+public class HorizontalScrollSelectorActivity extends AppCompatActivity implements OnClickListener {
     private HorizontalSelectedView horizontalSelectedView;
     private TextView tv_msg;
     private Button btn_left;

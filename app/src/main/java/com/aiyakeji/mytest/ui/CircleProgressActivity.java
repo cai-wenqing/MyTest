@@ -14,7 +14,7 @@ import com.aiyakeji.mytest.widgets.CircleProgressView;
  * 三测试页面
  */
 
-public class ThreeActivity extends AppCompatActivity implements View.OnClickListener {
+public class CircleProgressActivity extends AppCompatActivity implements View.OnClickListener {
     private CircleProgressView cpv1;
     private CircleProgressView cpv2;
     private Button btn_start;

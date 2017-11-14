@@ -21,7 +21,7 @@ import java.util.List;
  * 测试recycleview万能适配器，左右滑动删除
  */
 
-public class EightActivity extends Activity {
+public class UniversalAdapterActivity extends Activity {
     private RecyclerView mRecycleView;
     private StudentAdapter adapter;
     private ArrayList<Student> dataList;

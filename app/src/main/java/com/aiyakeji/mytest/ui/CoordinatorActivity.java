@@ -12,7 +12,7 @@ import com.aiyakeji.mytest.R;
  * Created by Administrator on 2017/5/12 0012.
  */
 
-public class OneActivity extends AppCompatActivity {
+public class CoordinatorActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
