@@ -34,6 +34,7 @@
         <activity android:name=".ui.RotatePlateActivity" />
         <activity android:name=".ui.UniversalAdapterActivity" />
         <activity android:name=".ui.SlidingCardActivity" />
+        <activity android:name=".ui.MqttActivity" />
     </application>
 
 </manifest>

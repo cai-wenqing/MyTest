@@ -97,6 +97,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="滑动卡片" />
+
+                <Button
+                    android:id="@+id/main_btn_mqtt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MQTT" />
             </LinearLayout>
         </ScrollView>
 

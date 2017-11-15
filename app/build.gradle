@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.27'
+    compile project(':aiyapusher')
 }
