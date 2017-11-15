@@ -9,10 +9,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
@@ -31,6 +29,8 @@ public class SlidingCardLayout extends FrameLayout {
     private int headBackgroundColor = Color.BLUE;
     private int headTextColor = Color.GREEN;
     private String text;
+
+    private RecyclerView mRecycleView;
 
     private int headHeight;
 
@@ -57,7 +57,7 @@ public class SlidingCardLayout extends FrameLayout {
         headText.setText(text);
 
 
-        RecyclerView mRecycleView = (RecyclerView) findViewById(R.id.slidingcard_recycleview);
+        mRecycleView = (RecyclerView) findViewById(R.id.slidingcard_recycleview);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleView.setAdapter(new SlidingCardAdapter(getContext(), Arrays.asList(strings)));
         attribute.recycle();
@@ -71,8 +71,31 @@ public class SlidingCardLayout extends FrameLayout {
         }
     }
 
-
+    /**
+     * 获取头部高度
+     * @return
+     */
     public int getHeadHeight() {
         return headHeight;
+    }
+
+
+    /**
+     * 能否继续向下滑动，true能滚动，false已经滚动到顶部
+     *
+     * @return
+     */
+    public boolean listCanScrollTop() {
+        return mRecycleView.canScrollVertically(-1);
+    }
+
+
+    /**
+     * 能否继续向上滑动，true能滚动，false已经滚到底部
+     *
+     * @return
+     */
+    public boolean listCanScrollBottom() {
+        return mRecycleView.canScrollVertically(1);
     }
 }

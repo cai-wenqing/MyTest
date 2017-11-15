@@ -69,11 +69,16 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int maxOffset = mInitOffset + child.getHeight() - child.getHeadHeight();
         int iniatialOffset = child.getTop();
         int offset = clamp(iniatialOffset - dy, minOffset, maxOffset) - iniatialOffset;
-        child.offsetTopAndBottom(offset);
-        //修正view消耗的dy偏移量
-        consumed[1] = -offset;
+//        Log.i("SlidingBehavior测试", "dy:" + dy + ",offset:" + offset);
+        if (offset > 0 && !child.listCanScrollTop()) {//向下滑动且list已滑动到顶部时
+            child.offsetTopAndBottom(offset);
+        } else if (offset < 0) {//向上滑动时
+            child.offsetTopAndBottom(offset);
+            //修正view消耗的dy偏移量
+            consumed[1] = -offset;
+        }
         //多个卡片联动
-        preScrollShiftSliding(consumed[1], coordinatorLayout, child);
+        preScrollShiftSliding(-offset, coordinatorLayout, child);
     }
 
     //限制最大值和最小值
@@ -145,30 +150,6 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
 
     @Override
     public boolean onNestedFling(CoordinatorLayout coordinatorLayout, SlidingCardLayout child, View target, float velocityX, float velocityY, boolean consumed) {
-        Log.i("SlidingBehavior测试", "velocityY:" + velocityY + ",consumed:" + consumed);
-//        FlingShiftSliding(velocityY, coordinatorLayout, child);
         return false;
-    }
-
-    private void FlingShiftSliding(float velocityY, CoordinatorLayout parent, SlidingCardLayout child) {
-        if (velocityY == 0)
-            return;
-        else if (velocityY > 0) {//上滑
-            SlidingCardLayout current = child;
-            SlidingCardLayout previous = getPreChild(parent, current);
-            while (null != previous) {
-                previous.offsetTopAndBottom(-(int) velocityY);
-                current = previous;
-                previous = getPreChild(parent, current);
-            }
-        } else if (velocityY < 0) {//下滑
-            SlidingCardLayout current = child;
-            SlidingCardLayout next = getNextChild(parent, current);
-            while (null != next) {
-                next.offsetTopAndBottom((int) velocityY);
-                current = next;
-                next = getNextChild(parent, current);
-            }
-        }
     }
 }
