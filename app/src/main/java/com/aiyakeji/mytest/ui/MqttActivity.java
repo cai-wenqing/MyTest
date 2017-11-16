@@ -1,5 +1,6 @@
 package com.aiyakeji.mytest.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +8,12 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.aiyakeji.aiyapusher.MqttTraceHandler;
-import com.aiyakeji.aiyapusher.manager.Connection;
+import com.aiyakeji.aiyapusher.manager.PublishManager;
 import com.aiyakeji.mytest.R;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -21,6 +23,8 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.Random;
 
 /**
  * Created by Administrator on 2017/11/15 0015.
@@ -36,11 +40,15 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
     private AppCompatTextView tv_rec_message;
     private AppCompatEditText et_message;
     private AppCompatButton btn_send;
+    private AppCompatButton btn_jump;
 
     private boolean newConnection = true;
-    private Connection connection;
+    private PublishManager mPublishManager;
     private String topic;
 
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final Random random = new Random();
+    private static final int length = 8;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,9 +68,11 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
         tv_rec_message = (AppCompatTextView) findViewById(R.id.mqtt_tv_rec_message);
         et_message = (AppCompatEditText) findViewById(R.id.mqtt_et_message);
         btn_send = (AppCompatButton) findViewById(R.id.mqtt_btn_send);
+        btn_jump = (AppCompatButton) findViewById(R.id.mqtt_btn_jump);
 
         btn_connect.setOnClickListener(this);
         btn_send.setOnClickListener(this);
+        btn_jump.setOnClickListener(this);
     }
 
 
@@ -74,6 +84,9 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.mqtt_btn_send://发送
                 sendMessage();
+                break;
+            case R.id.mqtt_btn_jump://跳转
+                startActivity(new Intent(this, CircleProgressActivity.class));
                 break;
         }
     }
@@ -99,28 +112,37 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (newConnection) {
-            connection = Connection.createConnection(clientid, service, 1883, this, false);
-            connection.changeConnectionStatus(Connection.ConnectionStatus.CONNECTING);
+            // Generate a new Client Handle
+            StringBuilder sb = new StringBuilder(length);
+            for (int i = 0; i < length; i++) {
+                sb.append(AB.charAt(random.nextInt(AB.length())));
+            }
+            String clientHandle = sb.toString() + '-' + service + '-' + clientid;
 
-            connection.getClient().setCallback(new MqttCallback() {
+            mPublishManager = PublishManager.createConnection(clientHandle,clientid, service, 1883, this, false);
+            mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.CONNECTING);
+
+            mPublishManager.getClient().setCallback(new MqttCallback() {
                 @Override
                 public void connectionLost(Throwable throwable) {
-
+                    mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.DISCONNECTED);
+                    Log.i("MqttActivity测试", "丢失连接");
                 }
 
                 @Override
                 public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-
+                    Log.i("MqttActivity测试", "收到消息，s:" + s + ",msg:" + mqttMessage.toString());
+                    tv_rec_message.setText("topic:" + s + "msg.toString:" + mqttMessage.toString());
                 }
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-
+                    Log.i("MqttActivity测试", "发送成功");
                 }
             });
 
 
-            connection.getClient().setTraceCallback(new MqttTraceHandler() {
+            mPublishManager.getClient().setTraceCallback(new MqttTraceHandler() {
                 @Override
                 public void traceDebug(String tag, String message) {
 
@@ -138,16 +160,24 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
             });
 
 
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setCleanSession(true);
+            options.setConnectionTimeout(80);
+            options.setKeepAliveInterval(200);
             try {
                 //连接
-                connection.getClient().connect(new MqttConnectOptions(), null, new IMqttActionListener() {
+                mPublishManager.getClient().connect(options, null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
+                        Log.i("MqttActivity测试", "连接成功！");
+                        tv_state.setText("连接成功！");
                         newConnection = false;
-                        connection.changeConnectionStatus(Connection.ConnectionStatus.CONNECTED);
+                        mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.CONNECTED);
                         //这里做订阅
                         try {
-                            connection.getClient().subscribe(topic, 0);
+                            mPublishManager.getClient().subscribe(topic, 0);
+                            Log.i("MqttActivity测试", "订阅");
+                            tv_state.setText(tv_state.getText().toString() + "订阅成功！");
                         } catch (MqttException e) {
                             e.printStackTrace();
                         }
@@ -155,7 +185,7 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-
+                        Log.i("MqttActivity测试", "连接失败！token:" + iMqttToken.toString() + "throwable:" + throwable.toString());
                     }
                 });
             } catch (MqttException e) {
@@ -164,14 +194,87 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
 
 
         } else {
+            try {
+                if (mPublishManager.isConnected()) {
+                    mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.DISCONNECTING);
+                    mPublishManager.getClient().disconnect();
+                }
 
+                mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.CONNECTING);
+                mPublishManager.getClient().setCallback(new MqttCallback() {
+                    @Override
+                    public void connectionLost(Throwable throwable) {
+                        Log.i("MqttActivity测试", "丢失连接");
+                    }
+
+                    @Override
+                    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+                        Log.i("MqttActivity测试", "收到消息，s:" + s + ",msg:" + mqttMessage.toString());
+                        tv_rec_message.setText("topic:" + s + "msg.toString:" + mqttMessage.toString());
+                    }
+
+                    @Override
+                    public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+                        Log.i("MqttActivity测试", "发送成功");
+                    }
+                });
+
+
+                mPublishManager.getClient().setTraceCallback(new MqttTraceHandler() {
+                    @Override
+                    public void traceDebug(String tag, String message) {
+
+                    }
+
+                    @Override
+                    public void traceError(String tag, String message) {
+
+                    }
+
+                    @Override
+                    public void traceException(String tag, String message, Exception e) {
+
+                    }
+                });
+
+                MqttConnectOptions options = new MqttConnectOptions();
+                options.setCleanSession(true);
+                options.setConnectionTimeout(80);
+                options.setKeepAliveInterval(200);
+                //连接
+                mPublishManager.getClient().connect(options, null, new IMqttActionListener() {
+                    @Override
+                    public void onSuccess(IMqttToken iMqttToken) {
+                        Log.i("MqttActivity测试", "连接成功！");
+                        tv_state.setText("连接成功！");
+                        newConnection = false;
+                        mPublishManager.changeConnectionStatus(PublishManager.ConnectionStatus.CONNECTED);
+                        //这里做订阅
+                        try {
+                            mPublishManager.getClient().subscribe(topic, 0);
+                            Log.i("MqttActivity测试", "订阅");
+                            tv_state.setText(tv_state.getText().toString() + "订阅成功！");
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+                        Log.i("MqttActivity测试", "连接失败！token:" + iMqttToken.toString() + "throwable:" + throwable.toString());
+                    }
+                });
+
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
         }
     }
 
 
     private void sendMessage() {
         try {
-            connection.getClient().publish(topic, et_message.getText().toString().trim().getBytes(), 0, false, null, new IMqttActionListener() {
+            mPublishManager.getClient().publish(topic, et_message.getText().toString().trim().getBytes(), 0, false, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken iMqttToken) {
                     Toast.makeText(MqttActivity.this, "发送成功！", Toast.LENGTH_SHORT).show();
@@ -184,6 +287,14 @@ public class MqttActivity extends AppCompatActivity implements View.OnClickListe
             });
         } catch (MqttException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mPublishManager) {
+            mPublishManager.getClient().unregisterResources();
         }
     }
 }

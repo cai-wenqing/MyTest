@@ -11,15 +11,18 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 /**
  * Represents a {@link MqttAndroidClient} and the actions it has performed
  */
-public class Connection {
+public class PublishManager {
 
     /**
-     * The host that the {@link MqttAndroidClient} represented by this <code>Connection</code> is represented by
+     * The host that the {@link MqttAndroidClient} represented by this <code>PublishManager</code> is represented by
      **/
     private String host = null;
 
+    /** ClientHandle for this Connection object **/
+    private String clientHandle = null;
+
     /**
-     * The clientId of the client associated with this <code>Connection</code> object
+     * The clientId of the client associated with this <code>PublishManager</code> object
      **/
     private String clientId = null;
 
@@ -29,7 +32,7 @@ public class Connection {
     private int port = 0;
 
     /**
-     * {@link ConnectionStatus } of the {@link MqttAndroidClient} represented by this <code>Connection</code> object. Default value is {@link ConnectionStatus#NONE}
+     * {@link ConnectionStatus } of the {@link MqttAndroidClient} represented by this <code>PublishManager</code> object. Default value is {@link ConnectionStatus#NONE}
      **/
     private ConnectionStatus status = ConnectionStatus.NONE;
 
@@ -97,9 +100,9 @@ public class Connection {
      * @param port          the port on the server which the client will attempt to connect to
      * @param context       the application context
      * @param tlsConnection true if the connection is secured by SSL
-     * @return a new instance of <code>Connection</code>
+     * @return a new instance of <code>PublishManager</code>
      */
-    public static Connection createConnection(String clientId, String host, int port, Context context, boolean tlsConnection) {
+    public static PublishManager createConnection(String clientHandle, String clientId, String host, int port, Context context, boolean tlsConnection) {
 
         String uri;
         if (tlsConnection) {
@@ -109,7 +112,7 @@ public class Connection {
         }
 
         MqttAndroidClient client = new MqttAndroidClient(context, uri, clientId);
-        return new Connection(clientId, host, port, context, client, tlsConnection);
+        return new PublishManager(clientHandle,clientId, host, port, context, client, tlsConnection);
     }
 
 
@@ -140,8 +143,9 @@ public class Connection {
      * @param client        The MqttAndroidClient which communicates with the service for this connection
      * @param tlsConnection true if the connection is secured by SSL
      */
-    private Connection(String clientId, String host,
-                       int port, Context context, MqttAndroidClient client, boolean tlsConnection) {
+    private PublishManager(String clientHandle, String clientId, String host,
+                           int port, Context context, MqttAndroidClient client, boolean tlsConnection) {
+        this.clientHandle = clientHandle;
         this.clientId = clientId;
         this.host = host;
         this.port = port;
@@ -205,6 +209,14 @@ public class Connection {
         sb.append(host);
 
         return sb.toString();
+    }
+
+    public String getClientHandle() {
+        return clientHandle;
+    }
+
+    public void setClientHandle(String clientHandle) {
+        this.clientHandle = clientHandle;
     }
 
     /**

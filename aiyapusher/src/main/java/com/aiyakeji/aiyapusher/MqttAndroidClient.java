@@ -92,7 +92,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
         MANUAL_ACK
     }
 
-    private static final String SERVICE_NAME = "org.eclipse.paho.android.service.MqttService";
+    private static final String SERVICE_NAME = "com.aiyakeji.aiyapusher.MqttService";
 
     private static final int BIND_SERVICE_FLAG = 0;
 
@@ -135,7 +135,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
     private final SparseArray<IMqttToken> tokenMap = new SparseArray<>();
     private int tokenNumber = 0;
 
-    // Connection data
+    // PublishManager data
     private final String serverURI;
     private final String clientId;
     private MqttClientPersistence persistence = null;
@@ -1331,7 +1331,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
     }
 
     /**
-     * Process a Connection Lost notification
+     * Process a PublishManager Lost notification
      *
      * @param data
      */

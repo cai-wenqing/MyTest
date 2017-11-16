@@ -191,7 +191,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * MqttServiceConstants.CALLBACK_EXCEPTION_STACK}</td>
  * <td align="left" valign="top">String</td>
  * <td align="left" valign="top">The stacktrace of the failing call</td>
- * <td align="left" valign="top">The Connection Lost event</td>
+ * <td align="left" valign="top">The PublishManager Lost event</td>
  * </tr>
  * <tr>
  * <td align="left" valign="top">
