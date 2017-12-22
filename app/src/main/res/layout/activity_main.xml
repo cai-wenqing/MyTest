@@ -103,6 +103,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MQTT" />
+
+                <Button
+                    android:id="@+id/main_btn_wavedcircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="波动圆"/>
+
+                <Button
+                    android:id="@+id/main_btn_lunbotu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="轮播图"/>
             </LinearLayout>
         </ScrollView>
 

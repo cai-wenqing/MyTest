@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WavedCircleView">
+        <attr name="waved_circle_stroke_width" format="dimension"/>
+        <attr name="waved_circle_wave_width" format="dimension"/>
+        <attr name="waved_circle_stroke_color" format="color"/>
+        <attr name="waved_circle_wave_color" format="color"/>
+        <attr name="waved_circle_wave_inner_color" format="color"/>
+    </declare-styleable>
+</resources>

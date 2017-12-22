@@ -7,7 +7,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +18,6 @@ import com.aiyakeji.mytest.R;
 import com.nineoldandroids.view.ViewHelper;
 
 import static com.aiyakeji.mytest.R.id.main_btn_one;
-import static com.aiyakeji.mytest.R.id.start;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button button;
@@ -32,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_eight;
     private Button btn_slidingcard;
     private Button btn_mqtt;
+    private Button btn_wavedcircle;
+    private Button btn_lunbotu;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_eight = (Button) findViewById(R.id.main_btn_eight);
         btn_slidingcard = (Button) findViewById(R.id.main_btn_slidingcard);
         btn_mqtt = (Button) findViewById(R.id.main_btn_mqtt);
+        btn_wavedcircle = (Button) findViewById(R.id.main_btn_wavedcircle);
+        btn_lunbotu = (Button) findViewById(R.id.main_btn_lunbotu);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_eight.setOnClickListener(this);
         btn_slidingcard.setOnClickListener(this);
         btn_mqtt.setOnClickListener(this);
+        btn_wavedcircle.setOnClickListener(this);
+        btn_lunbotu.setOnClickListener(this);
     }
 
 
@@ -135,6 +139,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_mqtt://mqtt
                 startActivity(new Intent(this,MqttActivity.class));
+                break;
+            case R.id.main_btn_wavedcircle://波动圆
+                startActivity(new Intent(this,WavedCircleActivity.class));
+                break;
+            case R.id.main_btn_lunbotu://轮播图
+                startActivity(new Intent(this,LunBoTuActivity.class));
                 break;
         }
     }

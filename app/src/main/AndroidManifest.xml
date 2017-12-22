@@ -35,6 +35,8 @@
         <activity android:name=".ui.UniversalAdapterActivity" />
         <activity android:name=".ui.SlidingCardActivity" />
         <activity android:name=".ui.MqttActivity" />
+        <activity android:name=".ui.WavedCircleActivity" />
+        <activity android:name=".ui.LunBoTuActivity" />
     </application>
 
 </manifest>
