@@ -1,9 +1,12 @@
 package com.aiyakeji.mytest.ui;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +46,16 @@ public class LunBoTuActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunbotu);
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+        ActionBar actionBar = getSupportActionBar();
+        if (null != actionBar)
+            actionBar.hide();
 
         mViewPager = (ViewPager) findViewById(R.id.lunbotu_viewpager);
         indicator1 = (ViewPagerIndicator) findViewById(R.id.lunbotu_indicator1);
@@ -68,7 +81,7 @@ public class LunBoTuActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.i("LunBoTuActivity测试", "positionOffset:" + positionOffset + ",positionOffsetPixels:" + positionOffsetPixels);
+//                Log.i("LunBoTuActivity测试", "positionOffset:" + positionOffset + ",positionOffsetPixels:" + positionOffsetPixels);
                 indicator1.setPositionAndOffset(position, positionOffset);
             }
 
