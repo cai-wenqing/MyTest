@@ -37,6 +37,10 @@
         <activity android:name=".ui.MqttActivity" />
         <activity android:name=".ui.WavedCircleActivity" />
         <activity android:name=".ui.LunBoTuActivity" />
+        <activity android:name=".ui.VoiceShakeActivity"/>
+        <activity android:name=".ui.MaterialTestActivity"/>
+        <activity android:name=".ui.MaterialTestBActivity"/>
+        <activity android:name=".ui.KotlinTestActivity"/>
     </application>
 
 </manifest>

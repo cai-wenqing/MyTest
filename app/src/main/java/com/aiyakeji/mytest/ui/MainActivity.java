@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.aiyakeji.mytest.R;
 import com.nineoldandroids.view.ViewHelper;
 
+import static com.aiyakeji.mytest.R.id.cancel_action;
 import static com.aiyakeji.mytest.R.id.main_btn_one;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_mqtt;
     private Button btn_wavedcircle;
     private Button btn_lunbotu;
+    private Button btn_voiceshake;
+    private Button btn_material;
+    private Button btn_kotlin;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -68,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_mqtt = (Button) findViewById(R.id.main_btn_mqtt);
         btn_wavedcircle = (Button) findViewById(R.id.main_btn_wavedcircle);
         btn_lunbotu = (Button) findViewById(R.id.main_btn_lunbotu);
+        btn_voiceshake = (Button) findViewById(R.id.main_btn_voiceshake);
+        btn_material = (Button) findViewById(R.id.main_btn_material);
+        btn_kotlin = findViewById(R.id.main_btn_kotlin);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -84,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_mqtt.setOnClickListener(this);
         btn_wavedcircle.setOnClickListener(this);
         btn_lunbotu.setOnClickListener(this);
+        btn_voiceshake.setOnClickListener(this);
+        btn_material.setOnClickListener(this);
+        btn_kotlin.setOnClickListener(this);
     }
 
 
@@ -145,6 +155,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_lunbotu://轮播图
                 startActivity(new Intent(this,LunBoTuActivity.class));
+                break;
+            case R.id.main_btn_voiceshake://声波显示
+                startActivity(new Intent(this,VoiceShakeActivity.class));
+                break;
+            case R.id.main_btn_material://MaterialDesign测试
+                startActivity(new Intent(this,MaterialTestActivity.class));
+                break;
+            case R.id.main_btn_kotlin://kotlin测试
+                startActivity(new Intent(this,KotlinTestActivity.class));
                 break;
         }
     }

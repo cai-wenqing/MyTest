@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/kotlin_btn_click1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="button1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/kotlin_btn_click2" />
+
+    <Button
+        android:id="@+id/kotlin_btn_click2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="button2"
+        app:layout_constraintLeft_toRightOf="@id/kotlin_btn_click1"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
