@@ -36,7 +36,7 @@ public class GestureLockView extends View {
 
     private float offsetX = 0;//x轴上的偏移量
     private float offsetY = 0;//y轴上的偏移量
-    private float slideSize;//大圆边长
+    private float slideSize;//大圆半径
 
     private float movingX;
     private float movingY;
@@ -143,7 +143,7 @@ public class GestureLockView extends View {
                 //连接线
                 canvas.drawLine(x1, y1, x2, y2, pressedPaint);
                 //箭头
-                drawArrow(canvas, arrowPaint, selectedPoints.get(i1), selectedPoints.get(i1 + 1), slideSize / 4, 30);
+                drawArrow(canvas, arrowPaint, selectedPoints.get(i1), selectedPoints.get(i1 + 1), slideSize / 3, 30);
             }
         }
 
@@ -163,13 +163,19 @@ public class GestureLockView extends View {
 
     /**
      * 画箭头
+     * @param canvas
+     * @param paint
+     * @param start 起始圆
+     * @param end 箭头所指圆
+     * @param arrowHeight 箭头尖距底部垂直距离
+     * @param angle 箭头单侧角度
      */
     private void drawArrow(Canvas canvas, Paint paint, GestureLockPoint start, GestureLockPoint end, Float arrowHeight, int angle) {
         float d = calcDisBetweenPoint(start.centerX, start.centerY, end.centerX, end.centerY);
         float sin_B = ((end.centerX - start.centerX) / d);
         float cos_B = ((end.centerY - start.centerY) / d);
         float tan_A = (float) Math.tan(Math.toRadians(angle));
-        float h = (float) (d - arrowHeight - slideSize * 1.1);
+        float h = (float) (d - arrowHeight - slideSize);
         float l = arrowHeight * tan_A;
         float a = l * sin_B;
         float b = l * cos_B;

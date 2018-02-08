@@ -1,6 +1,7 @@
 package com.aiyakeji.mytest.ui
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -32,8 +33,10 @@ class KotlinTestActivity : AppCompatActivity(), View.OnClickListener {
             R.id.kotlin_btn_click1 ->
                 Toast.makeText(this, "点击按钮1", Toast.LENGTH_SHORT).show()
             R.id.kotlin_btn_click2 ->
-                Toast.makeText(this, "点击按钮2", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this).setTitle("提示：").setMessage("点击了按钮2")
+                        .setPositiveButton("确定") { dialogInterface, i -> dialogInterface.dismiss() }
+                        .setNegativeButton("取消"){dialogInterface, i -> dialogInterface.dismiss() }
+                        .create().show()
         }
     }
-
 }

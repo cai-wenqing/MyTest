@@ -13,6 +13,7 @@ import com.aiyakeji.mytest.widgets.SlidingCardLayout;
  */
 
 public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardLayout> {
+    private static final String TAG = "SlidingCardBehavior测试";
     private int mInitOffset;
 
     @Override
@@ -69,7 +70,7 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int maxOffset = mInitOffset + child.getHeight() - child.getHeadHeight();
         int iniatialOffset = child.getTop();
         int offset = clamp(iniatialOffset - dy, minOffset, maxOffset) - iniatialOffset;
-//        Log.i("SlidingBehavior测试", "dy:" + dy + ",offset:" + offset);
+//        Log.i(TAG, "dy:" + dy + ",offset:" + offset);
         if (offset > 0 && !child.listCanScrollTop()) {//向下滑动且list已滑动到顶部时
             child.offsetTopAndBottom(offset);
         } else if (offset < 0) {//向上滑动时

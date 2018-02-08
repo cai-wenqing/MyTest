@@ -30,6 +30,7 @@ public class SlidingCardLayout extends FrameLayout {
     private int headTextColor = Color.GREEN;
     private String text;
 
+    private TextView mTextView;
     private RecyclerView mRecycleView;
 
     private int headHeight;
@@ -51,10 +52,10 @@ public class SlidingCardLayout extends FrameLayout {
         headTextColor = attribute.getColor(R.styleable.SlidingCardLayout_sliding_card_head_text_color, Color.GREEN);
         text = attribute.getString(R.styleable.SlidingCardLayout_sliding_card_head_text);
 
-        TextView headText = (TextView) findViewById(R.id.slidingcard_tv_title);
-        headText.setBackgroundColor(headBackgroundColor);
-        headText.setTextColor(headTextColor);
-        headText.setText(text);
+        mTextView = (TextView) findViewById(R.id.slidingcard_tv_title);
+        mTextView.setBackgroundColor(headBackgroundColor);
+        mTextView.setTextColor(headTextColor);
+        mTextView.setText(text);
 
 
         mRecycleView = (RecyclerView) findViewById(R.id.slidingcard_recycleview);
@@ -63,16 +64,16 @@ public class SlidingCardLayout extends FrameLayout {
         attribute.recycle();
     }
 
-
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        if (w != oldw || h != oldh) {
-            headHeight = findViewById(R.id.slidingcard_tv_title).getMeasuredHeight();
-        }
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        headHeight = findViewById(R.id.slidingcard_tv_title).getMeasuredHeight();
     }
+
 
     /**
      * 获取头部高度
+     *
      * @return
      */
     public int getHeadHeight() {
@@ -97,5 +98,25 @@ public class SlidingCardLayout extends FrameLayout {
      */
     public boolean listCanScrollBottom() {
         return mRecycleView.canScrollVertically(1);
+    }
+
+
+    /**
+     * 获取头部view
+     *
+     * @return
+     */
+    public TextView getTitleView() {
+        return mTextView;
+    }
+
+
+    /**
+     * 获取列表控件RecycleView
+     *
+     * @return
+     */
+    public RecyclerView getRecycleView() {
+        return mRecycleView;
     }
 }
