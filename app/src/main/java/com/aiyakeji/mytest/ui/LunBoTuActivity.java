@@ -29,7 +29,6 @@ public class LunBoTuActivity extends AppCompatActivity {
     private ViewPagerIndicator indicator1;
     private TextView tv_info;
     private ViewPager mViewPager2;
-    private TextView tv_info2;
     private ViewPager mViewPager3;
     private TextView tv_info3;
 
@@ -61,7 +60,6 @@ public class LunBoTuActivity extends AppCompatActivity {
         indicator1 = (ViewPagerIndicator) findViewById(R.id.lunbotu_indicator1);
         tv_info = (TextView) findViewById(R.id.lunbotu_tv_info);
         mViewPager2 = (ViewPager) findViewById(R.id.lunbotu_viewpager2);
-        tv_info2 = (TextView) findViewById(R.id.lunbotu_tv_info2);
         mViewPager3 = (ViewPager) findViewById(R.id.lunbotu_viewpager3);
         tv_info3 = (TextView) findViewById(R.id.lunbotu_tv_info3);
 
@@ -110,24 +108,6 @@ public class LunBoTuActivity extends AppCompatActivity {
         mViewPager2.setOffscreenPageLimit(imgRes.length);
         mViewPager2.setPageMargin(20);
         mViewPager2.setAdapter(adapter2);
-        tv_info2.setText(infos[0]);
-        mViewPager2.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                tv_info2.setText(infos[position]);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         mViewPager2.setPageTransformer(true, new PagerTransformer2());
     }

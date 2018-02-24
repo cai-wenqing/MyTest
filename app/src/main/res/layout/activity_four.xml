@@ -11,19 +11,4 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="20dp" />
-
-    <Button
-        android:id="@+id/four_btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="开始" />
-
-    <Button
-        android:id="@+id/four_btn_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="停止"
-        android:visibility="gone" />
 </LinearLayout>

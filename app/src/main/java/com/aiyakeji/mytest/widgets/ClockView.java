@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -133,7 +132,7 @@ public class ClockView extends View {
     /**
      * 开始动画
      */
-    public synchronized void startAnimation() {
+    public synchronized void start() {
         animator = ValueAnimator.ofFloat(0, 360);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -162,7 +161,7 @@ public class ClockView extends View {
         animator.start();
     }
 
-    public synchronized void stopAnimation() {
+    public synchronized void stop() {
         if (null != animator) {
             animator.removeAllUpdateListeners();
             animator.cancel();
