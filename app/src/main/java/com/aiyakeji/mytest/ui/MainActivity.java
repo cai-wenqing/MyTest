@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_voiceshake;
     private Button btn_material;
     private Button btn_kotlin;
+    private Button btn_testLayout;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_voiceshake = (Button) findViewById(R.id.main_btn_voiceshake);
         btn_material = (Button) findViewById(R.id.main_btn_material);
         btn_kotlin = findViewById(R.id.main_btn_kotlin);
+        btn_testLayout = findViewById(R.id.main_btn_test_layout);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_voiceshake.setOnClickListener(this);
         btn_material.setOnClickListener(this);
         btn_kotlin.setOnClickListener(this);
+        btn_testLayout.setOnClickListener(this);
     }
 
 
@@ -164,6 +167,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_kotlin://kotlin测试
                 startActivity(new Intent(this,KotlinTestActivity.class));
+                break;
+            case R.id.main_btn_test_layout:
+                startActivity(new Intent(this,TestLayoutActivity.class));
                 break;
         }
     }

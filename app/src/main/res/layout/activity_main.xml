@@ -134,6 +134,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kotlin" />
+
+                <Button
+                    android:id="@+id/main_btn_test_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试布局"/>
             </LinearLayout>
         </ScrollView>
 

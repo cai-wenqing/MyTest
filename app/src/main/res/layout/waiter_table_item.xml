@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/item_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_pic" />
+
+            <ImageView
+                android:id="@+id/item_iv_select"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/item_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="每日三餐"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/item_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#77ffff00" />
+</RelativeLayout>
+
+
