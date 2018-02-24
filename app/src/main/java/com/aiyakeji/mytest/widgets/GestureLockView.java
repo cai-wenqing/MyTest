@@ -23,9 +23,10 @@ public class GestureLockView extends View {
     private GestureLockPoint startPoint;//跟随直线起点圆圈
 
     private Paint normalPaint;
-    private Paint pressedPaint;
-    private Paint arrowPaint;
-    private Paint errorPaint;
+    private Paint pressedCircle;
+    private Paint pressedArrow;
+    private Paint errorArrow;
+    private Paint errorCircle;
 
     private boolean isInit = false;
 
@@ -95,22 +96,28 @@ public class GestureLockView extends View {
             normalPaint.setStyle(Paint.Style.STROKE);
             normalPaint.setStrokeWidth(3);
 
-            pressedPaint = new Paint();
-            pressedPaint.setColor(Color.GREEN);
-            pressedPaint.setAntiAlias(true);
-            pressedPaint.setStyle(Paint.Style.STROKE);
-            pressedPaint.setStrokeWidth(3);
+            pressedCircle = new Paint();
+            pressedCircle.setColor(Color.GREEN);
+            pressedCircle.setAntiAlias(true);
+            pressedCircle.setStyle(Paint.Style.STROKE);
+            pressedCircle.setStrokeWidth(3);
 
-            arrowPaint = new Paint();
-            arrowPaint.setColor(Color.GREEN);
-            arrowPaint.setStyle(Paint.Style.FILL);
-            arrowPaint.setAntiAlias(true);
+            pressedArrow = new Paint();
+            pressedArrow.setColor(Color.GREEN);
+            pressedArrow.setStyle(Paint.Style.FILL);
+            pressedArrow.setAntiAlias(true);
 
-            errorPaint = new Paint();
-            errorPaint.setColor(Color.RED);
-            errorPaint.setAntiAlias(true);
-            errorPaint.setStyle(Paint.Style.STROKE);
-            errorPaint.setStrokeWidth(3);
+            errorCircle = new Paint();
+            errorCircle.setColor(Color.RED);
+            errorCircle.setAntiAlias(true);
+            errorCircle.setStyle(Paint.Style.STROKE);
+            errorCircle.setStrokeWidth(3);
+
+            errorArrow = new Paint();
+            errorArrow.setColor(Color.RED);
+            errorArrow.setAntiAlias(true);
+            errorArrow.setStyle(Paint.Style.STROKE);
+            errorArrow.setStrokeWidth(3);
 
             isInit = true;
         }
@@ -120,8 +127,8 @@ public class GestureLockView extends View {
             for (int j = 0; j < mPoints.length; j++) {
                 //画圆圈
                 if (mPoints[i][j].isSelected()) {
-                    canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize, pressedPaint);
-                    canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize / 3, pressedPaint);
+                    canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize, pressedCircle);
+                    canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize / 3, pressedCircle);
                 } else {
                     canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize, normalPaint);
                     canvas.drawCircle(mPoints[i][j].centerX, mPoints[i][j].centerY, slideSize / 3, normalPaint);
@@ -141,9 +148,9 @@ public class GestureLockView extends View {
                 float x2 = selectedPoints.get(i1 + 1).centerX - slideSize * cos1;
                 float y2 = selectedPoints.get(i1 + 1).centerY - slideSize * sin1;
                 //连接线
-                canvas.drawLine(x1, y1, x2, y2, pressedPaint);
+                canvas.drawLine(x1, y1, x2, y2, pressedCircle);
                 //箭头
-                drawArrow(canvas, arrowPaint, selectedPoints.get(i1), selectedPoints.get(i1 + 1), slideSize / 3, 30);
+                drawArrow(canvas, pressedArrow, selectedPoints.get(i1), selectedPoints.get(i1 + 1), slideSize / 3, 30);
             }
         }
 
@@ -155,7 +162,7 @@ public class GestureLockView extends View {
                 float sin1 = (movingY - startPoint.centerY) / dis;
                 float startX = startPoint.centerX + slideSize * cos1;
                 float startY = startPoint.centerY + slideSize * sin1;
-                canvas.drawLine(startX, startY, movingX, movingY, pressedPaint);
+                canvas.drawLine(startX, startY, movingX, movingY, pressedCircle);
             }
         }
     }

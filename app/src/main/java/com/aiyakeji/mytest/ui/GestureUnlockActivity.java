@@ -45,6 +45,7 @@ public class GestureUnlockActivity extends AppCompatActivity implements View.OnC
         switch (v.getId()) {
             case R.id.six_btn_reset:
                 gestureLockView.reset();
+                tv_pwd.setText("");
                 break;
         }
     }
