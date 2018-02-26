@@ -89,6 +89,10 @@ public class CircleProgressView extends View {
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         canvas.drawCircle(centerX, centerY, radius, mPaint);
 
+//        //缺口圆用
+//        RectF bigRectF = new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
+//        canvas.drawArc(bigRectF, 135f, 270f, false, mPaint);
+
         //画进度圆
         mPaint.setColor(mProgressColor);
         if (null != SWEEP_GRADIENT_COLORS && SWEEP_GRADIENT_COLORS.length > 1) {
@@ -98,6 +102,10 @@ public class CircleProgressView extends View {
         RectF rectF = new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         float curRadius = process * 360;
         canvas.drawArc(rectF, 0f, curRadius, false, mPaint);
+
+//        //缺口圆用
+//        float curRadius = process * 270;
+//        canvas.drawArc(rectF, 135f, curRadius, false, mPaint);
 
         //画文字
         if (isShowText) {
