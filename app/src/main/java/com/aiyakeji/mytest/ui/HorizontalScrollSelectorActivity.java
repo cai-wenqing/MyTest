@@ -24,7 +24,7 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
     private Button btn_getMsg;
     private Button btn_right;
 
-    private String[] strings = {"1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
+    private String[] strings = {"990", "991", "992", "993", "994", "99", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

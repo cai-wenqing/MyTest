@@ -27,13 +27,10 @@ public class HorizontalSelectedView extends View {
     private TextPaint mTextPaint;
     private TextPaint mSelectedPaint;
 
-    private float textWidth;//普通文字宽度
-    private float textHeight;//普通文字高度
+    private float averageWidth = 0;//普通文字平均宽度
     private float disBetweenText = 30;//文字之间的间隔距离
     private float offset;
-
     private int selectedIndex;
-
     private float downX;
 
 
@@ -70,31 +67,38 @@ public class HorizontalSelectedView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (strings.size() == 0)
+            return;
         mSelectedPaint.getTextBounds(strings.get(selectedIndex), 0, strings.get(selectedIndex).length(), rect);
         float selectedTextWidth = rect.width();
         float selectedTextHeight = rect.height();
         //被选中的文字
         canvas.drawText(strings.get(selectedIndex), mWidth / 2 - selectedTextWidth / 2 + offset, mHeight / 2 + selectedTextHeight / 2, mSelectedPaint);
 
-        textWidth = selectedTextWidth;
+        float textHeight = 0;
         //其他文字
         for (int i = 0; i < strings.size(); i++) {
-            //计算选中值两侧文字宽度的平均值
-            if (selectedIndex > 0 && selectedIndex < strings.size() - 1) {
-                mTextPaint.getTextBounds(strings.get(selectedIndex - 1), 0, strings.get(selectedIndex - 1).length(), rect);
-                float preWidth = rect.width();
-                mTextPaint.getTextBounds(strings.get(selectedIndex + 1), 0, strings.get(selectedIndex + 1).length(), rect);
-                float aftWidth = rect.width();
-                textWidth = (preWidth + aftWidth) / 2;
-            }
-
             if (0 == i) {
                 mTextPaint.getTextBounds(strings.get(0), 0, strings.get(0).length(), rect);
                 textHeight = rect.height();
             }
 
-            if (i != selectedIndex)
-                canvas.drawText(strings.get(i), mWidth / 2 + (textWidth + disBetweenText) * (i - selectedIndex) - textWidth / 2 + offset, mHeight / 2 + textHeight / 2, mTextPaint);
+            if (i < selectedIndex) {
+                float width = 0;
+                for (int j = i; j < selectedIndex; j++) {
+                    mTextPaint.getTextBounds(strings.get(j), 0, strings.get(j).length(), rect);
+                    width = width + rect.width() + disBetweenText;
+                }
+                canvas.drawText(strings.get(i), mWidth / 2 - width - selectedTextWidth / 2 + offset, mHeight / 2 + textHeight / 2, mTextPaint);
+            } else if (i > selectedIndex) {
+                float width = disBetweenText;
+                for (int j = selectedIndex; j < i; j++) {
+                    mTextPaint.getTextBounds(strings.get(j), 0, strings.get(j).length(), rect);
+                    width = width + rect.width() + disBetweenText;
+                }
+                canvas.drawText(strings.get(i), mWidth / 2 + width - selectedTextWidth / 2 + offset, mHeight / 2 + textHeight / 2, mTextPaint);
+            }
+
         }
     }
 
@@ -109,7 +113,7 @@ public class HorizontalSelectedView extends View {
                 float scrollX = ev.getX();
                 offset = scrollX - downX;
                 if (scrollX > downX) {//向右滑
-                    if (scrollX - downX >= (textWidth + disBetweenText)) {
+                    if (scrollX - downX >= (averageWidth + disBetweenText)) {
                         if (selectedIndex > 0) {
                             offset = 0;
                             selectedIndex -= 1;
@@ -117,7 +121,7 @@ public class HorizontalSelectedView extends View {
                         }
                     }
                 } else {//向左滑
-                    if (downX - scrollX >= (textWidth + disBetweenText)) {
+                    if (downX - scrollX >= (averageWidth + disBetweenText)) {
                         if (selectedIndex < strings.size() - 1) {
                             offset = 0;
                             selectedIndex += 1;
@@ -141,12 +145,16 @@ public class HorizontalSelectedView extends View {
      * @param list
      */
     public void setData(List<String> list) {
-        if (null != list) {
+        if (null != list && list.size() > 0) {
             strings = list;
+            float allWidth = 0;
+            for (int i = 0; i < strings.size(); i++) {
+                mTextPaint.getTextBounds(strings.get(i), 0, strings.get(i).length(), rect);
+                allWidth += rect.width();
+            }
+            averageWidth = allWidth / strings.size();
             selectedIndex = list.size() / 2;
             invalidate();
-        } else {
-            throw new IllegalArgumentException("list 不能为null！");
         }
     }
 
@@ -179,5 +187,18 @@ public class HorizontalSelectedView extends View {
         if (strings.size() != 0)
             return strings.get(selectedIndex);
         return null;
+    }
+
+
+    /**
+     * 设置当前选中项下标
+     *
+     * @param position
+     */
+    public void setSelectPosition(int position) {
+        if (position >= 0 && position < strings.size()) {
+            selectedIndex = position;
+            invalidate();
+        }
     }
 }
