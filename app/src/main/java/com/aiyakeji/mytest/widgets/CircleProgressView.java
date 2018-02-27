@@ -28,10 +28,15 @@ public class CircleProgressView extends View {
     private int radius;
 
     private Paint mPaint = new Paint();
+    private Paint textPaint = new Paint();
+
     private int mCircleColor = Color.BLUE;//大圆颜色
     private int mProgressColor = Color.RED;//进度圆颜色
     private int mRoundWidth = 1;//描边宽度
     private boolean isShowText = true;//是否显示中间文字
+    private boolean isShowPercent = true;//进度文字是否以百分比显示
+    private float mCircleAngle = 360f;
+    private RectF rectF;
 
     public int[] SWEEP_GRADIENT_COLORS;//渐变色值集合
     private SweepGradient mColorShader;
@@ -40,6 +45,7 @@ public class CircleProgressView extends View {
     private int mTextColor = 0XFFFC00D1;
     private int mTextSize = 20;
 
+    private ValueAnimator animator;
     private float mMaxNum;
     private float process;//百分值
 
@@ -54,6 +60,7 @@ public class CircleProgressView extends View {
     public CircleProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(attrs);
+        initPaint();
     }
 
     private void initAttrs(AttributeSet attrs) {
@@ -68,6 +75,18 @@ public class CircleProgressView extends View {
         attribute.recycle();
     }
 
+    private void initPaint() {
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeWidth(mRoundWidth);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+
+        textPaint.setAntiAlias(true);
+        textPaint.setColor(mTextColor);
+        textPaint.setTextSize(mTextSize);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         mViewWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -75,23 +94,22 @@ public class CircleProgressView extends View {
         centerX = mViewWidth / 2;
         centerY = mViewHeight / 2;
         radius = Math.min(centerX, centerY) - mRoundWidth;//半径
+        if (rectF == null)
+            rectF = new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        mPaint.reset();
-        //画外圈大圆
         mPaint.setColor(mCircleColor);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(mRoundWidth);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        canvas.drawCircle(centerX, centerY, radius, mPaint);
+        mPaint.setShader(null);
 
-//        //缺口圆用
-//        RectF bigRectF = new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
-//        canvas.drawArc(bigRectF, 135f, 270f, false, mPaint);
+        //画外圈大圆
+        if (mCircleAngle == 360)
+            canvas.drawCircle(centerX, centerY, radius, mPaint);
+        else {
+            canvas.drawArc(rectF, 90 + (360 - mCircleAngle) / 2, mCircleAngle, false, mPaint);
+        }
 
         //画进度圆
         mPaint.setColor(mProgressColor);
@@ -99,28 +117,24 @@ public class CircleProgressView extends View {
             mColorShader = new SweepGradient(radius, radius, SWEEP_GRADIENT_COLORS, null);//渐变色
             mPaint.setShader(mColorShader);
         }
-        RectF rectF = new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
-        float curRadius = process * 360;
-        canvas.drawArc(rectF, 0f, curRadius, false, mPaint);
 
-//        //缺口圆用
-//        float curRadius = process * 270;
-//        canvas.drawArc(rectF, 135f, curRadius, false, mPaint);
+        float curRadius = process * mCircleAngle;
+        canvas.drawArc(rectF, 90 + (360 - mCircleAngle) / 2, curRadius, false, mPaint);
 
         //画文字
         if (isShowText) {
-            mPaint.reset();
-            mPaint.setAntiAlias(true);//抗锯齿
-            mPaint.setColor(mTextColor);
-            mPaint.setTextSize(mTextSize);
-            String text = (int) (process * mMaxNum) + "/" + (int) mMaxNum;
+            String text;
+            if (isShowPercent)
+                text = (int) (process * 100) + "%";
+            else
+                text = (int) (process * mMaxNum) + "/" + (int) mMaxNum;
             Rect textBound = new Rect();
-            mPaint.getTextBounds(text, 0, text.length(), textBound);
+            textPaint.getTextBounds(text, 0, text.length(), textBound);
             int textStart = (mViewWidth - textBound.width()) / 2;
-            Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+            Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             //计算文字基线
             int baseLine = (int) (mViewHeight / 2 + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom);
-            canvas.drawText(text, textStart, baseLine, mPaint);
+            canvas.drawText(text, textStart, baseLine, textPaint);
         }
     }
 
@@ -138,7 +152,7 @@ public class CircleProgressView extends View {
         if (curNum > maxNum)
             throw new IllegalArgumentException("curNum 不能大于maxNum");
         mMaxNum = maxNum;
-        ValueAnimator animator = ValueAnimator.ofFloat(0, curNum);
+        animator = ValueAnimator.ofFloat(0, curNum);
         animator.setDuration(mDuration);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -223,5 +237,27 @@ public class CircleProgressView extends View {
         } else {
             throw new IllegalArgumentException("渐变色值颜色设置不得少于2个");
         }
+    }
+
+
+    /**
+     * 设置进度圆圆弧范围(180,360]
+     *
+     * @param angle
+     */
+    public void setSweepAngle(float angle) {
+        if (angle > 180 && angle <= 360) {
+            mCircleAngle = angle;
+        }
+    }
+
+
+    /**
+     * 显示文字是否以百分比形式
+     *
+     * @param b
+     */
+    public void isShowAsPercent(boolean b) {
+        isShowPercent = b;
     }
 }
