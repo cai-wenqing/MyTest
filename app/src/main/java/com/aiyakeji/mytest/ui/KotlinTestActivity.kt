@@ -30,13 +30,13 @@ class KotlinTestActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.kotlin_btn_click1 ->
-                Toast.makeText(this, "点击按钮1", Toast.LENGTH_SHORT).show()
-            R.id.kotlin_btn_click2 ->
-                AlertDialog.Builder(this).setTitle("提示：").setMessage("点击了按钮2")
-                        .setPositiveButton("确定") { dialogInterface, i -> dialogInterface.dismiss() }
-                        .setNegativeButton("取消"){dialogInterface, i -> dialogInterface.dismiss() }
-                        .create().show()
+//            R.id.kotlin_btn_click1 ->
+//                Toast.makeText(this, "点击按钮1", Toast.LENGTH_SHORT).show()
+//            R.id.kotlin_btn_click2 ->
+//                AlertDialog.Builder(this).setTitle("提示：").setMessage("点击了按钮2")
+//                        .setPositiveButton("确定") { dialogInterface, i -> dialogInterface.dismiss() }
+//                        .setNegativeButton("取消"){dialogInterface, i -> dialogInterface.dismiss() }
+//                        .create().show()
         }
     }
 }
