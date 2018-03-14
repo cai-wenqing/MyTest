@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_kotlin;
     private Button btn_testLayout;
     private Button btn_annotation;
+    private Button btn_proxy;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_kotlin = findViewById(R.id.main_btn_kotlin);
         btn_testLayout = findViewById(R.id.main_btn_test_layout);
         btn_annotation = findViewById(R.id.main_btn_annotation);
+        btn_proxy = findViewById(R.id.main_btn_proxy);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_kotlin.setOnClickListener(this);
         btn_testLayout.setOnClickListener(this);
         btn_annotation.setOnClickListener(this);
+        btn_proxy.setOnClickListener(this);
     }
 
 
@@ -176,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_annotation://注解
                 startActivity(new Intent(this,AnnotationTestActivity.class));
+                break;
+            case R.id.main_btn_proxy://代理模式
+                startActivity(new Intent(this,ProxyTestActivity.class));
                 break;
         }
     }
