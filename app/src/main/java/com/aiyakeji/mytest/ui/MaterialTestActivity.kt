@@ -45,54 +45,54 @@ class MaterialTestActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-//            R.id.material_btn_shareanimal -> {
+            R.id.material_btn_shareanimal -> {
 //                val builder = AlertDialog.Builder(this)
 //                builder.setTitle("提示").setMessage("测试dialog")
 //                        .setPositiveButton("确定") { dialogInterface, i -> dialogInterface.dismiss() }
 //                        .setNegativeButton("取消") { dialogInterface, i -> dialogInterface.dismiss() }.create().show()
-//            }
-//            R.id.material_iv_share//共享图片
-//            -> if (Build.VERSION.SDK_INT >= 21)
-//                startActivity(Intent(this, MaterialTestBActivity::class.java),
-//                        ActivityOptions.makeSceneTransitionAnimation(this,
-//                                Pair<View, String>(iv_share, "MaterialShare_iv"),
-//                                Pair<View, String>(tv_share, "MaterialShare_tv")).toBundle())
-//            else
-//                startActivity(Intent(this, MaterialTestBActivity::class.java))
-//
-//            R.id.material_iv_oval
-//            -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                val animator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    ViewAnimationUtils.createCircularReveal(
-//                            iv_oval,
-//                            iv_oval!!.width / 2,
-//                            iv_oval!!.height / 2,
-//                            0f,
-//                            iv_oval!!.width.toFloat())
-//                } else {
-//                    TODO("VERSION.SDK_INT < LOLLIPOP")
-//                }
-//                animator.interpolator = AccelerateDecelerateInterpolator()
-//                animator.duration = 2000
-//                animator.start()
-//            }
-//
-//            R.id.material_iv_rect//矩形
-//            -> if (Build.VERSION.SDK_INT >= 21) {
-//                val animator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    ViewAnimationUtils.createCircularReveal(
-//                            iv_rect,
-//                            0,
-//                            0,
-//                            0f,
-//                            Math.hypot(iv_rect!!.width.toDouble(), iv_rect!!.height.toDouble()).toFloat())
-//                } else {
-//                    TODO("VERSION.SDK_INT < LOLLIPOP")
-//                }
-//                animator.interpolator = AccelerateDecelerateInterpolator()
-//                animator.duration = 2000
-//                animator.start()
-//            }
+            }
+            R.id.material_iv_share//共享图片
+            -> if (Build.VERSION.SDK_INT >= 21)
+                startActivity(Intent(this, MaterialTestBActivity::class.java),
+                        ActivityOptions.makeSceneTransitionAnimation(this,
+                                Pair<View, String>(iv_share, "MaterialShare_iv"),
+                                Pair<View, String>(tv_share, "MaterialShare_tv")).toBundle())
+            else
+                startActivity(Intent(this, MaterialTestBActivity::class.java))
+
+            R.id.material_iv_oval
+            -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val animator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ViewAnimationUtils.createCircularReveal(
+                            iv_oval,
+                            iv_oval!!.width / 2,
+                            iv_oval!!.height / 2,
+                            0f,
+                            iv_oval!!.width.toFloat())
+                } else {
+                    TODO("VERSION.SDK_INT < LOLLIPOP")
+                }
+                animator.interpolator = AccelerateDecelerateInterpolator()
+                animator.duration = 2000
+                animator.start()
+            }
+
+            R.id.material_iv_rect//矩形
+            -> if (Build.VERSION.SDK_INT >= 21) {
+                val animator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ViewAnimationUtils.createCircularReveal(
+                            iv_rect,
+                            0,
+                            0,
+                            0f,
+                            Math.hypot(iv_rect!!.width.toDouble(), iv_rect!!.height.toDouble()).toFloat())
+                } else {
+                    TODO("VERSION.SDK_INT < LOLLIPOP")
+                }
+                animator.interpolator = AccelerateDecelerateInterpolator()
+                animator.duration = 2000
+                animator.start()
+            }
         }
     }
 }
