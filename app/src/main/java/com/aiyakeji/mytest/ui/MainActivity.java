@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_testLayout;
     private Button btn_annotation;
     private Button btn_proxy;
+    private Button btn_alpha_title;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_testLayout = findViewById(R.id.main_btn_test_layout);
         btn_annotation = findViewById(R.id.main_btn_annotation);
         btn_proxy = findViewById(R.id.main_btn_proxy);
+        btn_alpha_title = findViewById(R.id.main_btn_alphatitle);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -103,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_testLayout.setOnClickListener(this);
         btn_annotation.setOnClickListener(this);
         btn_proxy.setOnClickListener(this);
+        btn_alpha_title.setOnClickListener(this);
     }
 
 
@@ -125,63 +128,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.main_iv__menu_toggle://侧边栏开关
+            case R.id.main_iv__menu_toggle:
+                //侧边栏开关
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.main_btn_one://打开新页面
+            case R.id.main_btn_one:
+                //打开新页面
                 startActivity(new Intent(MainActivity.this, CoordinatorActivity.class));
                 overridePendingTransition(R.anim.payactivity_open, 0);
                 break;
-            case R.id.main_btn_two://属性动画
+            case R.id.main_btn_two:
+                //属性动画
                 startActivity(new Intent(MainActivity.this, AnimatorActivity.class));
                 break;
-            case R.id.main_btn_three://仿QQ计步器
+            case R.id.main_btn_three:
+                //仿QQ计步器
                 startActivity(new Intent(MainActivity.this, CircleProgressActivity.class));
                 break;
-            case R.id.main_btn_four://华为时钟
+            case R.id.main_btn_four:
+                //华为时钟
                 startActivity(new Intent(this, HuaWeiClockActivity.class));
                 break;
-            case R.id.main_btn_five://横向滑动选择器
+            case R.id.main_btn_five:
+                //横向滑动选择器
                 startActivity(new Intent(this, HorizontalScrollSelectorActivity.class));
                 break;
-            case R.id.main_btn_six://手势解锁
+            case R.id.main_btn_six:
+                //手势解锁
                 startActivity(new Intent(this, GestureUnlockActivity.class));
                 break;
-            case R.id.main_btn_seven://手势转盘
+            case R.id.main_btn_seven:
+                //手势转盘
                 startActivity(new Intent(this, RotatePlateActivity.class));
                 break;
-            case R.id.main_btn_eight://万能适配器
+            case R.id.main_btn_eight:
+                //万能适配器
                 startActivity(new Intent(this, UniversalAdapterActivity.class));
                 break;
-            case R.id.main_btn_slidingcard://滑动卡片
+            case R.id.main_btn_slidingcard:
+                //滑动卡片
                 startActivity(new Intent(this, SlidingCardActivity.class));
                 break;
-            case R.id.main_btn_mqtt://mqtt
-                startActivity(new Intent(this,MqttActivity.class));
+            case R.id.main_btn_mqtt:
+                //mqtt
+                startActivity(new Intent(this, MqttActivity.class));
                 break;
-            case R.id.main_btn_wavedcircle://波动圆
-                startActivity(new Intent(this,WavedCircleActivity.class));
+            case R.id.main_btn_wavedcircle:
+                //波动圆
+                startActivity(new Intent(this, WavedCircleActivity.class));
                 break;
-            case R.id.main_btn_lunbotu://轮播图
-                startActivity(new Intent(this,LunBoTuActivity.class));
+            case R.id.main_btn_lunbotu:
+                //轮播图
+                startActivity(new Intent(this, LunBoTuActivity.class));
                 break;
-            case R.id.main_btn_voiceshake://声波显示
-                startActivity(new Intent(this,VoiceShakeActivity.class));
+            case R.id.main_btn_voiceshake:
+                //声波显示
+                startActivity(new Intent(this, VoiceShakeActivity.class));
                 break;
-            case R.id.main_btn_material://MaterialDesign测试
-                startActivity(new Intent(this,MaterialTestActivity.class));
+            case R.id.main_btn_material:
+                //MaterialDesign测试
+                startActivity(new Intent(this, MaterialTestActivity.class));
                 break;
-            case R.id.main_btn_kotlin://kotlin测试
-                startActivity(new Intent(this,KotlinTestActivity.class));
+            case R.id.main_btn_kotlin:
+                //kotlin测试
+                startActivity(new Intent(this, KotlinTestActivity.class));
                 break;
-            case R.id.main_btn_test_layout://测试布局
-                startActivity(new Intent(this,TestLayoutActivity.class));
+            case R.id.main_btn_test_layout:
+                //测试布局
+                startActivity(new Intent(this, TestLayoutActivity.class));
                 break;
-            case R.id.main_btn_annotation://注解
-                startActivity(new Intent(this,AnnotationTestActivity.class));
+            case R.id.main_btn_annotation:
+                //注解
+                startActivity(new Intent(this, AnnotationTestActivity.class));
                 break;
-            case R.id.main_btn_proxy://代理模式
-                startActivity(new Intent(this,ProxyTestActivity.class));
+            case R.id.main_btn_proxy:
+                //代理模式
+                startActivity(new Intent(this, ProxyTestActivity.class));
+                break;
+            case R.id.main_btn_alphatitle:
+                //联动title
+                startActivity(new Intent(this, AlphaScrollTitleActivity.class));
+                break;
+            default:
                 break;
         }
     }

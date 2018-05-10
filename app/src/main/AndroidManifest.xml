@@ -44,6 +44,7 @@
         <activity android:name=".ui.TestLayoutActivity"/>
         <activity android:name=".ui.AnnotationTestActivity"/>
         <activity android:name=".ui.ProxyTestActivity"/>
+        <activity android:name=".ui.AlphaScrollTitleActivity"/>
     </application>
 
 </manifest>
