@@ -17,7 +17,6 @@ import android.widget.ListView;
 import com.aiyakeji.mytest.R;
 import com.nineoldandroids.view.ViewHelper;
 
-import static com.aiyakeji.mytest.R.id.cancel_action;
 import static com.aiyakeji.mytest.R.id.main_btn_one;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_annotation;
     private Button btn_proxy;
     private Button btn_alpha_title;
+    private Button btn_calendar;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_annotation = findViewById(R.id.main_btn_annotation);
         btn_proxy = findViewById(R.id.main_btn_proxy);
         btn_alpha_title = findViewById(R.id.main_btn_alphatitle);
+        btn_calendar = findViewById(R.id.main_btn_calendar);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_annotation.setOnClickListener(this);
         btn_proxy.setOnClickListener(this);
         btn_alpha_title.setOnClickListener(this);
+        btn_calendar.setOnClickListener(this);
     }
 
 
@@ -208,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_btn_alphatitle:
                 //联动title
                 startActivity(new Intent(this, AlphaScrollTitleActivity.class));
+                break;
+            case R.id.main_btn_calendar:
+                //日历
+                startActivity(new Intent(this, CalendarActivity.class));
                 break;
             default:
                 break;

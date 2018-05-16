@@ -158,6 +158,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="联动title" />
+
+                <Button
+                    android:id="@+id/main_btn_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日历"/>
             </LinearLayout>
         </ScrollView>
 
