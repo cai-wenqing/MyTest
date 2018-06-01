@@ -537,7 +537,7 @@ public class DateTimeUtil {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         int interval = 0;
         try {
-            Date currentTime = dateFormat.parse(eDate);// 获取现在的时间
+            Date currentTime = dateFormat.parse(eDate);
             Date beginTime = dateFormat.parse(bDate);
             interval = (int) ((beginTime.getTime() - currentTime.getTime()));// 时间差
             // 单位秒
@@ -813,5 +813,61 @@ public class DateTimeUtil {
             result = Integer.valueOf(day);
         }
         return result;
+    }
+
+    /**
+     * 比较两个日期的大小
+     *
+     * @param DATE1 1995-11-12 15:21
+     * @param DATE2 1995-11-12 15:21
+     * @return 1：date1在date2之后；   -1：date1在date2之前
+     */
+    public static int compare2date(String DATE1, String DATE2) {
+        if (!DATE1.contains(":")) {
+            DATE1 = DATE1 + " 00:00";
+        }
+        if (!DATE2.contains(":")) {
+            DATE2 = DATE2 + " 00:00";
+        }
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        try {
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() > dt2.getTime()) {
+                //date1在date2后
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                //dt1在dt2前
+                return -1;
+            } else {
+                return 0;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    public static int getCurrentYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+
+    /**
+     * 获取当前月，int值
+     *
+     * @return
+     */
+    public static int getCurrentMonth() {
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
+    }
+
+    /**
+     * 获取当前日，int值
+     *
+     * @return
+     */
+    public static int getCurrentDay() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     }
 }

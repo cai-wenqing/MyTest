@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.HorizontalSelectedView;
+import com.aiyakeji.mytest.widgets.SlideProgressView;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,10 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
     private Button btn_left;
     private Button btn_getMsg;
     private Button btn_right;
+
+    private TextView tv_startNum;
+    private TextView tv_endNum;
+    private SlideProgressView slideProgressView;
 
     private String[] strings = {"990", "991", "992", "993", "994", "99", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
 
@@ -40,6 +45,22 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
         btn_left = (Button) findViewById(R.id.five_btn_left);
         btn_getMsg = (Button) findViewById(R.id.five_btn_gettext);
         btn_right = (Button) findViewById(R.id.five_btn_right);
+
+        tv_startNum = findViewById(R.id.five_tv_startNum);
+        tv_endNum = findViewById(R.id.five_tv_endNum);
+        slideProgressView = findViewById(R.id.five_spv);
+        slideProgressView.setMaxNumber(1000);
+        slideProgressView.setOnChangeListener(new SlideProgressView.OnChangeListener() {
+            @Override
+            public void onStartChange(String startNum) {
+                tv_startNum.setText("¥" + startNum);
+            }
+
+            @Override
+            public void onEndChange(String endNum) {
+                tv_endNum.setText("¥" + endNum);
+            }
+        });
 
         btn_left.setOnClickListener(this);
         btn_getMsg.setOnClickListener(this);

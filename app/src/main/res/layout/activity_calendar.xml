@@ -14,4 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginTop="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue" />
+
+    <com.aiyakeji.mytest.widgets.calendarview.MonthView
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 </LinearLayout>

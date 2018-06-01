@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/monthlist_tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="年月" />
+
+    <com.aiyakeji.mytest.widgets.calendarview.MonthView
+        android:id="@+id/monthlist_mv"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+</LinearLayout>

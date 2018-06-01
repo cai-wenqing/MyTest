@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_proxy;
     private Button btn_alpha_title;
     private Button btn_calendar;
+    private Button btn_calendarList;
+    private Button btn_footview;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_proxy = findViewById(R.id.main_btn_proxy);
         btn_alpha_title = findViewById(R.id.main_btn_alphatitle);
         btn_calendar = findViewById(R.id.main_btn_calendar);
+        btn_calendarList = findViewById(R.id.main_btn_calendarlist);
+        btn_footview = findViewById(R.id.main_btn_footview);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -108,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_proxy.setOnClickListener(this);
         btn_alpha_title.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
+        btn_calendarList.setOnClickListener(this);
+        btn_footview.setOnClickListener(this);
     }
 
 
@@ -214,6 +220,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_btn_calendar:
                 //日历
                 startActivity(new Intent(this, CalendarActivity.class));
+                break;
+            case R.id.main_btn_calendarlist:
+                //日历列表
+                startActivity(new Intent(this, CalendarListActivity.class));
+                break;
+            case R.id.main_btn_footview:
+                //动态脚布局
+                startActivity(new Intent(this,FootViewActivity.class));
                 break;
             default:
                 break;

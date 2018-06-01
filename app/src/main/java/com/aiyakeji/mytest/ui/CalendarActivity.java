@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.calendarview.DateTimeUtil;
+import com.aiyakeji.mytest.widgets.calendarview.MonthViewModel;
 
 /**
  * @author caiwenqing
@@ -14,6 +15,9 @@ import com.aiyakeji.mytest.widgets.calendarview.DateTimeUtil;
  * description:日历控件测试
  */
 public class CalendarActivity extends AppCompatActivity {
+
+    public static MonthViewModel firstSelectedDay;
+    public static MonthViewModel secondSelectedDay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

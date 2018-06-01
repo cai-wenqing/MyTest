@@ -19,6 +19,8 @@ public class DayModel {
 
     private float price;
 
+    private String underLabel;
+
     private DayState dayState;
 
     public DayModel(float centerX, float centerY, float width,float height,int day,float price, DayState dayState) {

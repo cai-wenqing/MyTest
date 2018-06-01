@@ -14,5 +14,5 @@ public enum DayState {
     STATE_ENABLE,
 
     //选中
-    STATE_SELECTED;
+    STATE_SELECTED
 }

@@ -164,6 +164,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="日历"/>
+
+                <Button
+                    android:id="@+id/main_btn_calendarlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日历列表"/>
+
+                <Button
+                    android:id="@+id/main_btn_footview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="动态脚布局"/>
             </LinearLayout>
         </ScrollView>
 
