@@ -48,6 +48,7 @@
         <activity android:name=".ui.CalendarActivity"/>
         <activity android:name=".ui.CalendarListActivity"/>
         <activity android:name=".ui.FootViewActivity"/>
+        <activity android:name=".ui.MaxHeightLayoutActivity"/>
     </application>
 
 </manifest>

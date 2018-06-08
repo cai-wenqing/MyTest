@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaxHeightLayout">
+        <attr name="mhl_HeightRatio" format="reference|float" />
+        <attr name="mhl_HeightDimen" format="reference|dimension" />
+    </declare-styleable>
+</resources>

@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_calendar.setOnClickListener(this);
         btn_calendarList.setOnClickListener(this);
         btn_footview.setOnClickListener(this);
+        findViewById(R.id.main_btn_maxHeightLayout).setOnClickListener(this);
     }
 
 
@@ -228,6 +229,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_btn_footview:
                 //动态脚布局
                 startActivity(new Intent(this,FootViewActivity.class));
+                break;
+            case R.id.main_btn_maxHeightLayout:
+                //最大高度layout
+                startActivity(new Intent(this,MaxHeightLayoutActivity.class));
                 break;
             default:
                 break;

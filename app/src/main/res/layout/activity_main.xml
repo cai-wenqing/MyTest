@@ -176,6 +176,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="动态脚布局"/>
+
+                <Button
+                    android:id="@+id/main_btn_maxHeightLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="动态高度layout"/>
             </LinearLayout>
         </ScrollView>
 
