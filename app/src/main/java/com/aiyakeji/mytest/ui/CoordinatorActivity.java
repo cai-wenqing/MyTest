@@ -1,12 +1,17 @@
 package com.aiyakeji.mytest.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.aiyakeji.mytest.R;
+import com.aiyakeji.mytest.utils.StartForResultUtil;
 
 /**
  * Created by Administrator on 2017/5/12 0012.
@@ -24,6 +29,23 @@ public class CoordinatorActivity extends AppCompatActivity {
 
     private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        LinearLayout ll = findViewById(R.id.main_ll_jiuba);
+
+        //测试跳转获取数据工具
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CoordinatorActivity.this,AnimatorActivity.class);
+                new StartForResultUtil(CoordinatorActivity.this)
+                        .startForResult(intent, 1, new StartForResultUtil.Callback() {
+                            @Override
+                            public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                                Log.e("coordinator测试","收到返回，requestCode:"+requestCode+",resultCode:"+resultCode);
+                            }
+                        });
+            }
+        });
+
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -31,5 +53,11 @@ public class CoordinatorActivity extends AppCompatActivity {
             //去除默认Title显示
             actionBar.setDisplayShowTitleEnabled(false);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("onActivityResult","收到返回，requestCode:"+requestCode+",resultCode:"+resultCode);
     }
 }

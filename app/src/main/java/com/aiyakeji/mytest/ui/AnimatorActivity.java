@@ -77,6 +77,8 @@ public class AnimatorActivity extends AppCompatActivity implements View.OnClickL
             strList.add("测试数据" + i);
         }
         mListview.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strList));
+
+        setResult(2);
     }
 
 
