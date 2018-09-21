@@ -3,6 +3,7 @@ package com.aiyakeji.mytest.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -10,9 +11,11 @@ import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.HorizontalSelectedView;
+import com.aiyakeji.mytest.widgets.ScrollIndexView;
 import com.aiyakeji.mytest.widgets.SlideProgressView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * 页面五
@@ -28,8 +31,10 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
     private TextView tv_startNum;
     private TextView tv_endNum;
     private SlideProgressView slideProgressView;
+    private ScrollIndexView scrollIndexView;
 
     private String[] strings = {"990", "991", "992", "993", "994", "99", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
+    private String[] values = {"盖伦", "光辉", "火男", "男枪", "提莫", "加里奥", "奥巴马", "炼金", "猪女", "蜘蛛", "皇子", "赵信", "盲僧", "蛮王"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +70,15 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
         btn_left.setOnClickListener(this);
         btn_getMsg.setOnClickListener(this);
         btn_right.setOnClickListener(this);
+
+        scrollIndexView = findViewById(R.id.five_siv);
+        scrollIndexView.setData(Arrays.asList(values));
+        scrollIndexView.setOnSelectChangeListener(new ScrollIndexView.OnSelectChangeListener() {
+            @Override
+            public void onSelectChange(int position, String value) {
+                Log.e("Horizontal测试", "position:" + position + ",value:" + value);
+            }
+        });
     }
 
     private void initData() {
