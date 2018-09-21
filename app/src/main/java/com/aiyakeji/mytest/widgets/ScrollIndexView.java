@@ -57,6 +57,7 @@ public class ScrollIndexView extends View {
         mValueStartList = new ArrayList<>();
         mNormalPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mSelectPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSelectPaint.setStrokeWidth(5);
         mNormalPaint.setTextSize(mNormalTextSize);
         mSelectPaint.setTextSize(mNormalTextSize);
         mNormalPaint.setColor(mNormalColor);
@@ -84,6 +85,8 @@ public class ScrollIndexView extends View {
             ScrollIndexBean bean = mValueList.get(i);
             if (selectedIndex == i) {
                 canvas.drawText(bean.getValue(), allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2, mSelectPaint);
+                canvas.drawLine(allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2 + 20,
+                        allTextWidth + disX + bean.getWidth(), mHeight / 2 + bean.getHeight() / 2 + 20, mSelectPaint);
             } else {
                 canvas.drawText(bean.getValue(), allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2, mNormalPaint);
             }
