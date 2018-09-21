@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.HorizontalSelectedView;
+import com.aiyakeji.mytest.widgets.PageIndexView;
 import com.aiyakeji.mytest.widgets.ScrollIndexView;
 import com.aiyakeji.mytest.widgets.SlideProgressView;
 
@@ -32,6 +34,9 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
     private TextView tv_endNum;
     private SlideProgressView slideProgressView;
     private ScrollIndexView scrollIndexView;
+    private PageIndexView pageIndexView;
+    private EditText et_pointCount;
+    private Button btn_submit;
 
     private String[] strings = {"990", "991", "992", "993", "994", "99", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
     private String[] values = {"盖伦", "光辉", "火男", "男枪", "提莫", "加里奥", "奥巴马", "炼金", "猪女", "蜘蛛", "皇子", "赵信", "盲僧", "蛮王"};
@@ -79,6 +84,14 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
                 Log.e("Horizontal测试", "position:" + position + ",value:" + value);
             }
         });
+
+
+        pageIndexView = findViewById(R.id.piv);
+        pageIndexView.setPointCount(5);
+
+        et_pointCount = findViewById(R.id.et_pointCount);
+        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit.setOnClickListener(this);
     }
 
     private void initData() {
@@ -100,6 +113,10 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
                 break;
             case R.id.five_btn_right:
                 horizontalSelectedView.setStepRight();
+                break;
+            case R.id.btn_submit:
+                String s = et_pointCount.getText().toString();
+                pageIndexView.setIndex(Integer.valueOf(s));
                 break;
         }
     }

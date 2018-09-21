@@ -83,6 +83,32 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp" />
+
+
+        <com.aiyakeji.mytest.widgets.PageIndexView
+            android:id="@+id/piv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_pointCount"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:hint="输入要选中的位置"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定" />
+        </LinearLayout>
     </LinearLayout>
 
 
