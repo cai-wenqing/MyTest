@@ -38,7 +38,8 @@ public class ScrollIndexView extends View {
     private float downX;
     private float disX;
 
-    private boolean overRange = false;
+    //超出范围的方向，左侧超出为-1，右侧超出为1
+    private int overRange = 0;
 
     public ScrollIndexView(Context context) {
         this(context, null);
@@ -92,9 +93,7 @@ public class ScrollIndexView extends View {
             } else {
                 canvas.drawText(bean.getValue(), allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2, mNormalPaint);
             }
-            if (i < mValueList.size() - 1) {
-                allTextWidth += bean.getWidth() + mTextOffset;
-            }
+            allTextWidth += bean.getWidth() + mTextOffset;
         }
     }
 
@@ -114,20 +113,26 @@ public class ScrollIndexView extends View {
                     disX = tempDisX;
                     invalidate();
                 } else if (tempDisX > 0) {
-                    overRange = true;
+                    overRange = -1;
                     disX = (float) (tempDisX * 0.8);
                     invalidate();
                 } else if (tempDisX + allTextWidth < mWidth) {
-                    overRange = true;
-                    disX = (float) (tempDisX * 0.8);
+                    overRange = 1;
+                    disX = (float) (mWidth - allTextWidth + (tempDisX + allTextWidth - mWidth) * 0.8);
                     invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if (overRange) {
+                if (overRange == -1) {
+                    //左侧超出
                     disX = 0;
                     invalidate();
-                    overRange = false;
+                    overRange = 0;
+                } else if (overRange == 1) {
+                    //右侧超出
+                    disX = mWidth - allTextWidth;
+                    invalidate();
+                    overRange = 0;
                 }
 
                 if (Math.abs(downX - event.getX()) < 20) {
