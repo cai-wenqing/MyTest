@@ -38,6 +38,8 @@ public class ScrollIndexView extends View {
     private float downX;
     private float disX;
 
+    private boolean overRange = false;
+
     public ScrollIndexView(Context context) {
         this(context, null);
     }
@@ -111,9 +113,23 @@ public class ScrollIndexView extends View {
                 if (tempDisX <= 0 && tempDisX + allTextWidth >= mWidth) {
                     disX = tempDisX;
                     invalidate();
+                } else if (tempDisX > 0) {
+                    overRange = true;
+                    disX = (float) (tempDisX * 0.8);
+                    invalidate();
+                } else if (tempDisX + allTextWidth < mWidth) {
+                    overRange = true;
+                    disX = (float) (tempDisX * 0.8);
+                    invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                if (overRange) {
+                    disX = 0;
+                    invalidate();
+                    overRange = false;
+                }
+
                 if (Math.abs(downX - event.getX()) < 20) {
                     float upDis = Math.abs(disX) + event.getX();
                     for (int i = 0; i < mValueStartList.size(); i++) {
