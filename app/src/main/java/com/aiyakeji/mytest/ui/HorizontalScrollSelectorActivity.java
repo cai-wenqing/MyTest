@@ -117,6 +117,7 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
             case R.id.btn_submit:
                 String s = et_pointCount.getText().toString();
                 pageIndexView.setIndex(Integer.valueOf(s));
+                scrollIndexView.setCurrentIndex(Integer.valueOf(s));
                 break;
         }
     }

@@ -180,6 +180,18 @@ public class ScrollIndexView extends View {
     }
 
 
+    /**
+     * 设置当前选中的index
+     * @param index
+     */
+    public void setCurrentIndex(int index) {
+        if (index >= 0 && index < mValueList.size()) {
+            selectedIndex = index;
+            invalidate();
+        }
+    }
+
+
     public interface OnSelectChangeListener {
         void onSelectChange(int position, String value);
     }
