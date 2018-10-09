@@ -14,4 +14,12 @@
         android:layout_marginTop="20dp"
         app:waved_circle_stroke_width="6dp"
         app:waved_circle_wave_width="35dp" />
+
+
+    <com.aiyakeji.mytest.widgets.CollapsibleTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="首先，点击”会议详情”文本框中，正常输入文本，然后点击左下角的图片图标，进入系统的相册用来选择一张图片并插入到文本框中，你还可以将光标停留在任意的文字中间，完成图片的插入，回退建即可以逐个删除文字，也可以删除图片。"
+        app:collapsedLines="2" />
 </LinearLayout>
