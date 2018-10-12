@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MyTest.iml" filepath="$PROJECT_DIR$/MyTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/aiyapusher/aiyapusher.iml" filepath="$PROJECT_DIR$/aiyapusher/aiyapusher.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wernertablayoutlib/wernertablayoutlib.iml" filepath="$PROJECT_DIR$/wernertablayoutlib/wernertablayoutlib.iml" />
     </modules>
   </component>
 </project>

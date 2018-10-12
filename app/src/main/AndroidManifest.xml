@@ -49,6 +49,7 @@
         <activity android:name=".ui.CalendarListActivity"/>
         <activity android:name=".ui.FootViewActivity"/>
         <activity android:name=".ui.MaxHeightLayoutActivity"/>
+        <activity android:name=".ui.WernerTabLayoutActivity"/>
     </application>
 
 </manifest>

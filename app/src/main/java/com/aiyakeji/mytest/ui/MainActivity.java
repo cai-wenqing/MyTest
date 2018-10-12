@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_calendar;
     private Button btn_calendarList;
     private Button btn_footview;
+    private Button btn_tablayout;
 
     private Toolbar toolbar;
     private ImageView iv_menu_toggle;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_calendar = findViewById(R.id.main_btn_calendar);
         btn_calendarList = findViewById(R.id.main_btn_calendarlist);
         btn_footview = findViewById(R.id.main_btn_footview);
+        btn_tablayout = findViewById(R.id.main_btn_tabLayout);
 
         lvLeftMenu = (ListView) findViewById(R.id.left_lv_menu);
 
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_calendar.setOnClickListener(this);
         btn_calendarList.setOnClickListener(this);
         btn_footview.setOnClickListener(this);
+        btn_tablayout.setOnClickListener(this);
         findViewById(R.id.main_btn_maxHeightLayout).setOnClickListener(this);
     }
 
@@ -233,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_btn_maxHeightLayout:
                 //最大高度layout
                 startActivity(new Intent(this,MaxHeightLayoutActivity.class));
+                break;
+            case R.id.main_btn_tabLayout:
+                //滑动指示器
+                startActivity(new Intent(this,WernerTabLayoutActivity.class));
                 break;
             default:
                 break;
