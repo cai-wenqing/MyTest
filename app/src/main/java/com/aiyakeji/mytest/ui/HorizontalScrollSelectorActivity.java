@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.HorizontalSelectedView;
@@ -59,6 +60,7 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
         tv_startNum = findViewById(R.id.five_tv_startNum);
         tv_endNum = findViewById(R.id.five_tv_endNum);
         slideProgressView = findViewById(R.id.five_spv);
+
         slideProgressView.setMaxNumber(1000);
         slideProgressView.setOnChangeListener(new SlideProgressView.OnChangeListener() {
             @Override

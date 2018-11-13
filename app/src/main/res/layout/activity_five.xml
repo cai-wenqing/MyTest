@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light">
@@ -81,16 +82,23 @@
         <com.aiyakeji.mytest.widgets.ScrollIndexView
             android:id="@+id/five_siv"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:siv_indicator_color="@color/green"
+            app:siv_indicator_distance="10dp"
+            app:siv_rebound="false"
+            app:siv_select_text_color="@color/green" />
 
 
         <com.aiyakeji.mytest.widgets.PageIndexView
             android:id="@+id/piv"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            app:piv_normal_point_color="@color/green"
+            app:piv_select_point_color="@color/blue" />
 
         <LinearLayout
             android:layout_width="match_parent"

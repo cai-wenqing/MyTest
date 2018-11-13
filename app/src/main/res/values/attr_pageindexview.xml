@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PageIndexView">
+        <attr name="piv_normal_point_radius" format="dimension" />
+        <attr name="piv_select_point_radius" format="dimension" />
+        <attr name="piv_normal_point_color" format="color" />
+        <attr name="piv_select_point_color" format="color" />
+        <attr name="piv_point_center_distance" format="dimension"/>
+    </declare-styleable>
+</resources>
