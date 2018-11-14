@@ -87,6 +87,7 @@
             app:siv_indicator_color="@color/green"
             app:siv_indicator_distance="10dp"
             app:siv_rebound="false"
+            app:siv_text_offset="20dp"
             app:siv_select_text_color="@color/green" />
 
 

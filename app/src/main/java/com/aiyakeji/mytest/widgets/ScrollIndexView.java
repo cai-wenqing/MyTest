@@ -67,6 +67,7 @@ public class ScrollIndexView extends View {
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ScrollIndexView);
         mTextSize = typedArray.getDimension(R.styleable.ScrollIndexView_siv_text_size, 40f);
+        mTextOffset = typedArray.getDimension(R.styleable.ScrollIndexView_siv_text_offset,40);
         mNormalColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_normal_text_color, Color.BLACK);
         mSelectTextColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_select_text_color, Color.BLUE);
         mIndicatorColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_indicator_color, Color.BLUE);
