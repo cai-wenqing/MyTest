@@ -96,7 +96,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@color/white"
             app:piv_normal_point_color="@color/green"
             app:piv_select_point_color="@color/blue" />
 

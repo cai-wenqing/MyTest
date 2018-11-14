@@ -27,7 +27,7 @@ public class ScrollIndexView extends View {
     private Paint mNormalPaint;
     private Paint mSelectPaint;
     private Paint mIndicatorPaint;
-    private int mBGColor = Color.WHITE;
+//    private int mBGColor = Color.WHITE;
     private int mNormalColor = Color.BLACK;
     private int mSelectTextColor = Color.BLUE;
     private int mIndicatorColor = Color.BLUE;
@@ -117,7 +117,7 @@ public class ScrollIndexView extends View {
             return;
         }
 
-        canvas.drawColor(mBGColor);
+//        canvas.drawColor(mBGColor);
 
         allTextWidth = mTextOffset;
         for (int i = 0; i < mValueList.size(); i++) {
