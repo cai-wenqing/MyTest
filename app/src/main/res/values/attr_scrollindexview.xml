@@ -7,6 +7,7 @@
         <attr name="siv_text_offset" format="dimension"/>
         <attr name="siv_indicator_color" format="color" />
         <attr name="siv_indicator_height" format="dimension" />
+        <attr name="siv_indicator_length" format="dimension"/>
         <attr name="siv_indicator_distance" format="dimension"/>
         <attr name="siv_rebound" format="boolean"/>
     </declare-styleable>

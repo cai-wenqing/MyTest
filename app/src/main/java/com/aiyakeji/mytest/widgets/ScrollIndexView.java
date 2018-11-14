@@ -27,12 +27,12 @@ public class ScrollIndexView extends View {
     private Paint mNormalPaint;
     private Paint mSelectPaint;
     private Paint mIndicatorPaint;
-//    private int mBGColor = Color.WHITE;
     private int mNormalColor = Color.BLACK;
     private int mSelectTextColor = Color.BLUE;
     private int mIndicatorColor = Color.BLUE;
     private float mTextSize = 40;
     private float mIndicatorHeight = 5f;
+    private float mIndicatorLength = 20f;
     private float mIndicatorDistance = 20;//下划线与文字间距
     private boolean rebound = false;//是否回弹效果
 
@@ -67,11 +67,12 @@ public class ScrollIndexView extends View {
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ScrollIndexView);
         mTextSize = typedArray.getDimension(R.styleable.ScrollIndexView_siv_text_size, 40f);
-        mTextOffset = typedArray.getDimension(R.styleable.ScrollIndexView_siv_text_offset,40);
+        mTextOffset = typedArray.getDimension(R.styleable.ScrollIndexView_siv_text_offset, 40);
         mNormalColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_normal_text_color, Color.BLACK);
         mSelectTextColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_select_text_color, Color.BLUE);
         mIndicatorColor = typedArray.getColor(R.styleable.ScrollIndexView_siv_indicator_color, Color.BLUE);
         mIndicatorHeight = typedArray.getDimension(R.styleable.ScrollIndexView_siv_indicator_height, 5f);
+        mIndicatorLength = typedArray.getDimension(R.styleable.ScrollIndexView_siv_indicator_length, 20);
         mIndicatorDistance = typedArray.getDimension(R.styleable.ScrollIndexView_siv_indicator_distance, 20);
         rebound = typedArray.getBoolean(R.styleable.ScrollIndexView_siv_rebound, false);
         typedArray.recycle();
@@ -118,15 +119,13 @@ public class ScrollIndexView extends View {
             return;
         }
 
-//        canvas.drawColor(mBGColor);
-
         allTextWidth = mTextOffset;
         for (int i = 0; i < mValueList.size(); i++) {
             ScrollIndexBean bean = mValueList.get(i);
             if (selectedIndex == i) {
                 canvas.drawText(bean.getValue(), allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2, mSelectPaint);
-                canvas.drawLine(allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2 + mIndicatorDistance,
-                        allTextWidth + disX + bean.getWidth(), mHeight / 2 + bean.getHeight() / 2 + mIndicatorDistance, mIndicatorPaint);
+                canvas.drawLine(allTextWidth + disX + bean.getWidth() / 2 - mIndicatorLength / 2, mHeight / 2 + bean.getHeight() / 2 + mIndicatorDistance,
+                        allTextWidth + disX + bean.getWidth() / 2 + mIndicatorLength / 2, mHeight / 2 + bean.getHeight() / 2 + mIndicatorDistance, mIndicatorPaint);
             } else {
                 canvas.drawText(bean.getValue(), allTextWidth + disX, mHeight / 2 + bean.getHeight() / 2, mNormalPaint);
             }
