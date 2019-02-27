@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_footview.setOnClickListener(this);
         btn_tablayout.setOnClickListener(this);
         findViewById(R.id.main_btn_maxHeightLayout).setOnClickListener(this);
+        findViewById(R.id.main_btn_label).setOnClickListener(this);
     }
 
 
@@ -231,15 +232,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_footview:
                 //动态脚布局
-                startActivity(new Intent(this,FootViewActivity.class));
+                startActivity(new Intent(this, FootViewActivity.class));
                 break;
             case R.id.main_btn_maxHeightLayout:
                 //最大高度layout
-                startActivity(new Intent(this,MaxHeightLayoutActivity.class));
+                startActivity(new Intent(this, MaxHeightLayoutActivity.class));
                 break;
             case R.id.main_btn_tabLayout:
                 //滑动指示器
-                startActivity(new Intent(this,WernerTabLayoutActivity.class));
+                startActivity(new Intent(this, WernerTabLayoutActivity.class));
+                break;
+            case R.id.main_btn_label:
+                //标签控件
+                startActivity(new Intent(this, LabelActivity.class));
                 break;
             default:
                 break;

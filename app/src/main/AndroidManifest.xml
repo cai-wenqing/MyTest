@@ -50,6 +50,7 @@
         <activity android:name=".ui.FootViewActivity"/>
         <activity android:name=".ui.MaxHeightLayoutActivity"/>
         <activity android:name=".ui.WernerTabLayoutActivity"/>
+        <activity android:name=".ui.LabelActivity"/>
     </application>
 
 </manifest>

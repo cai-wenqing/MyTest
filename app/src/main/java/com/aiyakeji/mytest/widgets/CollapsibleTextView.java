@@ -17,7 +17,7 @@ import com.aiyakeji.mytest.R;
 /**
  * Author：Caiwenqing
  * Date：2018/10/9
- * Desc:
+ * Desc:文字过多隐藏TextView
  */
 public class CollapsibleTextView extends AppCompatTextView {
 
