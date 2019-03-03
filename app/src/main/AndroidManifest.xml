@@ -51,6 +51,7 @@
         <activity android:name=".ui.MaxHeightLayoutActivity"/>
         <activity android:name=".ui.WernerTabLayoutActivity"/>
         <activity android:name=".ui.LabelActivity"/>
+        <activity android:name=".ui.MarqueeActivity"/>
     </application>
 
 </manifest>
