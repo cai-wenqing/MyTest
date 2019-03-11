@@ -53,6 +53,7 @@ public class MarqueeView extends ViewFlipper {
 
     private int position;
     private List<? extends CharSequence> notices = new ArrayList<>();
+    private List<View> customViews = new ArrayList<>();//用户view
     private OnItemClickListener onItemClickListener;
 
     public MarqueeView(Context context) {
@@ -192,6 +193,25 @@ public class MarqueeView extends ViewFlipper {
         startWithList(notices, inAnimResId, outAnimResId);
     }
 
+
+    /**
+     * 根据传入view列表，启动翻页公告l
+     *
+     * @param viewList
+     */
+    public void startWithViewList(List<View> viewList) {
+        if (viewList != null) {
+            customViews.clear();
+            customViews.addAll(viewList);
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    start(inAnimResId, outAnimResId);
+                }
+            });
+        }
+    }
+
     /**
      * 根据字符串列表，启动翻页公告
      *
@@ -221,11 +241,19 @@ public class MarqueeView extends ViewFlipper {
         clearAnimation();
 
         position = 0;
-        addView(createTextView(notices.get(position)));
+        if (customViews.size() == 0) {
+            addView(createTextView(notices.get(position)));
 
-        if (notices.size() > 1) {
-            setInAndOutAnimation(inAnimResId, outAnimResID);
-            startFlipping();
+            if (notices.size() > 1) {
+                setInAndOutAnimation(inAnimResId, outAnimResID);
+                startFlipping();
+            }
+        } else {
+            addView(customViews.get(position));
+            if (customViews.size() > 1) {
+                setInAndOutAnimation(inAnimResId, outAnimResID);
+                startFlipping();
+            }
         }
 
         if (getInAnimation() != null) {
@@ -241,12 +269,22 @@ public class MarqueeView extends ViewFlipper {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     position++;
-                    if (position >= notices.size()) {
-                        position = 0;
-                    }
-                    View view = createTextView(notices.get(position));
-                    if (view.getParent() == null) {
-                        addView(view);
+                    if (customViews.size() == 0) {
+                        if (position >= notices.size()) {
+                            position = 0;
+                        }
+                        View view = createTextView(notices.get(position));
+                        if (view.getParent() == null) {
+                            addView(view);
+                        }
+                    } else {
+                        if (position >= customViews.size()) {
+                            position = 0;
+                        }
+                        View view = customViews.get(position);
+                        if (view.getParent() == null) {
+                            addView(view);
+                        }
                     }
                     isAnimStart = false;
                 }

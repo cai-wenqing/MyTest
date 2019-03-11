@@ -1,12 +1,19 @@
 package com.aiyakeji.mytest.ui;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
+import com.aiyakeji.mytest.utils.DBUtil;
 import com.aiyakeji.mytest.widgets.LabelLayout;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -23,7 +30,28 @@ public class LabelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_label);
 
-        LabelLayout labelLayout = findViewById(R.id.labelLayout);
+        final LabelLayout labelLayout = findViewById(R.id.labelLayout);
         labelLayout.setLabels(Arrays.asList(labelArr));
+
+        TextView textView = findViewById(R.id.tvReadDatabase);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    DBUtil.copyAssetsToDB(LabelActivity.this, "meituan_cities2.db");
+                    String destPath = "data/data/com.aiyakeji.mytest/databases/" + "meituan_cities2.db";
+                    SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(destPath, null);
+                    Cursor cursor1 = database.rawQuery("select name from sqlite_master where type='table' order by name", null);
+                    while (cursor1.moveToNext()) {
+                        for (int i = 0; i < cursor1.getColumnCount(); i++) {
+                            String name = cursor1.getString(i);
+                            Log.e("LabelActivity测试", "System.out:" + name);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

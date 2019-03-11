@@ -3,13 +3,16 @@ package com.aiyakeji.mytest.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.MarqueeView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Author：CWQ
@@ -27,7 +30,14 @@ public class MarqueeActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_marquee);
 
         MarqueeView mv = findViewById(R.id.marqueeView);
-        mv.startWithList(Arrays.asList(arr));
+//        mv.startWithList(Arrays.asList(arr));
+
+        List<View> viewList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.item_marqueeview, null);
+            viewList.add(view);
+        }
+        mv.startWithViewList(viewList);
 
 
         mViewFlipper = findViewById(R.id.viewFlipper);
