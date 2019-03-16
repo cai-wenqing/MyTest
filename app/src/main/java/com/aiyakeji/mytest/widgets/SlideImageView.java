@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -17,6 +18,8 @@ public class SlideImageView extends AppCompatImageView {
 
     private int screenWidth;
     private int screenHeight;
+    private int downY;
+    private int downX;
     private int lastX;
     private int lastY;
     private boolean isDrag;
@@ -48,8 +51,9 @@ public class SlideImageView extends AppCompatImageView {
         int rawY = (int) event.getRawY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                downX = (int) event.getRawX();
+                downY = (int) event.getRawY();
                 isDrag = false;
-                getParent().requestDisallowInterceptTouchEvent(true);
                 lastX = rawX;
                 lastY = rawY;
                 break;
@@ -57,11 +61,7 @@ public class SlideImageView extends AppCompatImageView {
                 isDrag = true;
                 int dx = rawX - lastX;
                 int dy = rawY - lastY;
-                int distance = (int) Math.sqrt(dx * dx + dy * dy);
-                if (distance < 3) {//容错范围
-                    isDrag = false;
-                    break;
-                }
+
                 float x = getX() + dx;
                 float y = getY() + dy;
                 //边缘检测
@@ -73,6 +73,10 @@ public class SlideImageView extends AppCompatImageView {
                 lastY = rawY;
                 break;
             case MotionEvent.ACTION_UP:
+                int distance = Math.max(Math.abs(rawX - downX), Math.abs(rawY - downY));
+                if (distance < 3) {//容错范围
+                    isDrag = false;
+                }
                 if (isDrag) {
                     setPressed(false);
                 }
