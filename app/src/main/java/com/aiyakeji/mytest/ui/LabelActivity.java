@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.utils.DBUtil;
 import com.aiyakeji.mytest.widgets.LabelLayout;
+import com.aiyakeji.mytest.widgets.SlideImageView;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -51,6 +52,15 @@ public class LabelActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+
+        SlideImageView slideImageView = findViewById(R.id.slideImageView);
+        slideImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("LabelActivity测试", "onClick");
             }
         });
     }
