@@ -5,22 +5,26 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import static com.aiyakeji.mytest.widgets.calendarview.MonthViewFragment.firstSelectedDay;
-import static com.aiyakeji.mytest.widgets.calendarview.MonthViewFragment.secondSelectedDay;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.aiyakeji.mytest.widgets.calendarview.AirTicketMonthViewFragment.firstSelectedDay;
+import static com.aiyakeji.mytest.widgets.calendarview.AirTicketMonthViewFragment.secondSelectedDay;
 
 
 /**
  * @author caiwenqing
  * @data 2018/5/17
- * description:自定义日历
+ * description:机票自定义日历
  */
-public class MonthView extends View {
+public class AirTicketMonthView extends View {
     private static final String TAG = "MonthView测试";
 
     private static final int WEEK_LENGTH = 7;
@@ -41,38 +45,35 @@ public class MonthView extends View {
     private int mEnableDayColor = Color.parseColor("#333333");
     private int mSelectedBGColor = Color.parseColor("#c31f96");
     private int mSelectedCenterColor = Color.parseColor("#f6ddf0");
-    private int mSelectTextColor = Color.WHITE;
-    private String startDayLable = "入住";
-    private String endDayLable = "离店";
 
+    private int mSelectTextColor = Color.WHITE;
+    private String startDayLable = "去程";
+    private String endDayLable = "返程";
+    private String startEndDayLabel = "去/返";
     private int enableYear, enableMonth, enableDay;
     //该月的天数
     private int daysInMonth;
-
     //该月第一天是周几（0为周日）
     private int firstDayWeekIndex;
     //行数
     private int row;
-
     private MonthViewModel[][] mDayList;
-
     MonthViewModel model = null;
-
     float touchDownX, touchDownY;
-
+    private List<MonthViewModel> mDayPriceList = new ArrayList<>();
     private OnDayClickListener mListener;
     private Paint mBgPaint;
 
 
-    public MonthView(Context context) {
+    public AirTicketMonthView(Context context) {
         this(context, null);
     }
 
-    public MonthView(Context context, @Nullable AttributeSet attrs) {
+    public AirTicketMonthView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MonthView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AirTicketMonthView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -91,11 +92,11 @@ public class MonthView extends View {
         mBgPaint = new Paint();
         mBgPaint.setAntiAlias(true);
 
-        setEnableDate(2018, 5, 18);
+//        setEnableDate(2018, 5, 18);
     }
 
 
-    public void setEnableDate(int year, int month, int day) {
+    private void setEnableDate(int year, int month, int day) {
         enableYear = year;
         enableMonth = month;
         enableDay = day;
@@ -129,6 +130,18 @@ public class MonthView extends View {
         }
     }
 
+
+    public void setDayPriceList(List<MonthViewModel> list) {
+        if (list == null) {
+            return;
+        }
+        mDayPriceList.clear();
+        mDayPriceList.addAll(list);
+        MonthViewModel firstInListModel = list.get(0);
+        setEnableDate(firstInListModel.year, firstInListModel.month, firstInListModel.day);
+    }
+
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -138,7 +151,7 @@ public class MonthView extends View {
         mDayWidth = mWidth / WEEK_LENGTH;
         mDayHeight = mHeight / row;
 
-        mShowHalfHeight = Math.min(mDayWidth, mDayHeight) / 2 - lineDivideHeight;
+        mShowHalfHeight = mDayHeight / 2 - lineDivideHeight;
     }
 
     @Override
@@ -199,7 +212,7 @@ public class MonthView extends View {
             case MotionEvent.ACTION_UP:
                 if (model != null && model.day >= enableDay) {
                     if (firstSelectedDay != null && secondSelectedDay == null) {
-                        if (model.compare(firstSelectedDay) == 1) {
+                        if (model.compare(firstSelectedDay) >= 0) {
                             model.state = DayState.STATE_SELECTED;
                             secondSelectedDay = model;
                         } else if (model.compare(firstSelectedDay) == -1) {
@@ -238,15 +251,18 @@ public class MonthView extends View {
                     String day = model.day + "";
                     DayState state = model.state;
 
-                    String underLabel = "";
-                    if (model.compare(firstSelectedDay) == 0) {
-                        underLabel = startDayLable;
+                    String topLabel = "";
+                    if (model.compare(firstSelectedDay) == 0 && model.compare(secondSelectedDay) == 0) {
+                        topLabel = startEndDayLabel;
+                        state = DayState.STATE_SELECTED;
+                    } else if (model.compare(firstSelectedDay) == 0) {
+                        topLabel = startDayLable;
                         state = DayState.STATE_SELECTED;
                     } else if (model.compare(secondSelectedDay) == 0) {
-                        underLabel = endDayLable;
+                        topLabel = endDayLable;
                         state = DayState.STATE_SELECTED;
                     } else if (model.compare(firstSelectedDay) == 1 && model.compare(secondSelectedDay) == -1) {
-                        underLabel = "";
+                        topLabel = "";
                         state = DayState.STATE_SELECTED;
                     }
 
@@ -268,45 +284,64 @@ public class MonthView extends View {
                         Paint.FontMetrics fontMetrics = mDayPaint.getFontMetrics();
                         float baseLine = model.centerY + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2;
                         canvas.drawText(day, textStart, baseLine, mDayPaint);
+
+                        //画价格
+                        String drawPriceText = "¥" + model.price;
+                        mStatePaint.setColor(mEnableDayColor);
+                        Rect priceTextBound = new Rect();
+                        mStatePaint.getTextBounds(drawPriceText, 0, drawPriceText.length(), priceTextBound);
+                        float priceStart = model.centerX - priceTextBound.width() / 2;
+                        Paint.FontMetrics priceMetrics = mStatePaint.getFontMetrics();
+                        float priceLine = model.centerY + (model.height - dayTextBound.height()) / 4 + dayTextBound.height() / 2 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2;
+                        canvas.drawText(drawPriceText, priceStart, priceLine, mStatePaint);
                     } else if (state == DayState.STATE_SELECTED) {
                         //选中状态
                         //画背景
-                        if (underLabel.equals(startDayLable)) {
-                            if (secondSelectedDay != null) {
+                        if (!TextUtils.isEmpty(topLabel)) {
+                            if (topLabel.equals(startDayLable)) {
                                 mBgPaint.setColor(mSelectedCenterColor);
                                 canvas.drawRect(model.centerX, model.centerY - mShowHalfHeight, model.centerX + model.width / 2, model.centerY + mShowHalfHeight, mBgPaint);
+                            } else if (topLabel.equals(endDayLable)) {
+                                mBgPaint.setColor(mSelectedCenterColor);
+                                canvas.drawRect(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX, model.centerY + mShowHalfHeight, mBgPaint);
                             }
                             mBgPaint.setColor(mSelectedBGColor);
-                            canvas.drawCircle(model.centerX, model.centerY, mShowHalfHeight, mBgPaint);
-                        } else if (underLabel.equals(endDayLable)) {
-                            mBgPaint.setColor(mSelectedCenterColor);
-                            canvas.drawRect(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX, model.centerY + mShowHalfHeight, mBgPaint);
-                            mBgPaint.setColor(mSelectedBGColor);
-                            canvas.drawCircle(model.centerX, model.centerY, mShowHalfHeight, mBgPaint);
+                            canvas.drawRoundRect(new RectF(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX + model.width / 2, model.centerY + mShowHalfHeight), 10, 10, mBgPaint);
                         } else {
                             mBgPaint.setColor(mSelectedCenterColor);
                             canvas.drawRect(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX + model.width / 2, model.centerY + mShowHalfHeight, mBgPaint);
                         }
 
-                        //画文字
-                        if (!TextUtils.isEmpty(underLabel)) {
-                            //画下标文字
-                            mStatePaint.setColor(mSelectTextColor);
-                            Rect priceTextBound = new Rect();
-                            mStatePaint.getTextBounds(underLabel, 0, underLabel.length(), priceTextBound);
-                            float priceStart = model.centerX - priceTextBound.width() / 2;
-                            Paint.FontMetrics priceMetrics = mStatePaint.getFontMetrics();
-                            float priceLine = model.centerY + mShowHalfHeight / 2 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2 - lineDivideHeight;
-                            canvas.drawText(underLabel, priceStart, priceLine, mStatePaint);
 
+                        //画文字
+                        if (!TextUtils.isEmpty(topLabel)) {
                             //画日期
                             mDayPaint.setColor(mSelectTextColor);
                             Rect dayTextBound = new Rect();
                             mDayPaint.getTextBounds(day, 0, day.length(), dayTextBound);
                             float textStart = model.centerX - dayTextBound.width() / 2;
                             Paint.FontMetrics fontMetrics = mDayPaint.getFontMetrics();
-                            float baseLine = model.centerY - mShowHalfHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2 + lineDivideHeight;
+                            float baseLine = model.centerY + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2;
                             canvas.drawText(day, textStart, baseLine, mDayPaint);
+
+                            //画上标文字
+                            mStatePaint.setColor(mSelectTextColor);
+                            Rect labelTextBound = new Rect();
+                            mStatePaint.getTextBounds(topLabel, 0, topLabel.length(), labelTextBound);
+                            float labelStart = model.centerX - labelTextBound.width() / 2;
+                            Paint.FontMetrics labelMetrics = mStatePaint.getFontMetrics();
+                            float labelLine = model.centerY - (model.height - dayTextBound.height()) / 4 - dayTextBound.height() / 2 + (Math.abs(labelMetrics.ascent) - labelMetrics.descent) / 2;
+                            canvas.drawText(topLabel, labelStart, labelLine, mStatePaint);
+
+                            //画价格
+                            String drawPriceText = "¥" + model.price;
+                            mStatePaint.setColor(mSelectTextColor);
+                            Rect priceTextBound = new Rect();
+                            mStatePaint.getTextBounds(drawPriceText, 0, drawPriceText.length(), priceTextBound);
+                            float priceStart = model.centerX - priceTextBound.width() / 2;
+                            Paint.FontMetrics priceMetrics = mStatePaint.getFontMetrics();
+                            float priceLine = model.centerY + (model.height - dayTextBound.height()) / 4 + dayTextBound.height() / 2 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2;
+                            canvas.drawText(drawPriceText, priceStart, priceLine, mStatePaint);
                         } else {
                             //中间选中状态,画日期
                             mDayPaint.setColor(mEnableDayColor);
@@ -316,6 +351,16 @@ public class MonthView extends View {
                             Paint.FontMetrics fontMetrics = mDayPaint.getFontMetrics();
                             float baseLine = model.centerY + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2;
                             canvas.drawText(day, textStart, baseLine, mDayPaint);
+
+                            //画价格
+                            String drawPriceText = "¥" + model.price;
+                            mStatePaint.setColor(mEnableDayColor);
+                            Rect priceTextBound = new Rect();
+                            mStatePaint.getTextBounds(drawPriceText, 0, drawPriceText.length(), priceTextBound);
+                            float priceStart = model.centerX - priceTextBound.width() / 2;
+                            Paint.FontMetrics priceMetrics = mStatePaint.getFontMetrics();
+                            float priceLine = model.centerY + (model.height - dayTextBound.height()) / 4 + dayTextBound.height() / 2 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2;
+                            canvas.drawText(drawPriceText, priceStart, priceLine, mStatePaint);
                         }
                     }
                 }
@@ -347,6 +392,14 @@ public class MonthView extends View {
                     mDayList[i][j] = new MonthViewModel(mDayWidth / 2 + j * mDayWidth,
                             mDayHeight / 2 + i * mDayHeight,
                             mDayWidth, mDayHeight, enableYear, enableMonth, day, 0, state);
+                }
+                if (mDayPriceList.size() > 0) {
+                    for (MonthViewModel priceModel : mDayPriceList) {
+                        if (mDayList[i][j].compare(priceModel) == 0) {
+                            mDayList[i][j].price = priceModel.price;
+                            break;
+                        }
+                    }
                 }
             }
         }
