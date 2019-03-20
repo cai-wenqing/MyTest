@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/calendar_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <com.aiyakeji.mytest.widgets.calendarview.CalendarOrderView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="20dp" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/blue" />
+        <TextView
+            android:id="@+id/calendar_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <com.aiyakeji.mytest.widgets.calendarview.MonthView
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-</LinearLayout>
+        <com.aiyakeji.mytest.widgets.calendarview.CalendarOrderView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/blue" />
+
+        <com.aiyakeji.mytest.widgets.calendarview.MonthView
+            android:layout_width="match_parent"
+            android:layout_height="350dp" />
+    </LinearLayout>
+</ScrollView>

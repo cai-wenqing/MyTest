@@ -25,11 +25,12 @@ public class MonthView extends View {
 
     private static final int WEEK_LENGTH = 7;
     //每行之间的间距
-    private static final float divideHeight = 10f;
+    private float lineDivideHeight = 10f;
     private float mWidth;
     private float mHeight;
     private float mDayWidth;
     private float mDayHeight;
+    private float mShowHalfHeight;
 
     //日期
     private Paint mDayPaint;
@@ -40,7 +41,9 @@ public class MonthView extends View {
     private int mEnableDayColor = Color.parseColor("#333333");
     private int mSelectedBGColor = Color.parseColor("#c31f96");
     private int mSelectedCenterColor = Color.parseColor("#f6ddf0");
+
     private int mSelectTextColor = Color.WHITE;
+
     private String startDayLable = "入住";
     private String endDayLable = "离店";
 
@@ -63,17 +66,17 @@ public class MonthView extends View {
 
 
     public MonthView(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public MonthView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public MonthView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+
         init();
     }
 
@@ -134,6 +137,8 @@ public class MonthView extends View {
 
         mDayWidth = mWidth / WEEK_LENGTH;
         mDayHeight = mHeight / row;
+
+        mShowHalfHeight = Math.min(mDayWidth, mDayHeight) / 2 - lineDivideHeight;
     }
 
     @Override
@@ -273,28 +278,30 @@ public class MonthView extends View {
                         if (underLabel.equals(startDayLable)) {
                             if (secondSelectedDay != null) {
                                 bgPaint.setColor(mSelectedCenterColor);
-                                canvas.drawRect(model.centerX, model.centerY - model.height / 2 + divideHeight, model.centerX + model.width / 2, model.centerY + model.height / 2 - divideHeight, bgPaint);
+                                canvas.drawRect(model.centerX, model.centerY - mShowHalfHeight, model.centerX + model.width / 2, model.centerY + mShowHalfHeight, bgPaint);
                             }
                             bgPaint.setColor(mSelectedBGColor);
-                            canvas.drawCircle(model.centerX, model.centerY, Math.min(model.width, model.height) / 2 - divideHeight, bgPaint);
+                            canvas.drawCircle(model.centerX, model.centerY, mShowHalfHeight, bgPaint);
                         } else if (underLabel.equals(endDayLable)) {
                             bgPaint.setColor(mSelectedCenterColor);
-                            canvas.drawRect(model.centerX - model.width / 2, model.centerY - model.height / 2 + divideHeight, model.centerX, model.centerY + model.height / 2 - divideHeight, bgPaint);
+                            canvas.drawRect(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX, model.centerY + mShowHalfHeight, bgPaint);
                             bgPaint.setColor(mSelectedBGColor);
-                            canvas.drawCircle(model.centerX, model.centerY, Math.min(model.width, model.height) / 2 - divideHeight, bgPaint);
+                            canvas.drawCircle(model.centerX, model.centerY, mShowHalfHeight, bgPaint);
+
                         } else {
                             bgPaint.setColor(mSelectedCenterColor);
-                            canvas.drawRect(model.centerX - model.width / 2, model.centerY - model.height / 2 + divideHeight, model.centerX + model.width / 2, model.centerY + model.height / 2 - divideHeight, bgPaint);
+                            canvas.drawRect(model.centerX - model.width / 2, model.centerY - mShowHalfHeight, model.centerX + model.width / 2, model.centerY + mShowHalfHeight, bgPaint);
                         }
 
+                        //画文字
                         if (!TextUtils.isEmpty(underLabel)) {
-                            //画下标状态
+                            //画下标文字
                             mStatePaint.setColor(mSelectTextColor);
                             Rect priceTextBound = new Rect();
                             mStatePaint.getTextBounds(underLabel, 0, underLabel.length(), priceTextBound);
                             float priceStart = model.centerX - priceTextBound.width() / 2;
                             Paint.FontMetrics priceMetrics = mStatePaint.getFontMetrics();
-                            float priceLine = model.centerY + model.height / 4 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2 - divideHeight;
+                            float priceLine = model.centerY + mShowHalfHeight / 2 + (Math.abs(priceMetrics.ascent) - priceMetrics.descent) / 2 - lineDivideHeight;
                             canvas.drawText(underLabel, priceStart, priceLine, mStatePaint);
 
                             //画日期
@@ -303,7 +310,7 @@ public class MonthView extends View {
                             mDayPaint.getTextBounds(day, 0, day.length(), dayTextBound);
                             float textStart = model.centerX - dayTextBound.width() / 2;
                             Paint.FontMetrics fontMetrics = mDayPaint.getFontMetrics();
-                            float baseLine = model.centerY - model.height / 4 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2 + divideHeight;
+                            float baseLine = model.centerY - mShowHalfHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2 + lineDivideHeight;
                             canvas.drawText(day, textStart, baseLine, mDayPaint);
                         } else {
                             //中间选中状态,画日期
