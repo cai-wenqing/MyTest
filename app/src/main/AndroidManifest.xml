@@ -3,6 +3,7 @@
     package="com.aiyakeji.mytest">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".system.AppContext"
@@ -42,7 +43,6 @@
         <activity android:name=".ui.VoiceShakeActivity"/>
         <activity android:name=".ui.MaterialTestActivity"/>
         <activity android:name=".ui.MaterialTestBActivity"/>
-        <activity android:name=".ui.KotlinTestActivity"/>
         <activity android:name=".ui.AnnotationTestActivity"/>
         <activity android:name=".ui.ProxyTestActivity"/>
         <activity android:name=".ui.AlphaScrollTitleActivity"/>
@@ -53,6 +53,7 @@
         <activity android:name=".ui.WernerTabLayoutActivity"/>
         <activity android:name=".ui.LabelActivity"/>
         <activity android:name=".ui.MarqueeActivity"/>
+        <activity android:name=".ui.PermissionRequestActivity"/>
     </application>
 
 </manifest>

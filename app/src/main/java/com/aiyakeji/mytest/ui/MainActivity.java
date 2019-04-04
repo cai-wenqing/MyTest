@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] itemArr = {"折叠头部", "属性动画", "仿QQ步数圆形进度", "仿华为时钟",
             "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "MQTT", "波动圆", "轮播图",
             "声音波", "material design", "注解", "代理模式", "联动title", "日历",
-            "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件","跑马灯及ViewFlipper"};
+            "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件","跑马灯及ViewFlipper","权限申请封装"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 23://跑马灯及ViewFlipper
                         startActivity(new Intent(MainActivity.this,MarqueeActivity.class));
+                        break;
+                    case 24://权限申请封装
+                        startActivity(new Intent(MainActivity.this,PermissionRequestActivity.class));
                         break;
                 }
             }
