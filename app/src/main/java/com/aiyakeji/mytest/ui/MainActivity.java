@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private String[] itemArr = {"折叠头部", "属性动画", "仿QQ步数圆形进度", "仿华为时钟",
             "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "MQTT", "波动圆", "轮播图",
-            "声音波", "material design", "kotlin", "测试布局", "注解", "代理模式", "联动title", "日历",
+            "声音波", "material design", "注解", "代理模式", "联动title", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件","跑马灯及ViewFlipper"};
 
     private MainAdapter contentAdapter;
@@ -79,40 +79,34 @@ public class MainActivity extends AppCompatActivity {
                     case 13://material design
                         startActivity(new Intent(MainActivity.this, MaterialTestActivity.class));
                         break;
-                    case 14://kotlin
-                        startActivity(new Intent(MainActivity.this, KotlinTestActivity.class));
-                        break;
-                    case 15://测试布局
-                        startActivity(new Intent(MainActivity.this, TestLayoutActivity.class));
-                        break;
-                    case 16://注解
+                    case 14://注解
                         startActivity(new Intent(MainActivity.this, AnnotationTestActivity.class));
                         break;
-                    case 17://代理模式
+                    case 15://代理模式
                         startActivity(new Intent(MainActivity.this, ProxyTestActivity.class));
                         break;
-                    case 18://联动title
+                    case 16://联动title
                         startActivity(new Intent(MainActivity.this, AlphaScrollTitleActivity.class));
                         break;
-                    case 19://日历
+                    case 17://日历
                         startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                         break;
-                    case 20://日历列表
+                    case 18://日历列表
                         startActivity(new Intent(MainActivity.this, CalendarListActivity.class));
                         break;
-                    case 21://动态脚布局
+                    case 19://动态脚布局
                         startActivity(new Intent(MainActivity.this, FootViewActivity.class));
                         break;
-                    case 22://动态高度layout
+                    case 20://动态高度layout
                         startActivity(new Intent(MainActivity.this, MaxHeightLayoutActivity.class));
                         break;
-                    case 23://滑动指示器
+                    case 21://滑动指示器
                         startActivity(new Intent(MainActivity.this, WernerTabLayoutActivity.class));
                         break;
-                    case 24://标签控件
+                    case 22://标签控件
                         startActivity(new Intent(MainActivity.this, LabelActivity.class));
                         break;
-                    case 25://跑马灯及ViewFlipper
+                    case 23://跑马灯及ViewFlipper
                         startActivity(new Intent(MainActivity.this,MarqueeActivity.class));
                         break;
                 }

@@ -43,7 +43,6 @@
         <activity android:name=".ui.MaterialTestActivity"/>
         <activity android:name=".ui.MaterialTestBActivity"/>
         <activity android:name=".ui.KotlinTestActivity"/>
-        <activity android:name=".ui.TestLayoutActivity"/>
         <activity android:name=".ui.AnnotationTestActivity"/>
         <activity android:name=".ui.ProxyTestActivity"/>
         <activity android:name=".ui.AlphaScrollTitleActivity"/>
