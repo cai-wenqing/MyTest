@@ -54,6 +54,7 @@
         <activity android:name=".ui.LabelActivity"/>
         <activity android:name=".ui.MarqueeActivity"/>
         <activity android:name=".ui.PermissionRequestActivity"/>
+        <activity android:name=".ui.SideBarActivity"/>
     </application>
 
 </manifest>

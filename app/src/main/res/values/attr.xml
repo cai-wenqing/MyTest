@@ -36,8 +36,14 @@
         <attr name="labelPaddingRight" format="dimension" />
         <attr name="labelMarginLeft" format="dimension" />
         <attr name="labelMarginRight" format="dimension" />
-        <attr name="labelTextSize" format="dimension"/>
+        <attr name="labelTextSize" format="dimension" />
         <!--是否充满一行-->
-        <attr name="labelFullLine" format="boolean"/>
+        <attr name="labelFullLine" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="SideBar">
+        <attr name="sideBarTextColor" format="color" />
+        <attr name="sideBarTextSize" format="dimension" />
     </declare-styleable>
 </resources>
