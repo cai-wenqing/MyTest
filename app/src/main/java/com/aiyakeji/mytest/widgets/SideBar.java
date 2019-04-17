@@ -54,6 +54,7 @@ public class SideBar extends View {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.SideBar);
         mNormalTextColor = typedArray.getColor(R.styleable.SideBar_sideBarTextColor, Color.parseColor("#A50B73"));
         mTextSize = typedArray.getDimension(R.styleable.SideBar_sideBarTextSize, 40);
+        typedArray.recycle();
     }
 
     private void init() {

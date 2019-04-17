@@ -55,6 +55,7 @@
         <activity android:name=".ui.MarqueeActivity"/>
         <activity android:name=".ui.PermissionRequestActivity"/>
         <activity android:name=".ui.SideBarActivity"/>
+        <activity android:name=".ui.StepSlideActivity"/>
     </application>
 
 </manifest>

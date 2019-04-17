@@ -46,4 +46,14 @@
         <attr name="sideBarTextColor" format="color" />
         <attr name="sideBarTextSize" format="dimension" />
     </declare-styleable>
+
+
+    <declare-styleable name="StepSlideView">
+        <attr name="ssvTextSize" format="dimension"/>
+        <attr name="ssvNormalColor" format="color"/>
+        <attr name="ssvSelectTextColor" format="color"/>
+        <attr name="ssvNormalPointRadius" format="dimension"/>
+        <attr name="ssvSelectPointRadius" format="dimension"/>
+        <attr name="ssvSpaceInTextPoint" format="dimension"/>
+    </declare-styleable>
 </resources>
