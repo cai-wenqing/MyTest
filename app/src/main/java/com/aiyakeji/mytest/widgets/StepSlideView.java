@@ -103,6 +103,7 @@ public class StepSlideView extends View {
         mPaint.setColor(mNormalColor);
         canvas.drawLine(mSidePadding, mHeight / 2, mWidth - mSidePadding, mHeight / 2, mPaint);
 
+        mPaint.setStyle(Paint.Style.FILL);
         for (int i = 0; i < levelsArr.length; i++) {
             if (mSelectPosition == i) {
                 mPaint.setColor(mNormalColor);
@@ -119,7 +120,10 @@ public class StepSlideView extends View {
                 canvas.drawText(levelsArr[i], i * mSpaceInPoints - mRect.width() / 2 + mSidePadding, mHeight / 2 - mSelectCircleRadius - mSpaceInTextPoint, mPaint);
             }
         }
+        mPaint.setColor(Color.WHITE);
+        canvas.drawCircle(mSelectPosition * mSpaceInPoints + mSidePadding + mSelectPointOffset, mHeight / 2, mSelectCircleRadius, mPaint);
         mPaint.setColor(mNormalColor);
+        mPaint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(mSelectPosition * mSpaceInPoints + mSidePadding + mSelectPointOffset, mHeight / 2, mSelectCircleRadius, mPaint);
     }
 
