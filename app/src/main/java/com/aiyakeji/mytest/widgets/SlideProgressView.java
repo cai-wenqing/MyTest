@@ -28,7 +28,9 @@ public class SlideProgressView extends View {
     private float lineStrokeWidth = 5;
     private float circleStrokeWidth = 3;
     private int maxNumber = 1000;
+    private int cellNumber = 50;
     private boolean hasInit = false;
+    private boolean firstShow = true;
 
     BigDecimal bigDecimal;
 
@@ -40,7 +42,11 @@ public class SlideProgressView extends View {
     private float lineEndX;
     private float downX, downY;
     private int flag = 0;
+    String startNum;
+    String endNum;
 
+    private float defaultStartValue;
+    private float defaultEndValue;
 
     public SlideProgressView(Context context) {
         super(context);
@@ -62,6 +68,9 @@ public class SlideProgressView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setTextSize(30);
 
+        startNum = "0";
+        endNum = "不限";
+
         circleStrokePaint = new Paint();
         circleStrokePaint.setAntiAlias(true);
         circleStrokePaint.setColor(mainColor);
@@ -78,16 +87,25 @@ public class SlideProgressView extends View {
             circleRadius = mHeight / 2 - circleStrokeWidth;
         }
         maxLineWidth = mWidth - 2 * circleRadius - 2 * circleStrokeWidth;
-        if (!hasInit) {
-            lineStartX = circleRadius + circleStrokeWidth;
-            lineEndX = mWidth - circleRadius - circleStrokeWidth;
-            hasInit = true;
-        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (!hasInit && defaultStartValue == 0 && (defaultEndValue == 0 || defaultEndValue == maxNumber + 1)) {
+            lineStartX = circleRadius + circleStrokeWidth;
+            lineEndX = mWidth - circleRadius - circleStrokeWidth;
+            hasInit = true;
+        } else if (!hasInit) {
+            lineStartX = defaultStartValue / maxNumber * maxLineWidth + circleRadius + circleStrokeWidth;
+            if (defaultEndValue > maxNumber) {
+                lineEndX = mWidth - circleRadius - circleStrokeWidth;
+            } else {
+                lineEndX = defaultEndValue / maxNumber * maxLineWidth + circleRadius + circleStrokeWidth;
+            }
+            hasInit = true;
+        }
 
         //灰色条
         mPaint.setColor(grayColor);
@@ -112,6 +130,18 @@ public class SlideProgressView extends View {
             canvas.drawCircle(lineEndX, mHeight / 2, circleRadius, mPaint);
             canvas.drawCircle(lineEndX, mHeight / 2, circleRadius, circleStrokePaint);
         }
+
+        if (!(defaultStartValue == 0 && defaultEndValue == 0) && mListener != null && firstShow) {
+            mListener.onStartChange((int) defaultStartValue + "");
+            if (defaultEndValue > maxNumber) {
+                mListener.onEndChange("不限");
+            } else {
+                mListener.onEndChange((int) defaultEndValue + "");
+            }
+
+            defaultStartValue = 0;
+            defaultEndValue = 0;
+        }
     }
 
 
@@ -125,56 +155,10 @@ public class SlideProgressView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (flag != 0) {
-                    if (flag == 1) {
-                        if (event.getX() >= circleRadius + circleStrokeWidth && event.getX() <= lineEndX) {
-                            lineStartX = event.getX();
-                        } else if (event.getX() < circleRadius + circleStrokeWidth) {
-                            lineStartX = circleRadius + circleStrokeWidth;
-                        } else if (event.getX() > lineEndX) {
-                            lineStartX = lineEndX;
-                        }
-
-                        float startRate = (lineStartX - circleRadius - circleStrokeWidth) / (maxLineWidth - maxLineWidth / 100);
-                        bigDecimal = new BigDecimal(startRate);
-                        startRate = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-
-                        String startNum;
-                        if (maxNumber * startRate <= maxNumber) {
-                            startNum = "" + (int) (maxNumber * startRate);
-                        } else {
-                            startNum = maxNumber + "+";
-                        }
-                        invalidate();
-                        if (mListener != null) {
-                            mListener.onStartChange(startNum);
-                        }
-                    } else if (flag == 2) {
-                        if (event.getX() >= lineStartX && event.getX() <= mWidth - circleRadius - circleStrokeWidth) {
-                            lineEndX = event.getX();
-                        } else if (event.getX() < lineStartX) {
-                            lineEndX = lineStartX;
-                        } else if (event.getX() > mWidth - circleRadius - circleStrokeWidth) {
-                            lineEndX = mWidth - circleRadius - circleStrokeWidth;
-                        }
-
-                        float endRate = (lineEndX - circleRadius - circleStrokeWidth) / (maxLineWidth - maxLineWidth / 100);
-                        bigDecimal = new BigDecimal(endRate);
-                        endRate = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-                        String endNum;
-                        if (maxNumber * endRate <= maxNumber) {
-                            endNum = "" + (int) (maxNumber * endRate);
-                        } else {
-                            endNum = maxNumber + "+";
-                        }
-                        invalidate();
-                        if (mListener != null) {
-                            mListener.onEndChange(endNum);
-                        }
-                    }
+                    moveEvent(event, justInCircle(event.getX(), -1));
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                flag = 0;
                 break;
             default:
                 break;
@@ -183,37 +167,103 @@ public class SlideProgressView extends View {
     }
 
 
+    private void moveEvent(MotionEvent event, int flag) {
+        if (flag == 1) {
+            if (event.getX() >= circleRadius + circleStrokeWidth && event.getX() <= (lineEndX - maxLineWidth / 100)) {
+                lineStartX = event.getX();
+            } else if (event.getX() < circleRadius + circleStrokeWidth) {
+                lineStartX = circleRadius + circleStrokeWidth;
+            } else if (event.getX() > (lineEndX - maxLineWidth / 100)) {
+                lineStartX = lineEndX - maxLineWidth / 100;
+            }
+
+            float startRate = (lineStartX - circleRadius - circleStrokeWidth) / (maxLineWidth - maxLineWidth / 100);
+            bigDecimal = new BigDecimal(startRate);
+            startRate = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+
+            if (startRate <= 1) {
+                if ((int) (startRate * 100) % (100 / (maxNumber / cellNumber)) == 0) {
+                    if (endNum.equals("不限")) {
+                        if (mListener != null) {
+                            startNum = "" + (int) (maxNumber * startRate);
+                            mListener.onStartChange(startNum);
+                        }
+                    } else {
+                        if ((int) (maxNumber * startRate) < Integer.valueOf(endNum)) {
+                            startNum = "" + (int) (maxNumber * startRate);
+                            if (mListener != null) {
+                                mListener.onStartChange(startNum);
+                            }
+
+                        }
+                    }
+
+                }
+            } else {
+                startNum = "不限";
+                if (mListener != null) {
+                    mListener.onStartChange(startNum);
+                }
+            }
+            firstShow = false;
+            invalidate();
+        } else if (flag == 2) {
+            if (event.getX() >= (lineStartX + maxLineWidth / 100) && event.getX() <= mWidth - circleRadius - circleStrokeWidth) {
+                lineEndX = event.getX();
+            } else if (event.getX() < (lineStartX + maxLineWidth / 100)) {
+                lineEndX = lineStartX + maxLineWidth / 100;
+            } else if (event.getX() > mWidth - circleRadius - circleStrokeWidth) {
+                lineEndX = mWidth - circleRadius - circleStrokeWidth;
+            }
+
+            float endRate = (lineEndX - circleRadius - circleStrokeWidth) / (maxLineWidth - maxLineWidth / 100);
+            bigDecimal = new BigDecimal(endRate);
+            endRate = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+
+            if (endRate <= 1) {
+                if ((int) (endRate * 100) % (100 / (maxNumber / cellNumber)) == 0) {
+                    if ((int) (maxNumber * endRate) > Integer.valueOf(startNum)) {
+                        endNum = "" + (int) (maxNumber * endRate);
+                        if (mListener != null) {
+                            mListener.onEndChange(endNum);
+                        }
+                    }
+                }
+            } else {
+                endNum = "不限";
+                if (mListener != null) {
+                    mListener.onEndChange(endNum);
+                }
+            }
+            firstShow = false;
+            invalidate();
+        }
+    }
+
     /**
      * 判断是否在起点圆或重点圆内
      *
      * @param x 触摸点x轴坐标
-     * @param y y轴坐标
+     * @param y y轴坐标，若y<0则不考虑y轴坐标
      * @return 1：在起点圆内，2：在终点圆内，0：不在圆内
      */
     private int justInCircle(float x, float y) {
         int result = 0;
-        if (Math.abs(mHeight / 2 - y) <= circleRadius) {
-            if (Math.abs(lineStartX - x) <= circleRadius) {
-                result = 1;
-            }
-
-            if (Math.abs(lineEndX - x) <= circleRadius) {
-                if (result == 1) {
-                    //同时在起点和终点圆内，判断距离更近
-                    if (Math.abs(lineStartX - x) < Math.abs(lineEndX - x)) {
-                        result = 1;
-                    } else if (Math.abs(lineStartX - x) == Math.abs(lineEndX - x)) {
-                        if (lineEndX == circleRadius) {
-                            result = 2;
-                        } else {
-                            result = 1;
-                        }
-                    } else {
-                        result = 2;
-                    }
+        if ((y > 0 && Math.abs(mHeight / 2 - y) <= circleRadius) || y < 0) {
+            if (Math.abs(lineStartX - x) <= circleRadius && Math.abs(lineEndX - x) <= circleRadius) {
+                if (Math.abs(lineStartX - x) < Math.abs(lineEndX - x)) {
+                    result = 1;
+                } else if (Math.abs(lineStartX - x) == Math.abs(lineEndX - x)) {
+                    result = 0;
                 } else {
                     result = 2;
                 }
+            } else if (Math.abs(lineStartX - x) <= circleRadius) {
+                result = 1;
+            } else if (Math.abs(lineEndX - x) <= circleRadius) {
+                result = 2;
+            } else {
+                result = 0;
             }
         }
         return result;
@@ -251,6 +301,33 @@ public class SlideProgressView extends View {
     public void resetView() {
         lineStartX = circleRadius + circleStrokeWidth;
         lineEndX = mWidth - circleRadius - circleStrokeWidth;
+        invalidate();
+    }
+
+    /**
+     * 设置当前进度
+     *
+     * @param
+     */
+    public void setValue(String startValue, String endValue) {
+        float start = Float.valueOf(startValue);
+        float end;
+        if (endValue.endsWith("+") || endValue.endsWith("*") || endValue.equals("不限")) {
+            end = maxNumber + 1;
+        } else {
+            end = Float.valueOf(endValue);
+            if (end > maxNumber + 1) {
+                end = maxNumber + 1;
+            }
+        }
+
+        if (start >= end || start < 0) {
+            return;
+        }
+        defaultStartValue = start;
+        defaultEndValue = end;
+        hasInit = false;
+        firstShow = true;
         invalidate();
     }
 }

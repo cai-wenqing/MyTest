@@ -79,6 +79,25 @@
             android:layout_marginRight="10dp" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etRange"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvSetRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:padding="3dp"
+                android:text="设置起始点" />
+        </LinearLayout>
+
+
         <com.aiyakeji.mytest.widgets.ScrollIndexView
             android:id="@+id/five_siv"
             android:layout_width="match_parent"
@@ -88,8 +107,8 @@
             app:siv_indicator_distance="10dp"
             app:siv_indicator_length="35dp"
             app:siv_rebound="false"
-            app:siv_text_offset="20dp"
-            app:siv_select_text_color="@color/green" />
+            app:siv_select_text_color="@color/green"
+            app:siv_text_offset="20dp" />
 
 
         <com.aiyakeji.mytest.widgets.PageIndexView

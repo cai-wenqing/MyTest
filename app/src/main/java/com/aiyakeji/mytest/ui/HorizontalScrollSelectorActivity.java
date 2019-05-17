@@ -3,6 +3,7 @@ package com.aiyakeji.mytest.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +39,7 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
     private PageIndexView pageIndexView;
     private EditText et_pointCount;
     private Button btn_submit;
+    private EditText etRange;
 
     private String[] strings = {"990", "991", "992", "993", "994", "99", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"};
     private String[] values = {"盖伦", "光辉", "火男", "男枪", "提莫", "加里奥", "奥巴马", "炼金", "猪女", "蜘蛛", "皇子", "赵信", "盲僧", "蛮王"};
@@ -60,6 +62,8 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
         tv_startNum = findViewById(R.id.five_tv_startNum);
         tv_endNum = findViewById(R.id.five_tv_endNum);
         slideProgressView = findViewById(R.id.five_spv);
+        etRange = findViewById(R.id.etRange);
+
 
         slideProgressView.setMaxNumber(1000);
         slideProgressView.setOnChangeListener(new SlideProgressView.OnChangeListener() {
@@ -71,6 +75,16 @@ public class HorizontalScrollSelectorActivity extends AppCompatActivity implemen
             @Override
             public void onEndChange(String endNum) {
                 tv_endNum.setText("¥" + endNum);
+            }
+        });
+
+        findViewById(R.id.tvSetRange).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String range = etRange.getText().toString().trim();
+                if (!TextUtils.isEmpty(range)){
+                    slideProgressView.setValue("0",range);
+                }
             }
         });
 
