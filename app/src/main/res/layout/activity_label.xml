@@ -64,6 +64,15 @@
         android:textSize="17sp" />
 
 
+    <EditText
+        android:id="@+id/etInputMoney"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"
+        android:hint="测试输入金额格式"/>
+
+
     <com.aiyakeji.mytest.widgets.SlideImageView
         android:id="@+id/slideImageView"
         android:layout_width="50dp"

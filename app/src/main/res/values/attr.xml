@@ -56,4 +56,13 @@
         <attr name="ssvSelectPointRadius" format="dimension"/>
         <attr name="ssvSpaceInTextPoint" format="dimension"/>
     </declare-styleable>
+
+
+    <declare-styleable name="TrainMonthView">
+        <attr name="tmvDayTextSize" format="dimension"/>
+        <attr name="tmvTopTextSize" format="dimension"/>
+        <attr name="tmvDownTextSize" format="dimension"/>
+        <attr name="tmvDayHeight" format="dimension"/>
+        <attr name="tmvVerticalDaySpace" format="dimension"/>
+    </declare-styleable>
 </resources>

@@ -26,17 +26,19 @@ public class UniversalAdapterActivity extends Activity {
     private StudentAdapter adapter;
     private ArrayList<Student> dataList;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eight);
-        initView();
+        mRecycleView = (RecyclerView) findViewById(R.id.eight_recycleView);
+
+        initData();
     }
 
-    private void initView() {
-        dataList = Student.getSampleData(50);
 
-        mRecycleView = (RecyclerView) findViewById(R.id.eight_recycleView);
+    private void initData() {
+        dataList = Student.getSampleData(50);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
@@ -45,8 +47,11 @@ public class UniversalAdapterActivity extends Activity {
         adapter = new StudentAdapter(R.layout.item_eight_recycleview, dataList);
         adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
         adapter.isFirstOnly(false);
+
         mRecycleView.setAdapter(adapter);
+
     }
+
 
     ItemTouchHelper.Callback mCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override

@@ -25,6 +25,10 @@ public class MonthViewModel implements Serializable{
 
     public String price = "";
 
+    public String downMsg;
+
+    public String topMsg;
+
     //选中的状态，1第一个选中，2第二个选中
     public int selectState;
 

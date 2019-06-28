@@ -5,12 +5,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.utils.DBUtil;
+import com.aiyakeji.mytest.widgets.EditInputMoneyFilter;
 import com.aiyakeji.mytest.widgets.LabelLayout;
 import com.aiyakeji.mytest.widgets.SlideImageView;
 
@@ -32,9 +36,12 @@ public class LabelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_label);
 
         final LabelLayout labelLayout = findViewById(R.id.labelLayout);
+        TextView textView = findViewById(R.id.tvReadDatabase);
+        SlideImageView slideImageView = findViewById(R.id.slideImageView);
+
+
         labelLayout.setLabels(Arrays.asList(labelArr));
 
-        TextView textView = findViewById(R.id.tvReadDatabase);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,12 +63,15 @@ public class LabelActivity extends AppCompatActivity {
         });
 
 
-        SlideImageView slideImageView = findViewById(R.id.slideImageView);
         slideImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("LabelActivity测试", "onClick");
+                Toast.makeText(LabelActivity.this,"click",Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        EditText etMoney = findViewById(R.id.etInputMoney);
+        etMoney.setFilters(new InputFilter[]{new EditInputMoneyFilter()});
     }
 }

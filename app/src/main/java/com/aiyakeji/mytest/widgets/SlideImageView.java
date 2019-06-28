@@ -74,7 +74,7 @@ public class SlideImageView extends AppCompatImageView {
                 break;
             case MotionEvent.ACTION_UP:
                 int distance = Math.max(Math.abs(rawX - downX), Math.abs(rawY - downY));
-                if (distance < 3) {//容错范围
+                if (distance < 8) {//容错范围
                     isDrag = false;
                 }
                 if (isDrag) {
