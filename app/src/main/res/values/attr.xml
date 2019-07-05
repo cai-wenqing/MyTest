@@ -49,20 +49,38 @@
 
 
     <declare-styleable name="StepSlideView">
-        <attr name="ssvTextSize" format="dimension"/>
-        <attr name="ssvNormalColor" format="color"/>
-        <attr name="ssvSelectTextColor" format="color"/>
-        <attr name="ssvNormalPointRadius" format="dimension"/>
-        <attr name="ssvSelectPointRadius" format="dimension"/>
-        <attr name="ssvSpaceInTextPoint" format="dimension"/>
+        <attr name="ssvTextSize" format="dimension" />
+        <attr name="ssvNormalColor" format="color" />
+        <attr name="ssvSelectTextColor" format="color" />
+        <attr name="ssvNormalPointRadius" format="dimension" />
+        <attr name="ssvSelectPointRadius" format="dimension" />
+        <attr name="ssvSpaceInTextPoint" format="dimension" />
     </declare-styleable>
 
 
     <declare-styleable name="TrainMonthView">
-        <attr name="tmvDayTextSize" format="dimension"/>
-        <attr name="tmvTopTextSize" format="dimension"/>
-        <attr name="tmvDownTextSize" format="dimension"/>
-        <attr name="tmvDayHeight" format="dimension"/>
-        <attr name="tmvVerticalDaySpace" format="dimension"/>
+        <attr name="tmvDayTextSize" format="dimension" />
+        <attr name="tmvTopTextSize" format="dimension" />
+        <attr name="tmvDownTextSize" format="dimension" />
+        <attr name="tmvDayHeight" format="dimension" />
+        <attr name="tmvVerticalDaySpace" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ShadowLayout">
+        <attr name="sl_cornerRadius" format="dimension" />
+        <attr name="sl_shadowRadius" format="dimension" />
+        <attr name="sl_shadowColor" format="color" />
+        <attr name="sl_dx" format="dimension" />
+        <attr name="sl_dy" format="dimension" />
+        <attr name="sl_borderColor" format="color" />
+        <attr name="sl_borderWidth" format="dimension" />
+        <attr name="sl_shadowSides">
+            <flag name="TOP" value="0x001" />
+            <flag name="RIGHT" value="0x002" />
+            <flag name="BOTTOM" value="0x004" />
+            <flag name="LEFT" value="0x008" />
+            <flag name="ALL" value="0x00f" />
+        </attr>
     </declare-styleable>
 </resources>

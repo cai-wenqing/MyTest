@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <com.aiyakeji.mytest.widgets.ShadowLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:sl_cornerRadius="10dp"
+        app:sl_dx="5dp"
+        app:sl_shadowColor="#666666"
+        app:sl_shadowRadius="13dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/Indigo_nav_color"
+            android:gravity="center"
+            android:text="哈哈哈"
+            android:textSize="20sp" />
+    </com.aiyakeji.mytest.widgets.ShadowLayout>
+
+
+    <com.aiyakeji.mytest.widgets.ShadowLayout
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        app:sl_borderColor="#f7f7f7"
+        app:sl_borderWidth="1px"
+        app:sl_cornerRadius="10dp"
+        app:sl_shadowColor="#dedede"
+        app:sl_shadowRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:text="First View" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:text="Second View"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </com.aiyakeji.mytest.widgets.ShadowLayout>
+</LinearLayout>

@@ -18,5 +18,6 @@
     <color name="blue">#0000ff</color>
     <color name="gray">#efefef</color>
     <color name="red">#ff0000</color>
+    <color name="black">#000000</color>
 
 </resources>
