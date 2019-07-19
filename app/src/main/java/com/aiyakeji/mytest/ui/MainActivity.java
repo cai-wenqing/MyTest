@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
             "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "MQTT", "波动圆", "轮播图",
             "声音波", "material design", "注解", "代理模式", "联动title", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件","跑马灯及ViewFlipper",
-            "权限申请封装","侧滑SideBar","档位选择","阴影布局"};
+            "权限申请封装","侧滑SideBar","档位选择","阴影布局","Scroller测试"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 27://阴影布局
                         startActivity(new Intent(MainActivity.this,ShadowLayoutTestActivity.class));
+                        break;
+                    case 28://Scroller测试
+                        startActivity(new Intent(MainActivity.this,HorizontalScrollTestActivity.class));
                         break;
                 }
             }
