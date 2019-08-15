@@ -61,4 +61,10 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </com.aiyakeji.mytest.widgets.ShadowLayout>
+
+
+    <com.aiyakeji.mytest.widgets.SwitchView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/shadow2" />
 </RelativeLayout>
