@@ -45,17 +45,13 @@ public class Utils {
     }
 
     // 屏幕宽度（像素）
-    public static int getWindowWidth(Activity context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.widthPixels;
+    public static int getWindowWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
     }
 
     // 屏幕高度（像素）
-    public static int getWindowHeight(Activity context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.heightPixels;
+    public static int getWindowHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
     }
 
     // 根据Unicode编码判断中文汉字和符号
