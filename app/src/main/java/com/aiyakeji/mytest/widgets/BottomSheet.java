@@ -107,12 +107,12 @@ public class BottomSheet extends Dialog {
 
 
         public BottomSheet build(int style) {
-            if (mContentView == null && mContentViewId == 0) {
+            if (this.mContentView == null && mContentViewId == 0) {
                 return null;
             } else {
-                if (mContentView != null) {
+                if (this.mContentView != null) {
                     mDialog = new BottomSheet(mContext, style);
-                    mDialog.setContentView(mContentView,
+                    mDialog.setContentView(this.mContentView,
                             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     return mDialog;
                 } else {
