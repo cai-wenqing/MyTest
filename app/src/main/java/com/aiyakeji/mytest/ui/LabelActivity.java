@@ -9,6 +9,7 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class LabelActivity extends AppCompatActivity {
         final LabelLayout labelLayout = findViewById(R.id.labelLayout);
         TextView textView = findViewById(R.id.tvReadDatabase);
         SlideImageView slideImageView = findViewById(R.id.slideImageView);
+        ImageView ivPic = findViewById(R.id.iv_pic);
+        ImageView ivPic1 = findViewById(R.id.iv_pic1);
 
 
         labelLayout.setLabels(Arrays.asList(labelArr));
@@ -73,5 +76,18 @@ public class LabelActivity extends AppCompatActivity {
 
         EditText etMoney = findViewById(R.id.etInputMoney);
         etMoney.setFilters(new InputFilter[]{new EditInputMoneyFilter()});
+
+        ivPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("LabelActivity测试","滑动layout内图片0点击事件");
+            }
+        });
+        ivPic1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("LabelActivity测试","滑动layout内图片1点击事件");
+            }
+        });
     }
 }
