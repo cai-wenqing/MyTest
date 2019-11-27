@@ -3,6 +3,7 @@ package com.aiyakeji.mytest.widgets;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Gravity;
@@ -76,6 +77,11 @@ public class BottomSheet extends Dialog {
     public void setContentView(@NonNull View view) {
         mContentView = view;
         super.setContentView(view);
+    }
+
+
+    public <T extends View> T getView(@IdRes int resId) {
+        return (T) mContentView.findViewById(resId);
     }
 
 

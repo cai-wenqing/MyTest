@@ -33,14 +33,15 @@ public class TestLayoutAdapter extends RecyclerView.Adapter<TestLayoutAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv_content.setText(mList.get(position));
-        if (position % 2 == 0)
+        holder.tv_content.setText(mList.get(position % mList.size()));
+        if (position % 2 == 0) {
             holder.view.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return Integer.MAX_VALUE;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
