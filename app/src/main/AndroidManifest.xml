@@ -61,6 +61,7 @@
         <activity android:name=".ui.HorizontalScrollTestActivity"/>
         <activity android:name=".ui.BottomSheetActivity"/>
         <activity android:name=".ui.SnapHelperActivity"/>
+        <activity android:name=".ui.RewardProgressActivity"/>
     </application>
 
 </manifest>
