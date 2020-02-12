@@ -25,8 +25,8 @@ import java.lang.ref.WeakReference;
  */
 public class RewardProgress extends ProgressBar {
 
-    private static final int DEFAULT_TEXT_SIZE = 10;
-    private static final int DEFAULT_TEXT_COLOR = 0XFFFC00D1;
+    private static final int DEFAULT_TEXT_SIZE = 14;
+    private static final int DEFAULT_TEXT_COLOR = 0XFFBC0000;
     private static final int DEFAULT_LIGHT_OFFSET = 3;
     private static final int DEFAULT_PROGRESS_BG_OFFSET = 2;
     private static final int DEFAULT_PROGRESS_HEIGHT = 30;
