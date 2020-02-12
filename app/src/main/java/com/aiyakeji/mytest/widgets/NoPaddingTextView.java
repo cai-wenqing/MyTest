@@ -44,7 +44,7 @@ public class NoPaddingTextView extends AppCompatTextView {
         typedArray.recycle();
     }
 
-
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mRemoveFontPadding) {
@@ -53,10 +53,12 @@ public class NoPaddingTextView extends AppCompatTextView {
         }
     }
 
+    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
+    @Override
     protected void onDraw(Canvas canvas) {
         drawText(canvas);
     }
