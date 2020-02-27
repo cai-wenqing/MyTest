@@ -62,6 +62,8 @@
         <activity android:name=".ui.BottomSheetActivity"/>
         <activity android:name=".ui.SnapHelperActivity"/>
         <activity android:name=".ui.RewardProgressActivity"/>
+        <activity android:name=".ui.BrowsePictureActivity"/>
+        <activity android:name=".ui.BrowsePictureTestActivity"/>
     </application>
 
 </manifest>

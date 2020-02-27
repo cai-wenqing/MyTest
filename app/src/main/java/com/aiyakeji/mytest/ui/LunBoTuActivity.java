@@ -79,7 +79,6 @@ public class LunBoTuActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.i("LunBoTuActivity测试", "positionOffset:" + positionOffset + ",positionOffsetPixels:" + positionOffsetPixels);
                 indicator1.setPositionAndOffset(position, positionOffset);
             }
 

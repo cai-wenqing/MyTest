@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.aiyakeji.mytest"
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -22,32 +22,34 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile 'com.android.support:support-v4:27.1.0'
-    compile 'com.android.support:cardview-v7:27.1.0'
-    compile 'com.android.support:design:27.1.0'
-    compile files('libs/nineoldandroids-2.4.0.jar')
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
-    compile project(':aiyapusher')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta4'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation files('libs/nineoldandroids-2.4.0.jar')
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    implementation project(':aiyapusher')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
     //Okhttp库
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
     //Retrofit库
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     //请求结果直接转化为实体类，省略gson转化
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //自定义注解相关
-    compile 'com.google.auto:auto-common:0.8'
-    compile 'com.google.auto.service:auto-service:1.0-rc2'
-    compile 'com.squareup:javapoet:1.9.0'
+    implementation 'com.google.auto:auto-common:0.8'
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.squareup:javapoet:1.9.0'
     //eventbus
-    compile 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation project(':wernertablayoutlib')
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
 repositories {
     mavenCentral()
