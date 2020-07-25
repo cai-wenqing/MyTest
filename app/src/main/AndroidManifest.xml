@@ -64,6 +64,7 @@
         <activity android:name=".ui.RewardProgressActivity"/>
         <activity android:name=".ui.BrowsePictureActivity"/>
         <activity android:name=".ui.BrowsePictureTestActivity"/>
+        <activity android:name=".ui.NineViewActivity"/>
     </application>
 
 </manifest>

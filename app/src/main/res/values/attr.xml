@@ -92,4 +92,8 @@
         <attr name="switch_ball_shadow_color" format="color" />
         <attr name="switch_bg_strock_width" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="NineImageLayout">
+        <attr name="sapcing" format="dimension"/>
+    </declare-styleable>
 </resources>

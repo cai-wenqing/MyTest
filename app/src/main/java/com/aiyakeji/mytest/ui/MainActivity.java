@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             "声音波", "material design", "注解", "代理模式", "联动title", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件","跑马灯及ViewFlipper",
             "权限申请封装","侧滑SideBar","档位选择","阴影布局","Scroller测试","底部弹窗","SnapHelper","奖金进度条",
-    "查看大图"};
+    "查看大图","九宫格"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -135,8 +135,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 31://奖金进度条
                         startActivity(new Intent(MainActivity.this,RewardProgressActivity.class));
+                        break;
                     case 32://查看大图
                         startActivity(new Intent(MainActivity.this,BrowsePictureTestActivity.class));
+                        break;
+                    case 33://九宫格
+                        startActivity(new Intent(MainActivity.this,NineViewActivity.class));
                         break;
                 }
             }
