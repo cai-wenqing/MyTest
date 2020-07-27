@@ -3,12 +3,11 @@ package com.aiyakeji.mytest.ui;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -53,8 +52,9 @@ public class LunBoTuActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         ActionBar actionBar = getSupportActionBar();
-        if (null != actionBar)
+        if (null != actionBar) {
             actionBar.hide();
+        }
 
         mViewPager = (ViewPager) findViewById(R.id.lunbotu_viewpager);
         indicator1 = (ViewPagerIndicator) findViewById(R.id.lunbotu_indicator1);

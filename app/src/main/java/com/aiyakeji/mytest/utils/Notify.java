@@ -17,7 +17,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.widget.Toast;
 
 import com.aiyakeji.mytest.R;
@@ -58,7 +57,7 @@ class Notify {
             0, intent, 0);
 
     //build the notification
-    Builder notificationCompat = new Builder(context);
+    Notification.Builder notificationCompat = new Notification.Builder(context);
     notificationCompat.setAutoCancel(true)
         .setContentTitle(contentTitle)
         .setContentIntent(pendingIntent)

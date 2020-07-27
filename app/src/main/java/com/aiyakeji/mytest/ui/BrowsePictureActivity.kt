@@ -3,9 +3,9 @@ package com.aiyakeji.mytest.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.ViewPager.OnPageChangeListener
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
+import androidx.viewpager.widget.ViewPager
 import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.adapters.BrowsePictureAdapter
 import com.aiyakeji.mytest.photoview.PhotoUtil
@@ -23,7 +23,7 @@ const val PARAMS_IMGS = "imgs"
 const val PARAMS_INDEX = "index"
 
 
-class BrowsePictureActivity : AppCompatActivity(), OnPageChangeListener {
+class BrowsePictureActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
     private lateinit var imgs: ArrayList<String>
     private var mCurrentIndex = 0

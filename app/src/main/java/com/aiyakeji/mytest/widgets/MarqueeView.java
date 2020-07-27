@@ -3,7 +3,6 @@ package com.aiyakeji.mytest.widgets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
-import android.support.annotation.AnimRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -13,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.annotation.AnimRes;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.utils.Utils;
@@ -139,7 +140,9 @@ public class MarqueeView extends ViewFlipper {
      */
     @SuppressWarnings("deprecation")
     public void startWithText(final String notice, final @AnimRes int inAnimResId, final @AnimRes int outAnimResID) {
-        if (TextUtils.isEmpty(notice)) return;
+        if (TextUtils.isEmpty(notice)) {
+            return;
+        }
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -178,7 +181,9 @@ public class MarqueeView extends ViewFlipper {
             }
         }
 
-        if (notices == null) notices = new ArrayList<>();
+        if (notices == null) {
+            notices = new ArrayList<>();
+        }
         notices.clear();
         notices.addAll(list);
         postStart(inAnimResId, outAnimResID);
@@ -346,11 +351,15 @@ public class MarqueeView extends ViewFlipper {
      */
     private void setInAndOutAnimation(@AnimRes int inAnimResId, @AnimRes int outAnimResID) {
         Animation inAnim = AnimationUtils.loadAnimation(getContext(), inAnimResId);
-        if (hasSetAnimDuration) inAnim.setDuration(animDuration);
+        if (hasSetAnimDuration) {
+            inAnim.setDuration(animDuration);
+        }
         setInAnimation(inAnim);
 
         Animation outAnim = AnimationUtils.loadAnimation(getContext(), outAnimResID);
-        if (hasSetAnimDuration) outAnim.setDuration(animDuration);
+        if (hasSetAnimDuration) {
+            outAnim.setDuration(animDuration);
+        }
         setOutAnimation(outAnim);
     }
 }

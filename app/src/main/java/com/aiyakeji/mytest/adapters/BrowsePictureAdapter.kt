@@ -1,11 +1,10 @@
 package com.aiyakeji.mytest.adapters
 
-import android.support.v4.view.PagerAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.viewpager.widget.PagerAdapter
 import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.photoview.OnViewScrollListener
 import com.aiyakeji.mytest.photoview.PhotoView

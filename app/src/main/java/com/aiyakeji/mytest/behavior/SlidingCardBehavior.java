@@ -1,8 +1,7 @@
 package com.aiyakeji.mytest.behavior;
 
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 import com.aiyakeji.mytest.widgets.SlidingCardLayout;
@@ -51,8 +50,9 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int index = parent.indexOfChild(child);
         for (int i = index - 1; i >= 0; i--) {
             View v = parent.getChildAt(i);
-            if (v instanceof SlidingCardLayout)
+            if (v instanceof SlidingCardLayout) {
                 offset += ((SlidingCardLayout) v).getHeadHeight();
+            }
         }
         return offset;
     }
@@ -84,25 +84,25 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
 
     //限制最大值和最小值
     private int clamp(int i, int minOffset, int maxOffset) {
-        if (i > maxOffset)
+        if (i > maxOffset) {
             return maxOffset;
-        else if (i < minOffset)
-            return minOffset;
-        else
-            return i;
+        } else {
+            return Math.max(i, minOffset);
+        }
     }
 
 
     private void preScrollShiftSliding(int i, CoordinatorLayout parent, SlidingCardLayout child) {
-        if (i == 0)
+        if (i == 0) {
             return;
-        else if (i > 0) {//上推
+        } else if (i > 0) {//上推
             SlidingCardLayout current = child;
             SlidingCardLayout previous = getPreChild(parent, current);
             while (null != previous) {
                 int offset = previous.getTop() + previous.getHeadHeight() - current.getTop();
-                if (offset > 0)
+                if (offset > 0) {
                     previous.offsetTopAndBottom(-offset);
+                }
                 current = previous;
                 previous = getPreChild(parent, current);
             }
@@ -111,8 +111,9 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
             SlidingCardLayout next = getNextChild(parent, current);
             while (null != next) {
                 int offset = current.getTop() + current.getHeadHeight() - next.getTop();
-                if (offset > 0)
+                if (offset > 0) {
                     next.offsetTopAndBottom(offset);
+                }
                 current = next;
                 next = getNextChild(parent, current);
             }
@@ -125,8 +126,9 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int index = parent.indexOfChild(child);
         for (int i = index - 1; i >= 0; i--) {
             View v = parent.getChildAt(i);
-            if (v instanceof SlidingCardLayout)
+            if (v instanceof SlidingCardLayout) {
                 return (SlidingCardLayout) v;
+            }
         }
         return null;
     }
@@ -136,8 +138,9 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardL
         int index = parent.indexOfChild(child);
         for (int i = index + 1; i < parent.getChildCount(); i++) {
             View v = parent.getChildAt(i);
-            if (v instanceof SlidingCardLayout)
+            if (v instanceof SlidingCardLayout) {
                 return (SlidingCardLayout) v;
+            }
         }
         return null;
     }

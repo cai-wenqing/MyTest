@@ -6,9 +6,9 @@ import android.app.Application;
  * Created by Administrator on 2017/6/8 0008.
  */
 
-public class AppContext extends Application {
+public class App extends Application {
 
-    private static AppContext mContext;
+    private static App mContext;
 
     @Override
     public void onCreate() {
@@ -16,7 +16,7 @@ public class AppContext extends Application {
         mContext = this;
     }
 
-    public static AppContext getInstance() {
+    public static App getInstance() {
         return mContext;
     }
 

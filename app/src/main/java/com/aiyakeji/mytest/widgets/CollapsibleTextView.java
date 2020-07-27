@@ -2,7 +2,7 @@ package com.aiyakeji.mytest.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -55,9 +55,13 @@ public class CollapsibleTextView extends AppCompatTextView {
         mSuffixColor = attributes.getColor(R.styleable.CollapsibleTextView_suffixColor, 0xff0000ff);
         mCollapsedLines = attributes.getInt(R.styleable.CollapsibleTextView_collapsedLines, 1);
         mCollapsedText = attributes.getString(R.styleable.CollapsibleTextView_collapsedText);
-        if (TextUtils.isEmpty(mCollapsedText)) mCollapsedText = " 展开";
+        if (TextUtils.isEmpty(mCollapsedText)) {
+            mCollapsedText = " 展开";
+        }
         mExpandedText = attributes.getString(R.styleable.CollapsibleTextView_expandedText);
-        if (TextUtils.isEmpty(mExpandedText)) mExpandedText = " 隐藏";
+        if (TextUtils.isEmpty(mExpandedText)) {
+            mExpandedText = " 隐藏";
+        }
         mSuffixTrigger = attributes.getBoolean(R.styleable.CollapsibleTextView_suffixTrigger, false);
 
         this.mText = getText() == null ? null : getText().toString();
@@ -97,7 +101,9 @@ public class CollapsibleTextView extends AppCompatTextView {
     };
 
     private void applyState(boolean expanded) {
-        if (TextUtils.isEmpty(mText)) return;
+        if (TextUtils.isEmpty(mText)) {
+            return;
+        }
 
         String note = mText, suffix;
         if (expanded) {
@@ -113,8 +119,9 @@ public class CollapsibleTextView extends AppCompatTextView {
 
             TextPaint paint = getPaint();
             int maxWidth = mCollapsedLines * (getMeasuredWidth() - getPaddingLeft() - getPaddingRight());
-            while (paint.measureText(note.substring(0, end) + suffix) > maxWidth)
+            while (paint.measureText(note.substring(0, end) + suffix) > maxWidth) {
                 end--;
+            }
             note = note.substring(0, end);
         }
 

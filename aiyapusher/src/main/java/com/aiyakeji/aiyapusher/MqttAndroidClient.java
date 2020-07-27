@@ -24,8 +24,9 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.SparseArray;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -394,7 +395,9 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
             myContext.bindService(serviceStartIntent, serviceConnection,
                     Context.BIND_AUTO_CREATE);
 
-            if (!receiverRegistered) registerReceiver(this);
+            if (!receiverRegistered) {
+                registerReceiver(this);
+            }
         } else {
             pool.execute(new Runnable() {
 
@@ -403,7 +406,9 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
                     doConnect();
 
                     //Register receiver to show shoulder tap.
-                    if (!receiverRegistered) registerReceiver(MqttAndroidClient.this);
+                    if (!receiverRegistered) {
+                        registerReceiver(MqttAndroidClient.this);
+                    }
                 }
 
             });
@@ -975,6 +980,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
      * @throws MqttException if there was an error registering the subscription.
      * @see #subscribe(String[], int[], Object, IMqttActionListener)
      */
+    @Override
     public IMqttToken subscribe(String topicFilter, int qos, Object userContext, IMqttActionListener callback, IMqttMessageListener messageListener) throws MqttException {
 
         return subscribe(new String[]{topicFilter}, new int[]{qos}, userContext, callback, new IMqttMessageListener[]{messageListener});
@@ -994,6 +1000,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
      * @throws MqttException if there was an error registering the subscription.
      * @see #subscribe(String[], int[], Object, IMqttActionListener)
      */
+    @Override
     public IMqttToken subscribe(String topicFilter, int qos, IMqttMessageListener messageListener) throws MqttException {
 
         return subscribe(topicFilter, qos, null, null, messageListener);
@@ -1017,6 +1024,7 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
      * @throws MqttException if there was an error registering the subscription.
      * @see #subscribe(String[], int[], Object, IMqttActionListener)
      */
+    @Override
     public IMqttToken subscribe(String[] topicFilters, int[] qos, IMqttMessageListener[] messageListeners) throws MqttException {
 
         return subscribe(topicFilters, qos, null, null, messageListeners);
@@ -1219,8 +1227,9 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
      */
     public void setTraceEnabled(boolean traceEnabled) {
         this.traceEnabled = traceEnabled;
-        if (mqttService != null)
+        if (mqttService != null) {
             mqttService.setTraceEnabled(traceEnabled);
+        }
     }
 
     /**
@@ -1293,10 +1302,12 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
 
     }
 
+    @Override
     public void messageArrivedComplete(int messageId, int qos) throws MqttException {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setManualAcks(boolean manualAcks) {
         throw new UnsupportedOperationException();
     }
@@ -1465,11 +1476,11 @@ public class MqttAndroidClient extends BroadcastReceiver implements IMqttAsyncCl
             String severity = data.getString(MqttServiceConstants.CALLBACK_TRACE_SEVERITY);
             String message = data.getString(MqttServiceConstants.CALLBACK_ERROR_MESSAGE);
             String tag = data.getString(MqttServiceConstants.CALLBACK_TRACE_TAG);
-            if (MqttServiceConstants.TRACE_DEBUG.equals(severity))
+            if (MqttServiceConstants.TRACE_DEBUG.equals(severity)) {
                 traceCallback.traceDebug(tag, message);
-            else if (MqttServiceConstants.TRACE_ERROR.equals(severity))
+            } else if (MqttServiceConstants.TRACE_ERROR.equals(severity)) {
                 traceCallback.traceError(tag, message);
-            else {
+            } else {
                 Exception e = (Exception) data.getSerializable(MqttServiceConstants.CALLBACK_EXCEPTION);
                 traceCallback.traceException(tag, message, e);
             }
