@@ -1,6 +1,8 @@
 package com.aiyakeji.mytest.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 
 /**
  * Created by Administrator on 2017/6/15 0015.
@@ -21,5 +23,12 @@ public class DensityUtils {
     public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+
+    public static DisplayMetrics getDisplayMetrics(Activity activity) {
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics;
     }
 }

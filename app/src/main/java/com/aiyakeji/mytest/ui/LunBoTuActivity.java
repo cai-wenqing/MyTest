@@ -3,17 +3,21 @@ package com.aiyakeji.mytest.ui;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
+import com.aiyakeji.mytest.utils.DensityUtils;
 import com.aiyakeji.mytest.widgets.ViewPagerIndicator;
 
 import java.util.ArrayList;
@@ -27,17 +31,20 @@ public class LunBoTuActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private ViewPagerIndicator indicator1;
     private TextView tv_info;
+    private TextView tv_info3;
     private ViewPager mViewPager2;
     private ViewPager mViewPager3;
-    private TextView tv_info3;
+    private ViewPager mViewPager4;
 
 
     private MyPagerAdapter1 adapter;
     private MyPagerAdapter2 adapter2;
+    private MyPagerAdapter4 adapter4;
     private int[] imgRes = {R.mipmap.girl1, R.mipmap.girl2, R.mipmap.girl3, R.mipmap.girl4, R.mipmap.girl5};
     private String[] infos = {"说明一", "说明二", "说明三", "说明四", "说明五"};
     private ArrayList<View> itemViews;
     private ArrayList<View> itemViews3;
+    private ArrayList<View> itemViews4;
 
 
     @Override
@@ -61,11 +68,13 @@ public class LunBoTuActivity extends AppCompatActivity {
         tv_info = (TextView) findViewById(R.id.lunbotu_tv_info);
         mViewPager2 = (ViewPager) findViewById(R.id.lunbotu_viewpager2);
         mViewPager3 = (ViewPager) findViewById(R.id.lunbotu_viewpager3);
+        mViewPager4 = (ViewPager) findViewById(R.id.lunbotu_viewpager4);
         tv_info3 = (TextView) findViewById(R.id.lunbotu_tv_info3);
 
         initViewPager1();
         initViewPager2();
         initViewPager3();
+        initViewPager4();
     }
 
     //初始化第一个viewpager
@@ -141,6 +150,20 @@ public class LunBoTuActivity extends AppCompatActivity {
     }
 
 
+    private void initViewPager4() {
+        itemViews4 = new ArrayList<>();
+        for (int i = 0; i < imgRes.length; i++) {
+            itemViews4.add(View.inflate(this, R.layout.item_lunbotu_viewpager2, null));
+        }
+
+        adapter4 = new MyPagerAdapter4();
+        mViewPager4.setOffscreenPageLimit(imgRes.length);
+        mViewPager4.setAdapter(adapter4);
+
+        mViewPager4.setPageTransformer(true, new PagerTransformer4());
+    }
+
+
     class pagerTransformer1 implements ViewPager.PageTransformer {
 
         @Override
@@ -183,6 +206,27 @@ public class LunBoTuActivity extends AppCompatActivity {
         }
     }
 
+
+    class PagerTransformer4 implements ViewPager.PageTransformer {
+
+        @Override
+        public void transformPage(View page, float position) {
+            int screenWidth = DensityUtils.getDisplayMetrics(LunBoTuActivity.this).widthPixels;
+            page.setTranslationX(-(screenWidth - page.getWidth()) / 2);
+            if (position >= -1 && position <= 1) {
+                if (position < 0) {
+                    page.setScaleX(1 + 0.15f * position);
+                    page.setScaleY(1 + 0.15f * position);
+                } else {
+                    page.setScaleX(1 - 0.15f * position);
+                    page.setScaleY(1 - 0.15f * position);
+                }
+            } else if (position > 1) {
+                page.setScaleX(0.85f);
+                page.setScaleY(0.85f);
+            }
+        }
+    }
 
     class CubeOutTransformer implements ViewPager.PageTransformer {
 
@@ -282,6 +326,34 @@ public class LunBoTuActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return itemViews3.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
+
+
+    class MyPagerAdapter4 extends PagerAdapter {
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View view = itemViews4.get(position);
+            ImageView iv = (ImageView) view.findViewById(R.id.item_lunbotu_iv);
+            iv.setImageResource(imgRes[position]);
+            container.addView(view);
+            return view;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public int getCount() {
+            return itemViews4.size();
         }
 
         @Override
