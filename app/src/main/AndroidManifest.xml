@@ -46,7 +46,6 @@
         <activity android:name=".ui.MaterialTestBActivity"/>
         <activity android:name=".ui.AnnotationTestActivity"/>
         <activity android:name=".ui.ProxyTestActivity"/>
-        <activity android:name=".ui.AlphaScrollTitleActivity"/>
         <activity android:name=".ui.CalendarActivity"/>
         <activity android:name=".ui.CalendarListActivity"/>
         <activity android:name=".ui.FootViewActivity"/>
