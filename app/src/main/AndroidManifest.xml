@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".system.App"
@@ -65,6 +66,9 @@
         <activity android:name=".ui.BrowsePictureTestActivity"/>
         <activity android:name=".ui.NineViewActivity"/>
         <activity android:name=".ui.WebActivity"/>
+        <activity android:name=".ui.ParticleActivity"/>
+        <activity android:name=".ui.HackerActivity"/>
+        <activity android:name=".ui.MagnifierActivity" />
     </application>
 
 </manifest>

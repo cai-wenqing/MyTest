@@ -237,7 +237,7 @@ public class BitmapUtils {
 
 
     /**
-     * 等比例压缩bitmap图片
+     * 等比例缩放bitmap图片，宽或者高至少有一个与新的宽高相同，另一个大于等于
      *
      * @param bitmap
      * @param newWidth
@@ -259,6 +259,72 @@ public class BitmapUtils {
         bitmap.recycle();
         return resizedBitmap;
     }
+
+    /**
+     * 根据给定的宽高进行拉伸
+     * @param origin
+     * @param newWidth
+     * @param newHeight
+     * @return
+     */
+    public static Bitmap scaleBitmap(Bitmap origin,int newWidth,int newHeight){
+        if (origin == null) {
+            return null;
+        }
+        int height = origin.getHeight();
+        int width = origin.getWidth();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);// 使用后乘
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (!origin.isRecycled()) {
+            origin.recycle();
+        }
+        return newBM;
+    }
+
+    /**
+     * 根据给定宽高裁剪
+     * @param origin
+     * @param newWidth
+     * @param newHeight
+     * @return
+     */
+    public static Bitmap scaleFitBitmap(Bitmap origin,int newWidth,int newHeight){
+        if (origin == null) {
+            return null;
+        }
+        int height = origin.getHeight();
+        int width = origin.getWidth();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        float scale = Math.max(scaleWidth,scaleHeight);
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (!origin.isRecycled()) {
+            origin.recycle();
+        }
+
+        //裁剪
+        int startX = 0;
+        int startY = 0;
+
+        if (newBM.getWidth() > newWidth){
+            startX = (newBM.getWidth() - newWidth)/2;
+        }
+        if (newBM.getHeight() > newHeight){
+            startY = (newBM.getHeight() - newHeight)/2;
+        }
+        Bitmap result = Bitmap.createBitmap(newBM,startX,startY,newWidth,newHeight,null,false);
+        if (!newBM.isRecycled()){
+            newBM.recycle();
+        }
+        return result;
+    }
+
+
 
     /**
      * 根据file路径获取bitmap对象

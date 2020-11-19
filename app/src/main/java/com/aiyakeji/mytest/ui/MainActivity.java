@@ -1,7 +1,10 @@
 package com.aiyakeji.mytest.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.adapters.MainAdapter;
 import com.aiyakeji.mytest.listener.OnClickItemListener;
+import com.aiyakeji.mytest.widgets.FloatView;
 
 import java.util.Arrays;
 
@@ -19,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             "声音波", "material design", "注解", "代理模式", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件", "跑马灯及ViewFlipper",
             "权限申请封装", "侧滑SideBar", "档位选择", "阴影布局", "Scroller测试", "底部弹窗", "SnapHelper", "奖金进度条",
-            "查看大图", "九宫格"};
+            "查看大图", "九宫格","粒子","黑客帝国","放大镜"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -139,10 +143,31 @@ public class MainActivity extends AppCompatActivity {
                     case 32://九宫格
                         startActivity(new Intent(MainActivity.this, NineViewActivity.class));
                         break;
+                    case 33://粒子
+                        startActivity(new Intent(MainActivity.this,ParticleActivity.class));
+                        break;
+                    case 34://黑客帝国
+                        startActivity(new Intent(MainActivity.this,HackerActivity.class));
+//                        startActivity(new Intent(MainActivity.this,WebActivity.class));
+//                        startFloatService();
+                        break;
+                    case 35://放大镜
+                        startActivity(new Intent(MainActivity.this,MagnifierActivity.class));
+                        break;
                 }
             }
         });
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(contentAdapter);
+    }
+
+
+    private void startFloatService(){
+        if (!Settings.canDrawOverlays(this)){
+            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT).show();
+            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 0);
+        }else {
+            new FloatView(this).showFloatWindow();
+        }
     }
 }
