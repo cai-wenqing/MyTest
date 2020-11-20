@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, SlidingCardActivity.class));
                         break;
                     case 9://MQTT
-                        startActivity(new Intent(MainActivity.this, MqttActivity.class));
+
                         break;
                     case 10://波动圆
                         startActivity(new Intent(MainActivity.this, WavedCircleActivity.class));
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, MaxHeightLayoutActivity.class));
                         break;
                     case 20://滑动指示器
-                        startActivity(new Intent(MainActivity.this, WernerTabLayoutActivity.class));
+
                         break;
                     case 21://标签控件
                         startActivity(new Intent(MainActivity.this, LabelActivity.class));
@@ -148,8 +148,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 34://黑客帝国
                         startActivity(new Intent(MainActivity.this,HackerActivity.class));
-//                        startActivity(new Intent(MainActivity.this,WebActivity.class));
-//                        startFloatService();
                         break;
                     case 35://放大镜
                         startActivity(new Intent(MainActivity.this,MagnifierActivity.class));

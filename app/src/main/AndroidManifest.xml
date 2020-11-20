@@ -39,7 +39,6 @@
         <activity android:name=".ui.RotatePlateActivity" />
         <activity android:name=".ui.UniversalAdapterActivity" />
         <activity android:name=".ui.SlidingCardActivity" />
-        <activity android:name=".ui.MqttActivity" />
         <activity android:name=".ui.WavedCircleActivity" />
         <activity android:name=".ui.LunBoTuActivity" />
         <activity android:name=".ui.VoiceShakeActivity"/>
@@ -51,7 +50,6 @@
         <activity android:name=".ui.CalendarListActivity"/>
         <activity android:name=".ui.FootViewActivity"/>
         <activity android:name=".ui.MaxHeightLayoutActivity"/>
-        <activity android:name=".ui.WernerTabLayoutActivity"/>
         <activity android:name=".ui.LabelActivity"/>
         <activity android:name=".ui.MarqueeActivity"/>
         <activity android:name=".ui.PermissionRequestActivity"/>

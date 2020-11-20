@@ -1,1 +1,1 @@
-include ':app', ':aiyapusher', ':wernertablayoutlib'
+include ':app'
