@@ -5,11 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.adapters.BrowsePictureAdapter
 import com.aiyakeji.mytest.photoview.PhotoUtil
-import kotlinx.android.synthetic.main.activity_borwse_picture.*
 import kotlin.math.abs
 
 
@@ -28,6 +28,8 @@ class BrowsePictureActivity : AppCompatActivity(), ViewPager.OnPageChangeListene
     private lateinit var imgs: ArrayList<String>
     private var mCurrentIndex = 0
     private var mAdapter: BrowsePictureAdapter? = null
+    private lateinit var viewPager:ViewPager
+    private lateinit var tv_index:TextView
 
     companion object {
 
@@ -84,6 +86,8 @@ class BrowsePictureActivity : AppCompatActivity(), ViewPager.OnPageChangeListene
     }
 
     private fun initView() {
+        tv_index = findViewById(R.id.tv_index)
+        viewPager = findViewById(R.id.viewPager)
         viewPager.adapter = mAdapter
         viewPager.currentItem = mCurrentIndex
         viewPager.addOnPageChangeListener(this)

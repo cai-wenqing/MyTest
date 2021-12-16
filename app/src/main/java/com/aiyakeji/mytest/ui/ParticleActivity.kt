@@ -4,10 +4,10 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.aiyakeji.mytest.R
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_particle.*
 
 /**
  * @author CWQ
@@ -16,11 +16,12 @@ import kotlinx.android.synthetic.main.activity_particle.*
 class ParticleActivity : AppCompatActivity() {
 
     lateinit var rotateAnimator: ObjectAnimator
+    private lateinit var music_pic:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_particle)
-
+        music_pic = findViewById(R.id.music_pic)
         initImage()
 
     }
