@@ -43,7 +43,7 @@ class VolumeView @JvmOverloads constructor(
     private var mLineAnim: ValueAnimator? = null
 
     init {
-        mPaint.color = Color.RED
+        mPaint.color = Color.WHITE
         mPaint.style = Paint.Style.FILL
         for (i in 0 until LINE_NUM) {
             mLineList.add(RectF())
