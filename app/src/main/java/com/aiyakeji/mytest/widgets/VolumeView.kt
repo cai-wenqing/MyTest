@@ -33,7 +33,7 @@ class VolumeView @JvmOverloads constructor(
     private var mMinLineHeight = 0f
 
     //线宽
-    private val mLineWidth = 10f
+    private val mLineWidth = 8f
 
     //竖线横向间隔
     private var mLineHorizontalGap = 0f
