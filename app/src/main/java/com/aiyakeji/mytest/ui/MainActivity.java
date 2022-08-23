@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private String[] itemArr = {"折叠头部", "属性动画", "仿QQ步数圆形进度", "仿华为时钟",
-            "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "MQTT", "波动圆", "轮播图",
+            "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "语音动态", "波动圆", "轮播图",
             "声音波", "material design", "注解", "代理模式", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "滑动指示器", "标签控件", "跑马灯及ViewFlipper",
             "权限申请封装", "侧滑SideBar", "档位选择", "阴影布局", "Scroller测试", "底部弹窗", "SnapHelper", "奖金进度条",
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     case 8://滑动卡片
                         startActivity(new Intent(MainActivity.this, SlidingCardActivity.class));
                         break;
-                    case 9://MQTT
-
+                    case 9://语音动态view
+                        startActivity(new Intent(MainActivity.this, VolumeViewActivity.class));
                         break;
                     case 10://波动圆
                         startActivity(new Intent(MainActivity.this, WavedCircleActivity.class));
