@@ -66,10 +66,13 @@ class MagnifyView @JvmOverloads constructor(
 
             bgBitmap = BitmapUtils.scaleFitBitmap(bitmapSource, mWidth, mHeight)
 
+            if (bgBitmap == null){
+                return
+            }
 
             glassCenterX = mWidth / 2f
             glassCenterY = mHeight / 2f
-            val shader = BitmapShader(Bitmap.createScaledBitmap(bgBitmap, bgBitmap!!.width * factor, bgBitmap!!.height * factor, true),
+            val shader = BitmapShader(Bitmap.createScaledBitmap(bgBitmap!!, bgBitmap!!.width * factor, bgBitmap!!.height * factor, true),
                     Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
 
             magnifierDrawable = ShapeDrawable(OvalShape())
@@ -83,7 +86,9 @@ class MagnifyView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawBitmap(bgBitmap, 0f, 0f, null)
+        if (bgBitmap != null){
+            canvas.drawBitmap(bgBitmap!!, 0f, 0f, null)
+        }
         drawGlass(canvas)
         magnifierDrawable?.draw(canvas)
     }

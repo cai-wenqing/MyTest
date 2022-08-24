@@ -68,6 +68,7 @@
         <activity android:name=".ui.HackerActivity"/>
         <activity android:name=".ui.MagnifierActivity" />
         <activity android:name=".ui.VolumeViewActivity" />
+        <activity android:name=".ui.AudioPlaybackCaptureActivity" />
     </application>
 
 </manifest>

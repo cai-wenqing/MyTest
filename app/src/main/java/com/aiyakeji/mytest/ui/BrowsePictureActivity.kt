@@ -25,11 +25,11 @@ const val PARAMS_INDEX = "index"
 
 class BrowsePictureActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
-    private lateinit var imgs: ArrayList<String>
+    private lateinit var imgs: java.util.ArrayList<String>
     private var mCurrentIndex = 0
     private var mAdapter: BrowsePictureAdapter? = null
-    private lateinit var viewPager:ViewPager
-    private lateinit var tv_index:TextView
+    private lateinit var viewPager: ViewPager
+    private lateinit var tv_index: TextView
 
     companion object {
 
@@ -55,7 +55,7 @@ class BrowsePictureActivity : AppCompatActivity(), ViewPager.OnPageChangeListene
 
 
     private fun initData() {
-        imgs = intent.getStringArrayListExtra(PARAMS_IMGS)
+        imgs = intent.getStringArrayListExtra(PARAMS_IMGS) ?: java.util.ArrayList()
         mCurrentIndex = intent.getIntExtra(PARAMS_INDEX, 0)
         mAdapter = BrowsePictureAdapter(imgs, object : BrowsePictureAdapter.OnPhotoMotionListener {
 
