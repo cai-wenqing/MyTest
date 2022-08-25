@@ -7,6 +7,9 @@ import android.os.Environment;
 import com.aiyakeji.mytest.R;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by Administrator on 2017/2/16 0016.
@@ -41,5 +44,28 @@ public class FileUtils {
             path = context.getFilesDir().getPath();
         }
         return path + File.separator + context.getResources().getString(R.string.app_name) + File.separator;
+    }
+
+
+    public static byte[] short2byte(short[] sData) {
+        int shortArrsize = sData.length;
+        byte[] bytes = new byte[shortArrsize * 2];
+        for (int i = 0; i < shortArrsize; i++) {
+            bytes[i * 2] = (byte) (sData[i] & 0x00FF);
+            bytes[(i * 2) + 1] = (byte) (sData[i] >> 8);
+            sData[i] = 0;
+        }
+        return bytes;
+
+    }
+
+
+    public static byte[] readBytesFromFile(String path) throws IOException {
+        try (InputStream inputStream = new FileInputStream(path)) {
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+            inputStream.close();
+            return bytes;
+        }
     }
 }
