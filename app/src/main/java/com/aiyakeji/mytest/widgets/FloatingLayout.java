@@ -86,6 +86,6 @@ public class FloatingLayout extends FrameLayout {
                 }
                 break;
         }
-        return isDrag || super.dispatchTouchEvent(ev);
+        return true;
     }
 }
