@@ -2,20 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aiyakeji.mytest">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
         android:name=".system.App"
+        android:allowAudioPlaybackCapture="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:allowAudioPlaybackCapture="true"
         android:theme="@style/AppTheme">
 
         <activity
@@ -43,34 +48,76 @@
         <activity android:name=".ui.SlidingCardActivity" />
         <activity android:name=".ui.WavedCircleActivity" />
         <activity android:name=".ui.LunBoTuActivity" />
-        <activity android:name=".ui.VoiceShakeActivity"/>
-        <activity android:name=".ui.MaterialTestActivity"/>
-        <activity android:name=".ui.MaterialTestBActivity"/>
-        <activity android:name=".ui.AnnotationTestActivity"/>
-        <activity android:name=".ui.ProxyTestActivity"/>
-        <activity android:name=".ui.CalendarActivity"/>
-        <activity android:name=".ui.CalendarListActivity"/>
-        <activity android:name=".ui.FootViewActivity"/>
-        <activity android:name=".ui.MaxHeightLayoutActivity"/>
-        <activity android:name=".ui.LabelActivity"/>
-        <activity android:name=".ui.MarqueeActivity"/>
-        <activity android:name=".ui.PermissionRequestActivity"/>
-        <activity android:name=".ui.SideBarActivity"/>
-        <activity android:name=".ui.StepSlideActivity"/>
-        <activity android:name=".ui.ShadowLayoutTestActivity"/>
-        <activity android:name=".ui.HorizontalScrollTestActivity"/>
-        <activity android:name=".ui.BottomSheetActivity"/>
-        <activity android:name=".ui.SnapHelperActivity"/>
-        <activity android:name=".ui.RewardProgressActivity"/>
-        <activity android:name=".ui.BrowsePictureActivity"/>
-        <activity android:name=".ui.BrowsePictureTestActivity"/>
-        <activity android:name=".ui.NineViewActivity"/>
-        <activity android:name=".ui.WebActivity"/>
-        <activity android:name=".ui.ParticleActivity"/>
-        <activity android:name=".ui.HackerActivity"/>
+        <activity android:name=".ui.VoiceShakeActivity" />
+        <activity android:name=".ui.MaterialTestActivity" />
+        <activity android:name=".ui.MaterialTestBActivity" />
+        <activity android:name=".ui.AnnotationTestActivity" />
+        <activity android:name=".ui.ProxyTestActivity" />
+        <activity android:name=".ui.CalendarActivity" />
+        <activity android:name=".ui.CalendarListActivity" />
+        <activity android:name=".ui.FootViewActivity" />
+        <activity android:name=".ui.MaxHeightLayoutActivity" />
+        <activity android:name=".ui.LabelActivity" />
+        <activity android:name=".ui.MarqueeActivity" />
+        <activity android:name=".ui.PermissionRequestActivity" />
+        <activity android:name=".ui.SideBarActivity" />
+        <activity android:name=".ui.StepSlideActivity" />
+        <activity android:name=".ui.ShadowLayoutTestActivity" />
+        <activity android:name=".ui.HorizontalScrollTestActivity" />
+        <activity android:name=".ui.BottomSheetActivity" />
+        <activity android:name=".ui.SnapHelperActivity" />
+        <activity android:name=".ui.RewardProgressActivity" />
+        <activity android:name=".ui.BrowsePictureActivity" />
+        <activity android:name=".ui.BrowsePictureTestActivity" />
+        <activity android:name=".ui.NineViewActivity" />
+        <activity android:name=".ui.WebActivity" />
+        <activity android:name=".ui.ParticleActivity" />
+        <activity android:name=".ui.HackerActivity" />
         <activity android:name=".ui.MagnifierActivity" />
         <activity android:name=".ui.VolumeViewActivity" />
         <activity android:name=".ui.AudioPlaybackCaptureActivity" />
+        <activity android:name=".ui.WallpaperActivity" />
+
+
+        <service
+            android:name=".wallpaper.VideoWallpaperService"
+            android:exported="true"
+            android:label="Wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/my_wallpaper" />
+        </service>
+        <service
+            android:name=".wallpaper.CameraWallpaperService"
+            android:exported="true"
+            android:label="Wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/my_wallpaper" />
+        </service>
+        <service
+            android:name=".wallpaper.DrawWallpaperService"
+            android:exported="true"
+            android:label="Wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/my_wallpaper" />
+        </service>
     </application>
 
 </manifest>
