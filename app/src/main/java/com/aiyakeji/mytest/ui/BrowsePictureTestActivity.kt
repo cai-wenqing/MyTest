@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import com.aiyakeji.mytest.R
+import com.aiyakeji.mytest.widgets.BrowsePictureDialog
 import com.bumptech.glide.Glide
 
 /**
@@ -44,7 +45,14 @@ class BrowsePictureTestActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.iv_pic1 -> BrowsePictureActivity.start(this, imgs, 0)
+            R.id.iv_pic1 -> {
+                //activity方式实现
+                BrowsePictureActivity.start(this, imgs, 0)
+
+                //dialogFragment方式实现
+//                val dialog = BrowsePictureDialog.newInstance(imgs,0)
+//                dialog.show(supportFragmentManager,null)
+            }
             R.id.iv_pic2 -> BrowsePictureActivity.start(this, imgs, 1)
             R.id.iv_pic3 -> BrowsePictureActivity.start(this, imgs, 2)
             R.id.iv_pic4 -> BrowsePictureActivity.start(this, imgs, 3)

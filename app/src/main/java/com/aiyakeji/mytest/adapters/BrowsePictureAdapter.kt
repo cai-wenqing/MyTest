@@ -21,7 +21,7 @@ class BrowsePictureAdapter(private val imgs: ArrayList<String>, private val list
         val view = LayoutInflater.from(container.context).inflate(R.layout.item_adapter_borwse_picture, null)
         val imageView = view.findViewById<PhotoView>(R.id.iv_pic)
         Glide.with(container.context).load(imgs[position]).into(imageView)
-        view.setOnClickListener {
+        imageView.setOnClickListener {
             listener?.onPhotoClick()
         }
         imageView.setOnPhotoTapListener { view, x, y ->
@@ -29,7 +29,7 @@ class BrowsePictureAdapter(private val imgs: ArrayList<String>, private val list
         }
         imageView.setOnViewScrollListener(object : OnViewScrollListener {
             override fun onScroll(x: Float, y: Float) {
-                Log.e("adapter", "x:$x,y:$y")
+//                Log.d("adapter", "x:$x,y:$y")
                 if (imageView.scale <= 1.01f && abs(y) > 60) {
                     listener?.onScroll(x, y)
                 }
