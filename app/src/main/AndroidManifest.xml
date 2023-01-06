@@ -77,6 +77,7 @@
         <activity android:name=".ui.VolumeViewActivity" />
         <activity android:name=".ui.AudioPlaybackCaptureActivity" />
         <activity android:name=".ui.WallpaperActivity" />
+        <activity android:name=".ui.EmojiViewActivity"/>
 
 
         <service
