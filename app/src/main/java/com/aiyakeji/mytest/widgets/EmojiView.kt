@@ -9,7 +9,6 @@ import android.view.View.OnClickListener
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -18,7 +17,6 @@ import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.adapters.EmojiSymbolItemAdapter
 import com.aiyakeji.mytest.adapters.EmojiSymbolSpan
 import com.aiyakeji.mytest.utils.EmojiUtils
-import com.sinovoice.hci.adapter.EmojiPicItemAdapter
 import com.sinovoice.hci.adapter.EmojiPageAdapter
 
 /**
@@ -67,7 +65,7 @@ class EmojiView @JvmOverloads constructor(
     }
 
 
-    fun initData() {
+    private fun initData() {
         val pageAdapter = EmojiPageAdapter(getPagers())
         mViewPage.adapter = pageAdapter
         mViewPage.addOnPageChangeListener(object : OnPageChangeListener {
@@ -113,21 +111,15 @@ class EmojiView @JvmOverloads constructor(
             val symbolSpan = EmojiSymbolSpan(EmojiUtils.symbolList, screenWidth, fontSize)
             layoutManager.spanSizeLookup = symbolSpan
             rv.layoutManager = layoutManager
-            val adapter = EmojiSymbolItemAdapter(EmojiUtils.symbolList)
-            adapter.setOnItemListener {
-//                Log.d(TAG, "getListView: symbol:$it")
-                mEmojiListener?.onClickEmoji(1, null, it)
-            }
-            rv.adapter = adapter
         } else {
             rv.layoutManager = GridLayoutManager(context, 7)
-            val itemAdapter = EmojiPicItemAdapter(pageIndex)
-            itemAdapter.setOnItemListener { type, emojiName, emojiResId ->
-//                Log.d(TAG, "getListView: type:$type,emojiName:$emojiName,emojiResId:$emojiResId")
-                mEmojiListener?.onClickEmoji(0, emojiResId,null)
-            }
-            rv.adapter = itemAdapter
         }
+        val adapter = EmojiSymbolItemAdapter(EmojiUtils.getEmojiList(pageIndex))
+        adapter.setOnItemListener {
+            Log.d(TAG, "getListView: symbol:$it")
+            mEmojiListener?.onClickEmoji(it)
+        }
+        rv.adapter = adapter
 
         return containerView
     }
@@ -165,7 +157,7 @@ class EmojiView @JvmOverloads constructor(
          * @param imgResId Int? emoji图片资源ID
          * @param symbol String 颜文字文本
          */
-        fun onClickEmoji(emojiType:Int, @DrawableRes imgResId: Int?,symbol:String?)
+        fun onClickEmoji(symbol:String)
 
         fun onDelete()
     }

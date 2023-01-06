@@ -1,12 +1,15 @@
 package com.aiyakeji.mytest.ui
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.widget.ImageView
+import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.aiyakeji.mytest.R
+import com.aiyakeji.mytest.utils.EmojiUtils
 import com.aiyakeji.mytest.widgets.EmojiView
+
 
 /**
  * @Author:CWQ
@@ -14,34 +17,39 @@ import com.aiyakeji.mytest.widgets.EmojiView
  * @DESC:
  */
 class EmojiViewActivity : AppCompatActivity() {
+    private val TAG = "EmojiViewActivity"
 
     lateinit var mEmojiView: EmojiView
-    lateinit var mIvShow: ImageView
-    lateinit var mTvSymbol:TextView
+    lateinit var mTvSymbol: TextView
+    lateinit var mEtInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emoji_view)
 
-        mIvShow = findViewById(R.id.iv_show)
+        initView()
+    }
+
+
+    private fun initView() {
         mEmojiView = findViewById(R.id.emoji_view)
         mTvSymbol = findViewById(R.id.tv_symbol)
+        mEtInput = findViewById(R.id.et_input)
 
         mEmojiView.setOnEmojiListener(object : EmojiView.OnEmojiListener {
-            override fun onClickEmoji(emojiType: Int, imgResId: Int?, symbol: String?) {
-                if (emojiType == 0 && imgResId != null) {
-                    mIvShow.setImageResource(imgResId)
-                } else if (emojiType == 1 && !TextUtils.isEmpty(symbol)) {
-                    mTvSymbol.text = symbol
-                }
+            override fun onClickEmoji(symbol: String) {
+                mTvSymbol.text = symbol
             }
 
 
             override fun onDelete() {
-                mIvShow.setImageResource(0)
                 mTvSymbol.text = null
             }
-
         })
+
+        mEtInput.addTextChangedListener {
+            val unicodeStr = EmojiUtils.stringToUnicode1(it.toString())
+            Log.d(TAG, "inputContent:${it},unicode:$unicodeStr")
+        }
     }
 }
