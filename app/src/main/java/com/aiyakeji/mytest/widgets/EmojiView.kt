@@ -35,7 +35,6 @@ class EmojiView @JvmOverloads constructor(
     private lateinit var mRoot: View
     private lateinit var mViewPage: ViewPager
     private lateinit var mTvWeChatEmoji: TextView
-    private lateinit var mTvQQEmoji: TextView
     private lateinit var mTvSymbolEmoji:TextView
     private lateinit var mIvDelete: ImageView
     private var mCurPageIndex = 0
@@ -49,12 +48,10 @@ class EmojiView @JvmOverloads constructor(
     private fun initView() {
         mRoot = LayoutInflater.from(context).inflate(R.layout.emoji_view, this)
         mViewPage = mRoot.findViewById(R.id.view_page)
-        mTvWeChatEmoji = mRoot.findViewById(R.id.tv_wechat_emoji)
-        mTvQQEmoji = mRoot.findViewById(R.id.tv_qq_emoji)
+        mTvWeChatEmoji = mRoot.findViewById(R.id.tv_face_emoji)
         mTvSymbolEmoji = mRoot.findViewById(R.id.tv_symbol_emoji)
         mIvDelete = mRoot.findViewById(R.id.iv_delete)
         mTvWeChatEmoji.setOnClickListener(this)
-        mTvQQEmoji.setOnClickListener(this)
         mIvDelete.setOnClickListener(this)
         mTvSymbolEmoji.setOnClickListener(this)
         screenWidth = resources.displayMetrics.widthPixels
@@ -81,10 +78,10 @@ class EmojiView @JvmOverloads constructor(
                 mCurPageIndex = position
                 if (position == 0) {
                     mTvWeChatEmoji.isSelected = true
-                    mTvQQEmoji.isSelected = false
+                    mTvSymbolEmoji.isSelected = false
                 } else {
                     mTvWeChatEmoji.isSelected = false
-                    mTvQQEmoji.isSelected = true
+                    mTvSymbolEmoji.isSelected = true
                 }
             }
 
@@ -98,17 +95,16 @@ class EmojiView @JvmOverloads constructor(
         val list = arrayListOf<View>()
         list.add(getListView(0))
         list.add(getListView(1))
-        list.add(getListView(2))
         return list
     }
 
     private fun getListView(pageIndex: Int): View {
         val containerView = LayoutInflater.from(context).inflate(R.layout.layout_emoji_page, null)
         val rv = containerView.findViewById<RecyclerView>(R.id.rv_emoji)
-        if (pageIndex == 2) {//颜文字
+        if (pageIndex == 1) {//颜文字
             val layoutManager = GridLayoutManager(context, 4)
             val fontSize = resources.getDimension(R.dimen.symbol_text_size)
-            val symbolSpan = EmojiSymbolSpan(EmojiUtils.symbolList, screenWidth, fontSize)
+            val symbolSpan = EmojiSymbolSpan(EmojiUtils.getEmojiList(pageIndex), screenWidth, fontSize)
             layoutManager.spanSizeLookup = symbolSpan
             rv.layoutManager = layoutManager
         } else {
@@ -127,19 +123,14 @@ class EmojiView @JvmOverloads constructor(
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.tv_wechat_emoji -> {
+            R.id.tv_face_emoji -> {
                 if (mCurPageIndex != 0) {
                     mViewPage.setCurrentItem(0, true)
                 }
             }
-            R.id.tv_qq_emoji -> {
+            R.id.tv_symbol_emoji -> {
                 if (mCurPageIndex != 1) {
                     mViewPage.setCurrentItem(1, true)
-                }
-            }
-            R.id.tv_symbol_emoji -> {
-                if (mCurPageIndex != 2) {
-                    mViewPage.setCurrentItem(2, true)
                 }
             }
             R.id.iv_delete -> {

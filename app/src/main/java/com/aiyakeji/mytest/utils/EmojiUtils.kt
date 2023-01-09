@@ -21,30 +21,10 @@ import java.util.regex.Pattern
 object EmojiUtils {
     private const val TAG = "EmojiUtils"
 
-    val symbolList: ArrayList<String> = arrayListOf(
-        "(눈_눈)",
-        "⊙_⊙",
-        "( ꒪ͧ⌓꒪ͧ)",
-        "(๑•̌.•̑๑)ˀ",
-        "-_-||",
-        "┐（─__─）┌",
-        "ヽ（・＿・；)ノ",
-        "ヽ(≧Д≦)ノ",
-        "⊙▽⊙",
-        "(●°u°●)\u200B 」",
-        "(>﹏<)",
-        "(〜￣▽￣)〜",
-        "(￣o￣) . z Z",
-        "(ﾟoﾟ;",
-        ",,Ծ^Ծ,,",
-        "(✪▽✪)",
-        "→_→",
-        "٩(๑^o^๑)۶",
-        "(≧∇≦)/",
-        "(ﾟoﾟ;"
-    )
-
-    val faceEmojiList = arrayListOf(
+    /**
+     * 黄脸表情
+     */
+    private val faceEmojiList = arrayListOf(
         "\ud83d\ude01",
         "\ud83d\ude02",
         "\ud83d\ude03",
@@ -149,12 +129,38 @@ object EmojiUtils {
     )
 
     /**
+     * 颜文字
+     */
+    private val symbolList: ArrayList<String> = arrayListOf(
+        "(눈_눈)",
+        "⊙_⊙",
+        "( ꒪ͧ⌓꒪ͧ)",
+        "(๑•̌.•̑๑)ˀ",
+        "-_-||",
+        "┐（─__─）┌",
+        "ヽ（・＿・；)ノ",
+        "ヽ(≧Д≦)ノ",
+        "⊙▽⊙",
+        "(●°u°●)\u200B 」",
+        "(>﹏<)",
+        "(〜￣▽￣)〜",
+        "(￣o￣) . z Z",
+        "(ﾟoﾟ;",
+        ",,Ծ^Ծ,,",
+        "(✪▽✪)",
+        "→_→",
+        "٩(๑^o^๑)۶",
+        "(≧∇≦)/",
+        "(ﾟoﾟ;"
+    )
+
+    /**
      * 获取名称列表
-     * @param type
+     * @param type 0黄脸 1颜文字
      * @return ArrayList<String>
      */
     fun getEmojiList(type: Int): ArrayList<String> {
-        return if (type == 2) {
+        return if (type == 1) {
             symbolList
         } else {
             faceEmojiList

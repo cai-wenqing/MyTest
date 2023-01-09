@@ -17,23 +17,12 @@
         android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/tv_wechat_emoji"
+            android:id="@+id/tv_face_emoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FF018786"
             android:padding="5dp"
-            android:text="微信表情"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/tv_qq_emoji"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/tv_wechat_emoji"
-            android:background="#FF018786"
-            android:padding="5dp"
-            android:text="QQ表情"
+            android:text="黄脸"
             android:textColor="@color/white" />
 
         <TextView
@@ -41,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/tv_qq_emoji"
+            android:layout_toEndOf="@id/tv_face_emoji"
             android:background="#FF018786"
             android:padding="5dp"
             android:text="颜文字"
