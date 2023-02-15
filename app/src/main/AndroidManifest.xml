@@ -78,6 +78,7 @@
         <activity android:name=".ui.AudioPlaybackCaptureActivity" />
         <activity android:name=".ui.WallpaperActivity" />
         <activity android:name=".ui.EmojiViewActivity"/>
+        <activity android:name=".ui.WaveProgressActivity"/>
 
 
         <service
