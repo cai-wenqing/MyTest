@@ -10,5 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:wave_progress_color="@color/blue"
+        app:wave_progress_rotate="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

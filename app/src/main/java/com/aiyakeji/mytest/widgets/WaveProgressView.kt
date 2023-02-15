@@ -10,6 +10,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
+import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.utils.DensityUtils
 
 /**
@@ -24,6 +25,10 @@ class WaveProgressView @JvmOverloads constructor(
     private val wavePaint = Paint()
     private val wavePath = Path()
 
+    //是否上下颠倒
+    private var rotateView = false
+    private var mColor = Color.GREEN
+
     private var waveWidth = 0f
     private var waveHeight = 0f
 
@@ -31,16 +36,25 @@ class WaveProgressView @JvmOverloads constructor(
     private var dx: Float = 0f
 
     init {
+        attrs?.let {
+            initAttrs(it)
+        }
+
         waveWidth = DensityUtils.dip2pxFloat(context, 200f)
         waveHeight = DensityUtils.dip2pxFloat(context, 40f)
 
-        wavePaint.color = Color.GREEN
+        wavePaint.color = mColor
         wavePaint.isAntiAlias = true
         wavePaint.style = Paint.Style.FILL_AND_STROKE
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    private fun initAttrs(attrs: AttributeSet) {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.WaveProgressView)
+        rotateView =
+            typedArray.getBoolean(R.styleable.WaveProgressView_wave_progress_rotate, false)
+        mColor =
+            typedArray.getColor(R.styleable.WaveProgressView_wave_progress_color, Color.GREEN)
+        typedArray.recycle()
     }
 
 
@@ -51,15 +65,26 @@ class WaveProgressView @JvmOverloads constructor(
 
     private fun getWavePath(): Path {
         wavePath.reset()
-        wavePath.moveTo(-waveWidth + dx, waveHeight / 2)
+        if (rotateView) {
+            wavePath.moveTo(-waveWidth + dx, height - waveHeight / 2)
+        } else {
+            wavePath.moveTo(-waveWidth + dx, waveHeight / 2)
+        }
+
         var i = -waveWidth
         while (i <= width + waveWidth) {
             wavePath.rQuadTo(waveWidth / 4, -waveHeight / 2f, waveWidth / 2, 0f)
             wavePath.rQuadTo(waveWidth / 4, waveHeight / 2f, waveWidth / 2, 0f)
             i += waveWidth
         }
-        wavePath.lineTo(width.toFloat(), height.toFloat())
-        wavePath.lineTo(0f, height.toFloat())
+        if (rotateView) {
+            wavePath.lineTo(width.toFloat(), 0f)
+            wavePath.lineTo(0f, 0f)
+        } else {
+            wavePath.lineTo(width.toFloat(), height.toFloat())
+            wavePath.lineTo(0f, height.toFloat())
+        }
+
         wavePath.close()
         return wavePath
     }
