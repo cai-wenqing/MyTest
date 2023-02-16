@@ -13,4 +13,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:wave_progress_color="@color/blue"
         app:wave_progress_rotate="true" />
+
+    <Button
+        android:id="@+id/btn_tts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="播放铃声"
+        app:layout_constraintTop_toTopOf="@id/btn_tts"
+        app:layout_constraintStart_toEndOf="@id/btn_tts"
+        android:id="@+id/btn_bell"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
