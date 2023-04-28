@@ -1,7 +1,5 @@
 package com.aiyakeji.mytest.ui;
 
-import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebSettings;
@@ -36,9 +34,7 @@ public class WebActivity extends AppCompatActivity {
 
 
     private void initWebViewProperty(WebView webview) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
-            webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+        webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setSupportZoom(false);
@@ -50,7 +46,6 @@ public class WebActivity extends AppCompatActivity {
         webview.getSettings().setAllowFileAccess(true);
         webview.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webview.getSettings().setAppCacheEnabled(true);
         webview.getSettings().setDomStorageEnabled(true);
         webview.getSettings().setDatabaseEnabled(true);
         webview.getSettings().setBlockNetworkImage(false);

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             "声音波", "material design", "注解", "代理模式", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "获取系统音频", "标签控件", "跑马灯及ViewFlipper",
             "权限申请封装", "侧滑SideBar", "档位选择", "阴影布局", "Scroller测试", "底部弹窗", "SnapHelper", "奖金进度条",
-            "查看大图", "九宫格","粒子","黑客帝国","放大镜","壁纸","EmojiView","波浪进度条"};
+            "查看大图", "九宫格","粒子","黑客帝国","放大镜","壁纸","EmojiView","波浪进度条","CameraX"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -160,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 38://波浪进度条
                         startActivity(new Intent(MainActivity.this,WaveProgressActivity.class));
+                        break;
+                    case 39:
+                        startActivity(new Intent(MainActivity.this, CameraXActivity.class));
                         break;
                 }
             }

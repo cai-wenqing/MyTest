@@ -12,6 +12,9 @@
 
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <application
         android:name=".system.App"
@@ -26,7 +29,8 @@
         <activity
             android:name=".ui.MainActivity"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,6 +83,7 @@
         <activity android:name=".ui.WallpaperActivity" />
         <activity android:name=".ui.EmojiViewActivity"/>
         <activity android:name=".ui.WaveProgressActivity"/>
+        <activity android:name=".ui.CameraXActivity"/>
 
 
         <service
