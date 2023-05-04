@@ -460,8 +460,8 @@ class CameraXPhotoFragment : Fragment() {
 
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
         cameraExecutor.shutdown()
         displayManager.unregisterDisplayListener(displayListener)
     }

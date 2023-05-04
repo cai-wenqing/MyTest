@@ -25,5 +25,23 @@
     <fragment
         android:id="@+id/video_fragment"
         android:name="com.aiyakeji.mytest.ui.fragments.CameraXVideoFragment"
-        android:label="video_fragment" />
+        android:label="video_fragment">
+
+        <action
+            android:id="@+id/action_capture_to_video_viewer"
+            app:destination="@id/video_viewer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/video_viewer"
+        android:name="com.aiyakeji.mytest.ui.fragments.VideoViewerFragment"
+        android:label="fragment_video_viewer">
+        <argument
+            android:name="uri"
+            app:argType="android.net.Uri" />
+
+        <action
+            android:id="@+id/action_video_viewer_to_capture"
+            app:destination="@id/video_fragment" />
+    </fragment>
 </navigation>

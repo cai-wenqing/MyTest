@@ -15,7 +15,10 @@ import androidx.navigation.Navigation
 import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.databinding.FragmentCameraHostBinding
 
-private var PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
+private var PHOTO_PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
+private var VIDEO_PERMISSIONS_REQUIRED =
+    arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+
 
 class CameraXHostFragment : Fragment() {
 
@@ -35,9 +38,13 @@ class CameraXHostFragment : Fragment() {
 
         // add the storage access permission request for Android 9 and below.
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            val permissionList = PERMISSIONS_REQUIRED.toMutableList()
-            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            PERMISSIONS_REQUIRED = permissionList.toTypedArray()
+            val photoPermissionList = PHOTO_PERMISSIONS_REQUIRED.toMutableList()
+            photoPermissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            PHOTO_PERMISSIONS_REQUIRED = photoPermissionList.toTypedArray()
+
+            val videoPermissionList = VIDEO_PERMISSIONS_REQUIRED.toMutableList()
+            videoPermissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            VIDEO_PERMISSIONS_REQUIRED = videoPermissionList.toTypedArray()
         }
 
         initView()
@@ -45,13 +52,13 @@ class CameraXHostFragment : Fragment() {
 
     private fun initView() {
         binding.tvPhoto.setOnClickListener {
-            jumpWithPermission {
+            jumpWithPermission(PHOTO_PERMISSIONS_REQUIRED) {
                 Navigation.findNavController(requireActivity(), R.id.fragment_container)
                     .navigate(R.id.action_host_to_photo)
             }
         }
         binding.tvVideo.setOnClickListener {
-            jumpWithPermission {
+            jumpWithPermission(VIDEO_PERMISSIONS_REQUIRED) {
                 Navigation.findNavController(requireActivity(), R.id.fragment_container)
                     .navigate(R.id.action_host_to_video)
             }
@@ -59,8 +66,8 @@ class CameraXHostFragment : Fragment() {
     }
 
 
-    private fun jumpWithPermission(action: (() -> Unit)) {
-        if (PERMISSIONS_REQUIRED.all {
+    private fun jumpWithPermission(permissions: Array<String>, action: (() -> Unit)) {
+        if (permissions.all {
                 ContextCompat.checkSelfPermission(
                     requireContext(),
                     it
@@ -69,7 +76,7 @@ class CameraXHostFragment : Fragment() {
             action.invoke()
         } else {
             jumpAction = action
-            permissionLauncher.launch(PERMISSIONS_REQUIRED)
+            permissionLauncher.launch(permissions)
         }
     }
 
@@ -77,7 +84,7 @@ class CameraXHostFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             var permissionGranted = true
             permissions.entries.forEach {
-                if (it.key in PERMISSIONS_REQUIRED && !it.value) {
+                if (it.key in PHOTO_PERMISSIONS_REQUIRED && !it.value) {
                     permissionGranted = false
                 }
             }
