@@ -43,4 +43,11 @@
         app:layout_constraintStart_toEndOf="@id/ib_capture"
         app:layout_constraintTop_toTopOf="@id/ib_switch"
         app:srcCompat="@drawable/ic_photo" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/iv_test"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

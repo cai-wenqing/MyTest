@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -24,6 +25,7 @@ import androidx.camera.core.CameraState
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.concurrent.futures.await
@@ -31,6 +33,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.aiyakeji.mytest.R
 import com.aiyakeji.mytest.databinding.FragmentCameraPhotoBinding
+import com.aiyakeji.mytest.utils.BitmapUtils
 import com.aiyakeji.mytest.utils.DensityUtils
 import com.aiyakeji.mytest.utils.MediaStoreUtils
 import com.bumptech.glide.Glide
@@ -42,6 +45,7 @@ import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+
 
 class CameraXPhotoFragment : Fragment() {
     private val TAG = "CameraXPhoto"
@@ -209,8 +213,8 @@ class CameraXPhotoFragment : Fragment() {
     }
 
 
+    var hasAnaly = false
     private fun bindCameraUseCases() {
-
         // Get screen metrics used to setup camera for full screen resolution
         val metrics = DensityUtils.getDisplayMetrics(requireActivity())
         Log.d(TAG, "Screen metrics: ${metrics.widthPixels} x ${metrics.heightPixels}")
@@ -252,8 +256,26 @@ class CameraXPhotoFragment : Fragment() {
             .setTargetAspectRatio(screenAspectRatio)
             // Set initial target rotation, we will have to call this again if rotation changes
             // during the lifecycle of this use case
-            .setTargetRotation(rotation)
+            .setOutputImageRotationEnabled(true)
+            .setTargetRotation(Surface.ROTATION_0)
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .build()
+            .also {
+                it.setAnalyzer(cameraExecutor, ImageAnalysis.Analyzer { imageProxy: ImageProxy ->
+
+                    val rotationDegrees = imageProxy.imageInfo.rotationDegrees
+                    Log.d(TAG, "imageProxy rotation: $rotationDegrees")
+
+                    val bitmap = imageProxy.toBitmap()
+                    val byteArray = BitmapUtils.bitmapToByte(bitmap)
+
+                    requireActivity().runOnUiThread {
+                        binding.ivTest.setImageBitmap(bitmap)
+                    }
+
+                    imageProxy.close()
+                })
+            }
 
         // Must unbind the use-cases before rebinding them
         cameraProvider.unbindAll()
