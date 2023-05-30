@@ -69,6 +69,9 @@ dependencies {
     // CameraX View class
     implementation "androidx.camera:camera-view:$camerax_version"
 
+    //USB Camera
+    implementation 'com.github.jiangdongguo.AndroidUSBCamera:libausbc:3.3.3'
+
     // Concurrent library for asynchronous coroutines
     implementation 'androidx.concurrent:concurrent-futures-ktx:1.1.0'
 }
