@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
-import com.aiyakeji.mytest.widgets.ControlableCircleView;
+import com.aiyakeji.mytest.widgets.ScalePanelView;
 
 import static com.aiyakeji.mytest.R.id.seven_btn_right;
 
@@ -17,7 +17,7 @@ import static com.aiyakeji.mytest.R.id.seven_btn_right;
  */
 
 public class RotatePlateActivity extends AppCompatActivity implements View.OnClickListener {
-    private ControlableCircleView ccv;
+    private ScalePanelView ccv;
     private Button btn_left;
     private TextView tv;
     private Button btn_right;
@@ -32,14 +32,14 @@ public class RotatePlateActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView() {
-        ccv = (ControlableCircleView) findViewById(R.id.seven_ccv);
+        ccv = (ScalePanelView) findViewById(R.id.seven_ccv);
         btn_left = (Button) findViewById(R.id.seven_btn_left);
         tv = (TextView) findViewById(R.id.seven_tv);
         btn_right = (Button) findViewById(seven_btn_right);
         btn_forbit = (Button) findViewById(R.id.seven_btn_forbit);
 
 
-        ccv.setOnRotate(new ControlableCircleView.onRotateListener() {
+        ccv.setOnRotate(new ScalePanelView.onRotateListener() {
             @Override
             public void onRotateLeft(int num) {
                 tv.setText("向左旋转" + num + "格");

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light">
 
-    <com.aiyakeji.mytest.widgets.ControlableCircleView
+    <com.aiyakeji.mytest.widgets.ScalePanelView
         android:id="@+id/seven_ccv"
         android:layout_width="match_parent"
         android:layout_height="400dp"
