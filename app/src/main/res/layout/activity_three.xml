@@ -3,20 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#859BFF"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <com.aiyakeji.mytest.widgets.CircleProgressView
         android:id="@+id/three_cpv1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         app:circle_precess_if_show_text="true"
         app:circle_process_progress_color="@android:color/black"
         app:circle_process_stroke_color="@android:color/holo_blue_light"
         app:circle_process_stroke_width="8dp"
         app:circle_process_text_color="@android:color/holo_green_light"
-        app:circle_process_text_size="40sp" />
+        app:circle_process_text_size="20sp" />
 
     <com.aiyakeji.mytest.widgets.CircleProgressView
         android:id="@+id/three_cpv2"
@@ -42,6 +43,17 @@
         app:circle_process_stroke_width="5dp"
         app:circle_process_text_color="@android:color/holo_green_light"
         app:circle_process_text_size="16sp" />
+
+    <com.aiyakeji.mytest.widgets.RestProgressView
+        android:id="@+id/three_cpv4"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        app:circle_process_progress_color="@color/white"
+        app:circle_process_stroke_color="#62C4EF"
+        app:circle_process_stroke_width="8dp"
+        app:circle_process_text_color="@color/white"
+        app:circle_process_text_size="28sp" />
 
 
     <Button
