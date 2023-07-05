@@ -85,6 +85,7 @@
         <activity android:name=".ui.WaveProgressActivity"/>
         <activity android:name=".ui.CameraXActivity"/>
         <activity android:name=".ui.USBCameraActivity"/>
+        <activity android:name=".ui.PieCharActivity"/>
 
 
         <service
