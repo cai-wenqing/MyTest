@@ -86,6 +86,7 @@
         <activity android:name=".ui.CameraXActivity"/>
         <activity android:name=".ui.USBCameraActivity"/>
         <activity android:name=".ui.PieCharActivity"/>
+        <activity android:name=".ui.BehaviorActivity"/>
 
 
         <service
