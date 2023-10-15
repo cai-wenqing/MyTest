@@ -74,4 +74,7 @@ dependencies {
 
     // Concurrent library for asynchronous coroutines
     implementation 'androidx.concurrent:concurrent-futures-ktx:1.1.0'
+
+    //人脸识别
+    implementation 'com.google.mlkit:face-detection:16.1.5'
 }
