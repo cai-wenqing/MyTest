@@ -3,7 +3,7 @@ package com.aiyakeji.mytest.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.event.DateEvent;
-import com.aiyakeji.mytest.ui.CalendarListFragment;
+import com.aiyakeji.mytest.ui.fragments.CalendarListFragment;
 import com.aiyakeji.mytest.widgets.calendarview.DateTimeUtil;
 
 import org.greenrobot.eventbus.EventBus;

@@ -1,26 +1,23 @@
 package com.aiyakeji.mytest.ui;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.aiyakeji.mytest.R;
-import com.aiyakeji.mytest.widgets.ControlableCircleView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import static com.aiyakeji.mytest.R.id.seven_btn_right;
+import com.aiyakeji.mytest.R;
+import com.aiyakeji.mytest.widgets.ScalePanelView;
 
 /**
  * 自定义圆盘
  */
 
 public class RotatePlateActivity extends AppCompatActivity implements View.OnClickListener {
-    private ControlableCircleView ccv;
-    private Button btn_left;
+    private ScalePanelView ccv;
     private TextView tv;
-    private Button btn_right;
     private Button btn_forbit;
 
 
@@ -32,47 +29,30 @@ public class RotatePlateActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView() {
-        ccv = (ControlableCircleView) findViewById(R.id.seven_ccv);
-        btn_left = (Button) findViewById(R.id.seven_btn_left);
+        ccv = (ScalePanelView) findViewById(R.id.seven_ccv);
         tv = (TextView) findViewById(R.id.seven_tv);
-        btn_right = (Button) findViewById(seven_btn_right);
         btn_forbit = (Button) findViewById(R.id.seven_btn_forbit);
 
 
-        ccv.setOnRotate(new ControlableCircleView.onRotateListener() {
+        ccv.setOnRotate(new ScalePanelView.onRotateListener() {
             @Override
-            public void onRotateLeft(int num) {
-                tv.setText("向左旋转" + num + "格");
-            }
-
-            @Override
-            public void onRotateRight(int num) {
-                tv.setText("向右旋转" + num + "格");
+            public void onRotate(float angle) {
+                tv.setText("角度：" + angle);
             }
         });
-        btn_left.setOnClickListener(this);
-        btn_right.setOnClickListener(this);
         btn_forbit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.seven_btn_left:
-                ccv.rotateLeft();
-                break;
-            case R.id.seven_btn_right:
-                ccv.rotateRight();
-                break;
-            case R.id.seven_btn_forbit:
-                if (ccv.getForbitRotate()) {
-                    ccv.setForbitRotate(false);
-                    btn_forbit.setText("禁止");
-                } else {
-                    ccv.setForbitRotate(true);
-                    btn_forbit.setText("开启");
-                }
-                break;
+        if (v.getId() == R.id.seven_btn_forbit) {
+            if (ccv.getForbidRotate()) {
+                ccv.setForbidRotate(false);
+                btn_forbit.setText("禁止");
+            } else {
+                ccv.setForbidRotate(true);
+                btn_forbit.setText("开启");
+            }
         }
     }
 }

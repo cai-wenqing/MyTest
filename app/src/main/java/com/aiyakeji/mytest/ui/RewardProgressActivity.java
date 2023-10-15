@@ -1,13 +1,17 @@
 package com.aiyakeji.mytest.ui;
 
+import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.TextView;
 
 import com.aiyakeji.mytest.R;
 import com.aiyakeji.mytest.widgets.RewardProgress;
+import com.aiyakeji.mytest.widgets.TextProgressBar;
 
 /**
  * @author CWQ
@@ -38,6 +42,29 @@ public class RewardProgressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rp.setProgressWithAnim(100);
+            }
+        });
+
+
+        //第二个进度条
+        TextProgressBar progressBar = findViewById(R.id.pb);
+        TextView tvReset1 = findViewById(R.id.tv_reset1);
+        TextView tvStart1 = findViewById(R.id.tv_start1);
+
+        tvReset1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    progressBar.setProgress(0, true);
+                }
+            }
+        });
+        tvStart1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    progressBar.setProgress(100, true);
+                }
             }
         });
     }

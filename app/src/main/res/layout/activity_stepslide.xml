@@ -12,6 +12,13 @@
         android:layout_marginTop="20dp"
         android:background="@color/white" />
 
+    <com.aiyakeji.mytest.widgets.StepNumberView
+        android:id="@+id/stepNumberView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -21,4 +28,13 @@
         android:text="选择文字展示"
         android:textColor="@color/blue"
         android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重置"
+        android:background="@color/white"
+        android:padding="10dp"/>
+
 </LinearLayout>

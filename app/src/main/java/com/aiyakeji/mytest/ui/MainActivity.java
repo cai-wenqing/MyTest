@@ -18,12 +18,12 @@ import com.aiyakeji.mytest.widgets.FloatView;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-    private String[] itemArr = {"折叠头部", "属性动画", "仿QQ步数圆形进度", "仿华为时钟",
+    private String[] itemArr = {"折叠头部", "Behavior", "仿QQ步数圆形进度", "仿华为时钟",
             "滚动选择器", "手势解锁", "圆盘", "万能适配器", "滑动卡片", "语音动态", "波动圆", "轮播图",
             "声音波", "material design", "注解", "代理模式", "日历",
             "日历列表", "动态脚布局", "动态高度layout", "获取系统音频", "标签控件", "跑马灯及ViewFlipper",
             "权限申请封装", "侧滑SideBar", "档位选择", "阴影布局", "Scroller测试", "底部弹窗", "SnapHelper", "奖金进度条",
-            "查看大图", "九宫格","粒子","黑客帝国","放大镜","壁纸","cameraX"};
+            "查看大图", "九宫格","粒子","黑客帝国","放大镜","壁纸","EmojiView","波浪进度条","CameraX","USB Camera","玫瑰图"};
 
     private MainAdapter contentAdapter;
     private RecyclerView recyclerView;
@@ -45,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0://折叠头部
                         startActivity(new Intent(MainActivity.this, CoordinatorActivity.class));
-                        overridePendingTransition(R.anim.payactivity_open, 0);
                         break;
                     case 1://属性动画
-                        startActivity(new Intent(MainActivity.this, AnimatorActivity.class));
+                        startActivity(new Intent(MainActivity.this, BehaviorActivity.class));
                         break;
                     case 2://仿QQ步数圆形进度
                         startActivity(new Intent(MainActivity.this, CircleProgressActivity.class));
@@ -155,8 +154,20 @@ public class MainActivity extends AppCompatActivity {
                     case 36://壁纸
                         startActivity(new Intent(MainActivity.this,WallpaperActivity.class));
                         break;
-                    case 37:
-                        startActivity(new Intent(MainActivity.this,CameraXActivity.class));
+                    case 37://EmojiView
+                        startActivity(new Intent(MainActivity.this,EmojiViewActivity.class));
+                        break;
+                    case 38://波浪进度条
+                        startActivity(new Intent(MainActivity.this,WaveProgressActivity.class));
+                        break;
+                    case 39:
+                        startActivity(new Intent(MainActivity.this, CameraXActivity.class));
+                        break;
+                    case 40://USB Camera
+                        startActivity(new Intent(MainActivity.this, USBCameraActivity.class));
+                        break;
+                    case 41://玫瑰图
+                        startActivity(new Intent(MainActivity.this, PieCharActivity.class));
                         break;
                 }
             }

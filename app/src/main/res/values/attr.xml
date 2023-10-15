@@ -96,4 +96,9 @@
     <declare-styleable name="NineImageLayout">
         <attr name="sapcing" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="WaveProgressView">
+        <attr name="wave_progress_rotate" format="boolean"/>
+        <attr name="wave_progress_color" format="color"/>
+    </declare-styleable>
 </resources>

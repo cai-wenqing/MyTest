@@ -1,4 +1,4 @@
-package com.aiyakeji.mytest.ui;
+package com.aiyakeji.mytest.ui.fragments;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

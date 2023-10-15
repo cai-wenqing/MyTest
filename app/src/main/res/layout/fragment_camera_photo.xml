@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <ImageButton
+        android:id="@+id/ib_switch"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="70dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ib_capture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_switch" />
+
+    <ImageButton
+        android:id="@+id/ib_capture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_shutter"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/ib_switch"
+        app:layout_constraintEnd_toStartOf="@id/iv_photo"
+        app:layout_constraintStart_toEndOf="@id/ib_switch"
+        app:layout_constraintTop_toTopOf="@id/ib_switch" />
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/ib_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ib_capture"
+        app:layout_constraintTop_toTopOf="@id/ib_switch"
+        app:srcCompat="@drawable/ic_photo" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/iv_test"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

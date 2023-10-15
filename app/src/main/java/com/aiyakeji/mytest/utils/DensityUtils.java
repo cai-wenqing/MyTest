@@ -25,6 +25,16 @@ public class DensityUtils {
         return (int) (pxValue / scale + 0.5f);
     }
 
+    public static float dip2pxFloat(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return dpValue * scale + 0.5f;
+    }
+
+    public static float px2dipFloat(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return pxValue / scale + 0.5f;
+    }
+
 
     public static DisplayMetrics getDisplayMetrics(Activity activity) {
         DisplayMetrics outMetrics = new DisplayMetrics();

@@ -2,17 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aiyakeji.mytest">
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <application
         android:name=".system.App"
@@ -26,9 +28,9 @@
 
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,7 +81,12 @@
         <activity android:name=".ui.VolumeViewActivity" />
         <activity android:name=".ui.AudioPlaybackCaptureActivity" />
         <activity android:name=".ui.WallpaperActivity" />
-        <activity android:name=".ui.CameraXActivity" />
+        <activity android:name=".ui.EmojiViewActivity"/>
+        <activity android:name=".ui.WaveProgressActivity"/>
+        <activity android:name=".ui.CameraXActivity"/>
+        <activity android:name=".ui.USBCameraActivity"/>
+        <activity android:name=".ui.PieCharActivity"/>
+        <activity android:name=".ui.BehaviorActivity"/>
 
 
         <service
